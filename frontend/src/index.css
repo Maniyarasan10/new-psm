@@ -398,7 +398,8 @@ h1, h2, h3, h4 {
   background: var(--canvas);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  overflow-y: auto;
   padding: calc(var(--nav-h) + 1rem) var(--container-pad) 2rem;
   opacity: 0;
   visibility: hidden;
@@ -417,12 +418,13 @@ h1, h2, h3, h4 {
 }
 .nav-mobile nav a {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem;
   font-family: var(--font-display);
   font-size: clamp(2rem, 8vw, 3.5rem);
   font-weight: 500;
   color: var(--ink);
+  line-height: 1.1;
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--hairline);
   opacity: 0;

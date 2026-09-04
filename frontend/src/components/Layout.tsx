@@ -11,9 +11,10 @@ function initReveals() {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const delay = entry.target.dataset.revealDelay;
+          const target = entry.target as HTMLElement;
+          const delay = target.dataset.revealDelay;
           setTimeout(() => {
-            entry.target.classList.add('revealed');
+            target.classList.add('revealed');
           }, delay ? Number(delay) : 0);
           observer.unobserve(entry.target);
         }

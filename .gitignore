@@ -56,9 +56,6 @@ ehthumbs.db
 frontend/public/models/
 frontend/public/hdri/
 
-# Standalone 3D demo (not the React app)
-frontend/index.html
-
 # Design / dev docs (not part of app)
 frontend/3D web design/
 frontend/PSM_Website_Content_Final.txt
