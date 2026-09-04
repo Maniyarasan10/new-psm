@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { PageHero, Section } from '../../components/ui';
 import { CompanyCta } from '../../components/shared';
 import type { SOLUTIONS } from '../../lib/siteContent';
@@ -78,6 +79,12 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
 
   return (
     <>
+      <Seo
+        title={`${solution.title} | Digital Solutions by Problem Solving Mind`}
+        description={solution.description}
+        path={solution.slug}
+      />
+
       <PageHero
         eyebrow="Digital Solution · PSM"
         title={solution.pageTitle}

@@ -1,10 +1,17 @@
 import { PageHero, Section } from '../components/ui';
+import Seo from '../components/Seo';
 import { CompanyCta, TwoEngines } from '../components/shared';
 import { MISSION, VISION, VALUES } from '../lib/siteContent';
 
 export default function About() {
   return (
     <>
+      <Seo
+        title="About Problem Solving Mind | Technology Company & Product Studio"
+        description="Problem Solving Mind is a technology company that builds proprietary products and provides digital solutions. Learn about our mission, vision, values and our problem-first approach."
+        path="/about"
+      />
+
       <PageHero eyebrow="About PSM" title="We Are Problem Solvers Who Build Technology.">
         <p>Problem Solving Mind was built around a simple belief: better technology begins with better problem solving.</p>
         <p>Technology is everywhere. But technology alone does not create value. Value comes from understanding a problem deeply enough to build something people can actually use. PSM is a technology company focused on two connected areas: building proprietary products and providing digital solutions to businesses and organizations. We identify problems, understand the people and processes involved, design practical solutions and build technology that can operate in the real world.</p>

@@ -1,9 +1,16 @@
 import { PageHero, Section } from '../components/ui';
+import Seo from '../components/Seo';
 import { CompanyCta } from '../components/shared';
 
 export default function CaseStudies() {
   return (
     <>
+      <Seo
+        title="Case Studies | Real-World Problems Solved by PSM"
+        description="Proudly real Problem Solving Mind case studies covering the problem, approach, solution and outcome of client engagements in software, CRM, ERP and automation."
+        path="/case-studies"
+      />
+
       <PageHero
         eyebrow="Case Studies"
         title="Problems We've Worked to Solve."

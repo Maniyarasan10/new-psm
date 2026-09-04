@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { PageHero } from '../components/ui';
+import Seo from '../components/Seo';
 import { COMPANY, CONTACT } from '../lib/siteContent';
 
 const ENQUIRY_OPTIONS = [
@@ -20,6 +21,12 @@ export default function Contact() {
 
   return (
     <>
+      <Seo
+        title="Contact Problem Solving Mind | Start a Conversation"
+        description="Have a problem worth solving? Contact Problem Solving Mind about digital solutions, product partnerships, product enquiries or careers. Email problemsolvingminds@gmail.com."
+        path="/contact"
+      />
+
       <PageHero
         eyebrow="Contact"
         title="Have a Problem Worth Solving?"

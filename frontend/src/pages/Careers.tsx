@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
+import Seo from '../components/Seo';
 import { PageHero, Section } from '../components/ui';
 import { CAREERS } from '../lib/siteContent';
 
 export default function Careers() {
   return (
     <>
+      <Seo
+        title="Careers at Problem Solving Mind | Join the PSM Team"
+        description="Problem Solving Mind is looking for problem solvers — software developers, AI/ML engineers, UI/UX designers, product thinkers and more. Build real products and solve real problems."
+        path="/careers"
+      />
+
       <PageHero
         eyebrow="Careers"
         title="Build Technology. Solve Problems. Grow With Us."

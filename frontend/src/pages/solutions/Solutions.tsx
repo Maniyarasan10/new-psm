@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { PageHero, Section } from '../../components/ui';
 import { SOLUTIONS, SOLUTIONS_HUBS } from '../../lib/siteContent';
 
 export default function SolutionsPage() {
   return (
     <>
+      <Seo
+        title="Digital Solutions | Software, AI, Automation by Problem Solving Mind"
+        description="Problem Solving Mind helps businesses and organizations turn operational challenges into practical digital systems — software, AI, automation, web & mobile apps, business systems and product engineering."
+        path="/solutions"
+      />
+
       <PageHero
         eyebrow="PSM Digital Solutions"
         title="Digital Solutions Built Around Your Business."

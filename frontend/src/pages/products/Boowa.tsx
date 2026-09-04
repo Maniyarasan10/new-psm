@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { PageHero } from '../../components/ui';
 
 const CUSTOMERS = [
@@ -53,6 +54,12 @@ function StepList({ items }: { items: { label: string; desc: string }[] }) {
 export default function Boowa() {
   return (
     <>
+      <Seo
+        title="Boowa | Hyperlocal Food & Everyday-Item Delivery Platform"
+        description="Boowa is a hyperlocal food and everyday-item delivery platform connecting customers with nearby businesses and delivery partners. Faster delivery, closer to you."
+        path="/products/boowa"
+      />
+
       <PageHero
         eyebrow="Product · Local Commerce"
         title="Boowa — Hyperlocal Commerce, Closer to You."

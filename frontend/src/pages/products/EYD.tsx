@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { PageHero } from '../../components/ui';
 
 const SELLER_BENEFITS = [
@@ -22,6 +23,12 @@ const CUSTOMER_BENEFITS = [
 export default function EYD() {
   return (
     <>
+      <Seo
+        title="EYD — Explore Your Dream | Real-Estate & 3D Property Technology"
+        description="EYD is a real-estate technology platform from Problem Solving Mind bringing property discovery, seller management and immersive 3D property experiences into one place."
+        path="/products/eyd"
+      />
+
       <PageHero
         eyebrow="Product · Real Estate Technology"
         title="EYD — Explore Your Dream."

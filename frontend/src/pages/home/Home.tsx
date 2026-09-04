@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { Section } from '../../components/ui';
 import { CompanyCta, TwoEngines } from '../../components/shared';
 import {
@@ -17,6 +18,12 @@ export default function Home() {
 
   return (
     <>
+      <Seo
+        title="Problem Solving Mind | Technology Products & Digital Solutions"
+        description="Problem Solving Mind builds proprietary technology products (Boowa, EYD, Aura) and delivers AI, software, automation and digital solutions for businesses and organizations. We start with the problem, not the tech stack."
+        path="/"
+      />
+
       {/* ── Hero ─────── */}
       <section className="hero">
         <div className="container hero-content">

@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { PageHero } from '../../components/ui';
 
 export default function Aura() {
   return (
     <>
+      <Seo
+        title="Aura | Healthcare Technology & Connected Devices"
+        description="Aura is an emerging healthcare technology and hardware initiative from Problem Solving Mind, exploring how connected devices and software can improve patient care and clinical workflows."
+        path="/products/aura"
+      />
+
       <PageHero
         eyebrow="Product · Healthcare Technology"
         title="Aura — Healthcare Technology, Built Around the Patient."

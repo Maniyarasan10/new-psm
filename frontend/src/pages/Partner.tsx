@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
+import Seo from '../components/Seo';
 import { PageHero, Section } from '../components/ui';
 import { PARTNERSHIP_AREAS, PRODUCTS } from '../lib/siteContent';
 
 export default function Partner() {
   return (
     <>
+      <Seo
+        title="Partnerships | Build Something Valuable with Problem Solving Mind"
+        description="PSM works with businesses, organizations, technology partners and individuals through product, business, technology and distribution partnerships, pilot programs and strategic collaborations."
+        path="/partner"
+      />
+
       <PageHero
         eyebrow="Partnerships"
         title="Let's Build Something Valuable Together."

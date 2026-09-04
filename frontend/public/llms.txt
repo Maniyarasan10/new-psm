@@ -1,0 +1,35 @@
+# Problem Solving Mind
+
+> Technology Products & Digital Solutions
+
+Problem Solving Mind (PSM) is a technology company that builds proprietary products and delivers digital solutions for businesses and organizations. We start with the problem, not the tech stack.
+
+This is the llms.txt index for problemsolvingmind.com. It lists the pages an LLM or agent is most likely to need. Each linked page contains a full user-friendly HTML view of that content.
+
+- [Home](https://problemsolvingmind.com/) — Products, digital solutions, approach, audiences and why PSM.
+- [Products](https://problemsolvingmind.com/products) — Our proprietary product portfolio and product principles.
+- [Boowa](https://problemsolvingmind.com/products/boowa) — Hyperlocal food and everyday-item delivery platform.
+- [EYD — Explore Your Dream](https://problemsolvingmind.com/products/eyd) — Real-estate technology with immersive 3D property experiences.
+- [Aura](https://problemsolvingmind.com/products/aura) — Healthcare technology and connected-devices initiative.
+- [Digital Solutions](https://problemsolvingmind.com/solutions) — Software, AI, automation, web & mobile, business systems and product engineering.
+- [AI & Intelligent Systems](https://problemsolvingmind.com/solutions/ai) — AI applications, assistants, agents and intelligent workflows.
+- [Business Systems](https://problemsolvingmind.com/solutions/business-systems) — ERP, CRM, internal platforms, portals and dashboards.
+- [Business Automation](https://problemsolvingmind.com/solutions/automation) — Workflow automation, approvals, data sync and reporting.
+- [Web & Mobile Applications](https://problemsolvingmind.com/solutions/web-mobile) — Responsive web apps, PWAs, portals, dashboards and e-commerce.
+- [Product Engineering](https://problemsolvingmind.com/solutions/product-engineering) — From product idea to working software (discovery through deployment).
+- [Hardware & IoT](https://problemsolvingmind.com/solutions/hardware-iot) — IoT sensors, edge devices and hardware-integrated systems.
+- [Industries](https://problemsolvingmind.com/industries) — Real estate, retail & local commerce, healthcare, manufacturing, professional services and education.
+- [Case Studies](https://problemsolvingmind.com/case-studies) — Real-world problems solved by PSM.
+- [About](https://problemsolvingmind.com/about) — Mission, vision, values and our problem-first approach.
+- [Careers](https://problemsolvingmind.com/careers) — Open roles and what to expect at PSM.
+- [Contact](https://problemsolvingmind.com/contact) — Start a conversation about a digital solution, partnership or enquiry.
+- [Partnerships](https://problemsolvingmind.com/partner) — Partnership areas and product partnerships.
+
+## Company facts
+
+- Name: Problem Solving Mind (PSM)
+- Positioning: Build Products. Solve Problems. Create Impact.
+- Core idea: We don't start with technology. We start with the problem.
+- Products in development: Boowa (hyperlocal commerce), EYD (real-estate technology), Aura (healthcare technology).
+- Email: problemsolvingminds@gmail.com
+- Phone: 93602 07861 · 73393 86911

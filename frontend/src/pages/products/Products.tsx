@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
+import Seo from '../../components/Seo';
 import { PageHero, Section } from '../../components/ui';
 import { PRODUCTS, PRODUCT_PRINCIPLES } from '../../lib/siteContent';
 
 export default function ProductsPage() {
   return (
     <>
+      <Seo
+        title="Products by Problem Solving Mind | Boowa, EYD, Aura"
+        description="Explore proprietary technology products built by Problem Solving Mind: Boowa (hyperlocal commerce), EYD (real-estate technology) and Aura (healthcare technology)."
+        path="/products"
+      />
+
       <PageHero
         eyebrow="Our Products"
         title="Products Built by Problem Solving Mind."

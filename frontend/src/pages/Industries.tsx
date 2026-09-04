@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Seo from '../components/Seo';
 import { PageHero, Section } from '../components/ui';
 import { CompanyCta } from '../components/shared';
 import { INDUSTRIES } from '../lib/siteContent';
@@ -6,6 +7,12 @@ import { INDUSTRIES } from '../lib/siteContent';
 export default function Industries() {
   return (
     <>
+      <Seo
+        title="Industries We Serve | Real Estate, Retail, Healthcare & More"
+        description="Problem Solving Mind designs technology for real-world industries — real estate, retail & local commerce, healthcare, manufacturing, professional services and education."
+        path="/industries"
+      />
+
       <PageHero
         eyebrow="Industries"
         title="Technology Designed for Real-World Industries."
