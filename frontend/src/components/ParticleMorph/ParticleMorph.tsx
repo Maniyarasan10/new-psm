@@ -513,14 +513,15 @@ class ParticleMorphEngine {
 
     const tierCfg = this.compact ? COMPACT_TIERS[this.tier] : TIERS[this.tier];
     let base = tierCfg.scale;
+    const narrow = this.tier === 'mobile' || w / h < 0.8;
     if (this.fullPage) {
       this.group.position.x = 0;
-      base = Math.max(0.6, tierCfg.scale * 0.9);
+      base = Math.max(0.6, tierCfg.scale * (narrow ? 0.58 : 0.9));
       this.group.scale.setScalar(base);
     } else if (this.compact) {
       this.group.position.x = 0;
       this.group.rotation.y = this.side === 'left' ? 0.5 : -0.5;
-      base = tierCfg.scale * (this.tier === 'mobile' || w / h < 1.2 ? 0.85 : 1);
+      base = tierCfg.scale * (narrow || w / h < 1.2 ? 0.72 : 1);
       this.group.scale.setScalar(base);
     } else {
       this.group.position.x =
