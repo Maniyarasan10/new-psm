@@ -12,13 +12,11 @@ uniform float uHover;         // 0..1 — cursor resting on the object
 uniform vec2  uCursor;        // smoothed pointer NDC, -1..1
 uniform float uCursorK;       // NDC → object-local cursor scale (aspect/zoom aware)
 uniform vec2  uMouse;         // smoothed normalized pointer, -1..1
-uniform float uMesh;          // 0 for particles, 1 for the facet mesh overlay
 uniform sampler2D uAtlas;     // half-float shape atlas, SHAPE_COUNT rows of TILE*TILE
 uniform float uShapeCount;
 
 attribute vec4 aRandom;       // x = size var, y = stagger delay, z = noise phase, w = tint select
 attribute vec4 aShape;        // x = layer (0 micro / 1 medium / 2 structural / 3 floating)
-attribute vec3 aBarycentric;  // triangle coordinates used by the mesh edge pass
                               // y = planar sprite rotation, z = brightness, w = seed2
 
 varying float vTint;
@@ -28,7 +26,6 @@ varying float vRot;
 varying float vBright;
 varying float vDepth;
 varying float vPulse;
-varying vec3 vBarycentric;
 
 /* ---------- helpers ---------- */
 mat3 rotY(float a) {
@@ -182,5 +179,4 @@ void main() {
   vRot = aShape.y + uTime * 0.05 * aRandom.w;
   vBright = aShape.z;
   vDepth = length(pos);
-  vBarycentric = aBarycentric;
 }

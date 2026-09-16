@@ -92,9 +92,7 @@ class ParticleMorphEngine {
   private scene = new THREE.Scene();
   private group = new THREE.Group();
   private geometry: THREE.BufferGeometry | null = null;
-  private meshGeometry: THREE.BufferGeometry | null = null;
   private material: THREE.ShaderMaterial | null = null;
-  private meshMaterial: THREE.ShaderMaterial | null = null;
   private texture: THREE.DataTexture | null = null;
   private uniforms: Record<string, THREE.IUniform> = {};
 
@@ -216,7 +214,6 @@ class ParticleMorphEngine {
         shapeAttr[i * 4 + 3] = Math.random();
       }
       geometry.setAttribute('aShape', new THREE.BufferAttribute(shapeAttr, 4));
-      geometry.setAttribute('aBarycentric', new THREE.BufferAttribute(new Float32Array(this.count * 3), 3));
       this.geometry = geometry;
 
       /* ---------- Material ---------- */
@@ -233,7 +230,6 @@ class ParticleMorphEngine {
         uHover: { value: 0 },
         uCursor: { value: new THREE.Vector2(0, 0) },
         uCursorK: { value: this.cursorK },
-        uMesh: { value: 0 },
         uAtlas: { value: texture },
         uShapeCount: { value: SHAPE_COUNT },
         uColor: { value: new THREE.Color(PARTICLE_KNOBS.COLORS.primary) },
@@ -251,35 +247,6 @@ class ParticleMorphEngine {
       this.material = material;
 
       this.group.add(new THREE.Points(geometry, material));
-
-      const meshGeometry = new THREE.BufferGeometry();
-      meshGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(this.count * 3), 3));
-      meshGeometry.setAttribute('aRandom', new THREE.BufferAttribute(rand, 4));
-      meshGeometry.setAttribute('aShape', new THREE.BufferAttribute(shapeAttr, 4));
-      const barycentric = new Float32Array(this.count * 3);
-      const indices: number[] = [];
-      for (let i = 0; i + 2 < this.count; i += 3) {
-        barycentric.set([1, 0, 0], i * 3);
-        barycentric.set([0, 1, 0], (i + 1) * 3);
-        barycentric.set([0, 0, 1], (i + 2) * 3);
-        indices.push(i, i + 1, i + 2);
-      }
-      meshGeometry.setAttribute('aBarycentric', new THREE.BufferAttribute(barycentric, 3));
-      meshGeometry.setIndex(indices);
-      this.meshGeometry = meshGeometry;
-
-      const meshUniforms = THREE.UniformsUtils.clone(this.uniforms);
-      meshUniforms.uMesh.value = 1;
-      const meshMaterial = new THREE.ShaderMaterial({
-        uniforms: meshUniforms,
-        vertexShader,
-        fragmentShader,
-        transparent: true,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      });
-      this.meshMaterial = meshMaterial;
-      this.group.add(new THREE.Mesh(meshGeometry, meshMaterial));
 
       this.resize();
 
@@ -463,14 +430,6 @@ class ParticleMorphEngine {
     this.uniforms.uHover.value = hover;
     (this.uniforms.uCursor.value as THREE.Vector2).copy(this.cursor);
 
-    if (this.meshMaterial) {
-      for (const key of Object.keys(this.uniforms)) {
-        if (key !== 'uMesh' && this.meshMaterial.uniforms[key]) {
-          this.meshMaterial.uniforms[key].value = this.uniforms[key].value;
-        }
-      }
-    }
-
   /* Keep the camera mostly steady while the stage gets a slow, continuous
      sense of depth. The restrained orbit and float make every shape feel
      alive without competing with the scroll-driven morph. */
@@ -515,8 +474,13 @@ class ParticleMorphEngine {
     let base = tierCfg.scale;
     const narrow = this.tier === 'mobile' || w / h < 0.8;
     if (this.fullPage) {
-      this.group.position.x = 0;
-      base = Math.max(0.6, tierCfg.scale * (narrow ? 0.58 : 0.9));
+      /* Full-page stage: on wide screens the constellation reads as the
+         right-half centerpiece — pushed off the left-rail headline so it
+         never competes with the editorial text; on narrow screens it stays
+         centered, floating quietly behind the frosted content band. */
+      this.group.position.x =
+        this.tier === 'mobile' || narrow ? 0 : w / h > 1.5 ? 1.95 : 1.25;
+      base = Math.max(0.6, tierCfg.scale * (narrow ? 0.72 : 0.9));
       this.group.scale.setScalar(base);
     } else if (this.compact) {
       this.group.position.x = 0;
@@ -559,17 +523,9 @@ class ParticleMorphEngine {
       this.geometry.dispose();
       this.geometry = null;
     }
-    if (this.meshGeometry) {
-      this.meshGeometry.dispose();
-      this.meshGeometry = null;
-    }
     if (this.material) {
       this.material.dispose();
       this.material = null;
-    }
-    if (this.meshMaterial) {
-      this.meshMaterial.dispose();
-      this.meshMaterial = null;
     }
     if (this.texture) {
       this.texture.dispose();

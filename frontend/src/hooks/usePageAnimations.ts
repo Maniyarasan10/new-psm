@@ -141,26 +141,28 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
       const revealTargets = q('[data-reveal]:not([data-reveal-load])').filter(
         (el) => !isCard(el) && !sectionOwned.has(el),
       );
-      ScrollTrigger.batch(revealTargets as HTMLElement[], {
-        start: 'top 90%',
-        once: true,
-        onEnter: (batch) => {
-          gsap.fromTo(
-            batch,
-            { autoAlpha: 0, y: 32 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.9,
-              ease: 'power3.out',
-              stagger: (_i, el) => {
-                const delayAttr = (el as HTMLElement).dataset.revealDelay;
-                return delayAttr ? Number(delayAttr) / 1000 : 0;
+      if (revealTargets.length) {
+        ScrollTrigger.batch(revealTargets as HTMLElement[], {
+          start: 'top 90%',
+          once: true,
+          onEnter: (batch) => {
+            gsap.fromTo(
+              batch,
+              { autoAlpha: 0, y: 32 },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.9,
+                ease: 'power3.out',
+                stagger: (_i, el) => {
+                  const delayAttr = (el as HTMLElement).dataset.revealDelay;
+                  return delayAttr ? Number(delayAttr) / 1000 : 0;
+                },
               },
-            },
-          );
-        },
-      });
+            );
+          },
+        });
+      }
 
       /* 2a ── Scroll-driven card animation ──────────────────────────
          Cards flip up, unfade and spring into place row-by-row as they

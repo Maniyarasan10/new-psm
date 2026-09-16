@@ -3,7 +3,6 @@ precision highp float;
 uniform vec3  uColor;     // primary brand iris
 uniform vec3  uAccent;    // sparse saffron accent
 uniform float uOpacity;
-uniform float uMesh;
 
 varying float vTint;
 varying float vHover;
@@ -12,7 +11,6 @@ varying float vRot;
 varying float vBright;
 varying float vDepth;
 varying float vPulse;
-varying vec3 vBarycentric;
 
 float cross2(vec2 a, vec2 b) {
   return a.x * b.y - a.y * b.x;
@@ -72,13 +70,6 @@ void main() {
   float layerAlpha = vLayer > 2.5 ? 0.5 : (vLayer < 0.5 ? 0.9 : 0.85);
   float alpha = mask * clamp(facet * relief, 0.0, 1.0) * uOpacity * layerAlpha;
   alpha *= 1.0 + vHover * 0.6;
-
-  if (uMesh > 0.5) {
-    float edgeDistance = min(vBarycentric.x, min(vBarycentric.y, vBarycentric.z));
-    float edge = 1.0 - smoothstep(0.0, fwidth(edgeDistance) * 1.8 + 0.001, edgeDistance);
-    gl_FragColor = vec4(mix(col, vec3(1.0), 0.22), edge * uOpacity * 0.2);
-    return;
-  }
 
   gl_FragColor = vec4(col, clamp(alpha, 0.0, 1.0));
 }
