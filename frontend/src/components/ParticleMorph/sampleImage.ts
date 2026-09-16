@@ -9,7 +9,11 @@
  * brand at rest.
  */
 
-const MAX_RENDER_HEIGHT = 480;
+const MAX_RENDER_HEIGHT = 720;
+
+/* Extrusion controls for the 3D brand logotype. */
+const BRAND_HALF_DEPTH = 0.13; // half-thickness of the extruded slab
+const BEVEL_RADIUS_PX = 10; // edge distance (render px) that reaches full depth
 
 type Ink = { r: number; g: number; b: number };
 
@@ -50,6 +54,46 @@ function averageInk(data: Uint8ClampedArray, w: number, h: number, bg: ReturnTyp
   return { r: r / n, g: g / n, b: b / n };
 }
 
+/** Fast two-pass chamfer distance transform of the ink mask. Each ink pixel
+    ends up holding its distance in render-pixels to the nearest background,
+    so glyph cores (thick chambers) score high and strokes / counters low. */
+function distanceFromEdge(mask: Uint8Array, w: number, h: number): Float32Array {
+  const INF = 1e9;
+  const d = new Float32Array(w * h).fill(INF);
+  for (let y = 0; y < h; y++) {
+    const row = y * w;
+    for (let x = 0; x < w; x++) {
+      const i = row + x;
+      if (!mask[i]) continue;
+      d[i] = 0;
+      if (x > 0) d[i] = Math.min(d[i], d[i - 1] + 1);
+      if (y > 0) {
+        d[i] = Math.min(d[i], d[i - w] + 1);
+        if (x > 0) d[i] = Math.min(d[i], d[i - w - 1] + 1.4142);
+        if (x < w - 1) d[i] = Math.min(d[i], d[i - w + 1] + 1.4142);
+      }
+    }
+  }
+  for (let y = h - 1; y >= 0; y--) {
+    const row = y * w;
+    for (let x = w - 1; x >= 0; x--) {
+      const i = row + x;
+      if (!mask[i]) continue;
+      if (x < w - 1) d[i] = Math.min(d[i], d[i + 1] + 1);
+      if (y < h - 1) {
+        d[i] = Math.min(d[i], d[i + w] + 1);
+        if (x < w - 1) d[i] = Math.min(d[i], d[i + w + 1] + 1.4142);
+        if (x > 0) d[i] = Math.min(d[i], d[i + w - 1] + 1.4142);
+      }
+    }
+  }
+  return d;
+}
+
+/** Extrude the 2D logotype into a beveled 3D slab: a readable front face,
+    a back face, and a rounded solid core whose thickness scales with the
+    distance-from-edge of each glyph pixel. The mark reads crisp from the
+    front and reads as a solid monogram (not a flat plane) when it turns. */
 function sampleCanvas(canvas: HTMLCanvasElement, count: number): Float32Array {
   const w = canvas.width;
   const h = canvas.height;
@@ -57,12 +101,29 @@ function sampleCanvas(canvas: HTMLCanvasElement, count: number): Float32Array {
   if (!ctx) throw new Error('Canvas 2D unavailable.');
   const { data } = ctx.getImageData(0, 0, w, h);
 
-  const ink: number[] = [];
+  const mask = new Uint8Array(w * h);
+  let inkCount = 0;
   for (let i = 0; i < w * h; i++) {
-    const p = i * 4;
-    if (data[p + 3] > 48) ink.push(i);
+    if (data[i * 4 + 3] > 48) {
+      mask[i] = 1;
+      inkCount++;
+    }
   }
-  if (ink.length < 8) throw new Error('Brand mark has too little ink to sample.');
+  if (inkCount < 8) throw new Error('Brand mark has too little ink to sample.');
+
+  /* Edge distance → per-pixel bevel depth (0 at silhouette → 1 at core). */
+  const dist = distanceFromEdge(mask, w, h);
+  const ink = new Float32Array(inkCount * 2); // x (col) per entry, y (row)
+  const sqrtDeep = new Float32Array(inkCount); // sqrt of normalized distance
+  const invBevel = 1 / BEVEL_RADIUS_PX;
+  let k = 0;
+  for (let i = 0; i < w * h; i++) {
+    if (!mask[i]) continue;
+    ink[k * 2] = i % w;
+    ink[k * 2 + 1] = (i / w) | 0;
+    sqrtDeep[k] = Math.sqrt(Math.min(1, dist[i] * invBevel));
+    k++;
+  }
 
   const out = new Float32Array(count * 3);
   const inv = 1 / Math.max(w, h);
@@ -72,16 +133,31 @@ function sampleCanvas(canvas: HTMLCanvasElement, count: number): Float32Array {
      neighbours to the full silhouette instead of clumping on thick ink —
      the wordmark reads crisp and complete rather than broken/spotty. A
      tiny in-band jitter keeps it organic, never a visible grid. */
-  const band = ink.length / count;
+  const band = inkCount / count;
   for (let i = 0; i < count; i++) {
     const jitter = (Math.random() - 0.5) * band;
-    const s = Math.min(ink.length - 1, Math.max(0, (i + 0.5) * band + jitter));
-    const idx = ink[s | 0];
-    const px = idx % w;
-    const py = (idx / w) | 0;
-    out[i * 3] = (px / w * 2 - 1) * (w * inv);
-    out[i * 3 + 1] = (1 - py / h * 2) * (h * inv);
-    out[i * 3 + 2] = (Math.random() - 0.5) * 0.06;
+    const s = Math.min(inkCount - 1, Math.max(0, (i + 0.5) * band + jitter));
+    const idx = s | 0;
+    const px = ink[idx * 2];
+    const py = ink[idx * 2 + 1];
+    const x = (px / w * 2 - 1) * (w * inv);
+    const y = (1 - py / h * 2) * (h * inv);
+
+    const t = Math.random();
+    let z: number;
+    if (t < 0.45) {
+      /* Front face — the readable logotype surface. */
+      z = BRAND_HALF_DEPTH + (Math.random() - 0.5) * 0.02;
+    } else if (t < 0.7) {
+      /* Back face. */
+      z = -BRAND_HALF_DEPTH + (Math.random() - 0.5) * 0.02;
+    } else {
+      /* Rounded core: thin at the silhouette, full near the glyph centre. */
+      z = (Math.random() - 0.5) * 2 * BRAND_HALF_DEPTH * sqrtDeep[idx];
+    }
+    out[i * 3] = x;
+    out[i * 3 + 1] = y;
+    out[i * 3 + 2] = z;
   }
   return out;
 }

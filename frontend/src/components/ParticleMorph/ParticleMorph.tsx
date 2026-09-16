@@ -326,11 +326,11 @@ class ParticleMorphEngine {
   }
 
   /** Replace a shape row in-place with externally sampled points. */
-  private swapShape(shape: ShapeKind, points: Float32Array) {
+  private swapShape(shape: ShapeKind, points: Float32Array, targetScale = 1) {
     if (this.disposed || !this.atlasData || !this.texture) return;
     const idx = SHAPES.indexOf(shape);
     if (idx < 0) return;
-    this.writeAtlasRow(this.atlasData, idx, scaleToUnit(points), new Float32Array(0));
+    this.writeAtlasRow(this.atlasData, idx, scaleToUnit(points, targetScale), new Float32Array(0));
     this.encodeAtlas();
     if (this.reduced) this.renderFrame();
   }
@@ -369,7 +369,7 @@ class ParticleMorphEngine {
       .catch((err) => console.warn('Brain mesh fallback kept (procedural).', err));
 
     void sampleImageToPoints(logoUrl, this.count)
-      .then((pts) => this.swapShape('brand', pts))
+      .then((pts) => this.swapShape('brand', pts, 1.18))
       .catch((err) => console.warn('Brand mark fallback kept (procedural slab).', err));
   }
 
