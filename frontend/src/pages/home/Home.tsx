@@ -17,34 +17,58 @@ import {
 export default function Home() {
 
   return (
-    <>
+    <div className="home-dala">
       <Seo
         title="Problem Solving Mind | Technology Products & Digital Solutions"
-        description="Problem Solving Mind builds proprietary technology products (Boowa, EYD, Aura) and delivers AI, software, automation and digital solutions for businesses and organizations. We start with the problem, not the tech stack."
+        description="Problem Solving Mind builds proprietary technology products — including Boowa, EYD and Aura — and delivers AI, software and automation solutions for businesses that need more than off-the-shelf technology."
         path="/"
       />
 
-      {/* ── Hero ─────── */}
-      <section className="hero">
+      {/* ── Hero: Dala-style landing — amber label, massive responsive title,
+            brain constellation as the right-half centerpiece ── */}
+      <section className="hero landing" aria-label="PSM — Because problem solving is everything">
         <div className="container hero-content">
-          <div data-reveal>
-            <div className="hero-meta">
-              <span className="mono eyebrow">Problem Solving Mind — Technology Company</span>
+          <div className="landing__title-wrapper">
+            <div
+              className="d-flex t-16 t-lh-1.2 t-ls-0.05 t-600 t-uppercase mb-1 t-purple"
+              data-reveal
+              data-reveal-load
+            >
+              {COMPANY.name} — Technology Company
             </div>
+            <h1 className="landing__title t-56 t-80@xs t-104@sm t-150@md t-lh-0.9 -t-ls-0.04 t-400">
+              <span className="d-block" data-reveal data-reveal-load>Because</span>
+              <span className="d-block" data-reveal data-reveal-load data-reveal-delay="120">Problem Solving</span>
+              <span className="d-block" data-reveal data-reveal-load data-reveal-delay="200">is everything.</span>
+            </h1>
           </div>
-          <h1 className="display hero-title" data-reveal data-reveal-delay="100">
-            {COMPANY.primaryMessage}
-          </h1>
-          <p className="lead hero-sub" data-reveal data-reveal-delay="200">
-            A technology company building proprietary products and practical digital solutions for businesses and organizations.
-          </p>
-          <div className="hero-cta" data-reveal data-reveal-delay="300">
-            <Link className="btn btn-primary" to="/products">
-              Explore Products <span aria-hidden className="arrow">→</span>
-            </Link>
-            <Link className="btn btn-ghost" to="/contact">
-              Build With PSM
-            </Link>
+
+          <div className="mobile-blur mt-0 mb-auto">
+            <div className="landing__body">
+              <p
+                className="t-24 t-lh-1.5 -t-ls-0.02 t-200 mb-1.5"
+                data-reveal
+                data-reveal-load
+                data-reveal-delay="240"
+              >
+                A technology company that builds proprietary products and delivers
+                digital solutions — starting from the problem, not the tech stack.
+              </p>
+              <div className="overflow-hidden">
+                <div className="d-flex hero-cta mt-2" data-reveal data-reveal-load data-reveal-delay="300">
+                  <Link className="btn btn-primary" to="/products">
+                    Explore Products <span aria-hidden className="arrow">→</span>
+                  </Link>
+                  <Link className="btn btn-ghost" to="/contact">
+                    Build With PSM
+                  </Link>
+                </div>
+              </div>
+              <p className="t-16 t-lh-1.4 -t-ls-0.02 t-200 t-grey-4 mt-1 mb-0">
+                From identifying the problem to designing, building, deploying and
+                improving the solution — we think beyond technology.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -56,18 +80,18 @@ export default function Home() {
 
       {/* ── The PSM Idea ──────────────────────────────────── */}
       <Section
-        eyebrow={PSM_IDEA.eyebrow}
-        title={PSM_IDEA.title}
-      >
-        <div style={{ maxWidth: '62ch' }} data-reveal>
-          {PSM_IDEA.body.map((p, i) => (
-            <p key={i} className="body" style={{ marginBottom: '1rem' }}>{p}</p>
-          ))}
-        </div>
-        <Link className="btn btn-text" to={PSM_IDEA.href} style={{ marginTop: '1.5rem' }} data-reveal>
-          {PSM_IDEA.cta} <span aria-hidden className="arrow">→</span>
-        </Link>
-      </Section>
+          eyebrow={PSM_IDEA.eyebrow}
+          title={PSM_IDEA.title}
+        >
+          <div style={{ maxWidth: '62ch' }} data-reveal>
+            {PSM_IDEA.body.map((p, i) => (
+              <p key={i} className="body" style={{ marginBottom: '1rem' }}>{p}</p>
+            ))}
+          </div>
+          <Link className="btn btn-text" to={PSM_IDEA.href} style={{ marginTop: '1.5rem' }} data-reveal>
+            {PSM_IDEA.cta} <span aria-hidden className="arrow">→</span>
+          </Link>
+        </Section>
 
       {/* ── What We Do ────────────────────────────────────── */}
       <Section
@@ -105,9 +129,9 @@ export default function Home() {
 
       {/* ── Digital Solutions ──────────────────────────────── */}
       <Section
-        eyebrow="Digital Solutions"
+        eyebrow="PSM Digital Solutions"
         title="Have a Problem? Let's Build the Solution."
-        intro="Your business doesn't need technology simply because technology exists. It needs the right technology for the problem."
+        intro="Your business doesn't need technology simply because technology exists. It needs the right technology for the problem. PSM helps businesses and organizations design, build and improve digital systems around their actual requirements."
       >
         <div className="card-grid">
           {SOLUTIONS.map((s, i) => (
@@ -184,6 +208,6 @@ export default function Home() {
 
       {/* ── Company CTA ───────────────────────────────────── */}
       <CompanyCta />
-    </>
+    </div>
   );
 }

@@ -11,6 +11,39 @@ interface DetailBlock {
   body: string;
 }
 
+const SEO_META: Record<string, { title: string; description: string }> = {
+  ai: {
+    title: 'AI Solutions & AI Automation Services | Problem Solving Mind',
+    description:
+      'Build practical AI systems, AI agents, intelligent workflows and AI-powered applications with Problem Solving Mind.',
+  },
+  'business-systems': {
+    title: 'ERP, CRM & Business Systems Development | Problem Solving Mind',
+    description:
+      'Problem Solving Mind builds ERP and ERP-like systems, CRM platforms, internal tools and business-management software around how your organization actually operates.',
+  },
+  automation: {
+    title: 'Business Process Automation Services | PSM',
+    description:
+      'Automate repetitive workflows, connect business systems and improve operational efficiency with Problem Solving Mind.',
+  },
+  'web-mobile': {
+    title: 'Web & Mobile App Development Services | PSM',
+    description:
+      'Build scalable web applications, mobile apps, dashboards and customer-facing digital experiences with Problem Solving Mind.',
+  },
+  'product-engineering': {
+    title: 'Product Engineering & MVP Development | Problem Solving Mind',
+    description:
+      'Turn a validated idea into a working product — product strategy, UX, architecture, MVP development and iteration with Problem Solving Mind.',
+  },
+  'hardware-iot': {
+    title: 'Hardware & IoT Engineering | Problem Solving Mind',
+    description:
+      'Problem Solving Mind engineers IoT sensors, edge devices and hardware-integrated systems for industrial and healthcare environments — engaged only when the problem requires it.',
+  },
+};
+
 const PAGE_CONTENT: Record<string, DetailBlock[]> = {
   ai: [
     {
@@ -76,12 +109,13 @@ const PAGE_CONTENT: Record<string, DetailBlock[]> = {
 
 export function SolutionDetail({ solution }: { solution: Solution }) {
   const blocks = PAGE_CONTENT[solution.id] ?? [];
+  const seo = SEO_META[solution.id];
 
   return (
     <>
       <Seo
-        title={`${solution.title} | Digital Solutions by Problem Solving Mind`}
-        description={solution.description}
+        title={seo?.title ?? `${solution.title} | Digital Solutions by Problem Solving Mind`}
+        description={seo?.description ?? solution.description}
         path={solution.slug}
       />
 

@@ -1,56 +1,58 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-
-function initReveals() {
-  const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
-  if (!els.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
-          const delay = target.dataset.revealDelay;
-          setTimeout(() => {
-            target.classList.add('revealed');
-          }, delay ? Number(delay) : 0);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  els.forEach((el, i) => {
-    if (!el.dataset.revealDelay) {
-      el.dataset.revealDelay = String((i % 6) * 80);
-    }
-    observer.observe(el);
-  });
-}
+import Preloader from './Preloader';
+import ParticleMorph from './ParticleMorph/ParticleMorph';
+import { getLenis } from './SmoothScroll';
+import { usePageAnimations } from '../hooks/usePageAnimations';
+import { useReducedMotion } from '../lib/reducedMotion';
+import { gsap, useGSAP } from '../lib/gsapSetup';
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const shellRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
 
-  // Scroll to top on route change
+  // Premium GSAP engine: split-text headings, batched reveals, parallax,
+  // magnetic buttons, scroll progress. Re-runs (and reverts) per route change.
+  usePageAnimations(shellRef, [pathname]);
+
+  // Jump to top on route change (instant with Lenis so reveals start clean)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo({ top: 0, behavior: 'auto' });
   }, [pathname]);
 
-  // Initialize reveal animations on every page
-  useEffect(() => {
-    initReveals();
-  }, [pathname]);
+  // Page-enter transition
+  useGSAP(
+    () => {
+      if (reduced || !mainRef.current) return;
+      gsap.from(mainRef.current, {
+        autoAlpha: 0,
+        y: 16,
+        duration: 0.6,
+        ease: 'power2.out',
+        clearProps: 'transform',
+      });
+    },
+    { dependencies: [pathname, reduced] },
+  );
 
   return (
     <>
+      <Preloader />
+      <ParticleMorph fullPage />
       <Navigation />
-      <main id="top">
-        <Outlet />
-      </main>
-      <Footer />
+      <div ref={shellRef} className="page-shell">
+        <main ref={mainRef} id="top">
+          <div className="scroll-progress" aria-hidden />
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

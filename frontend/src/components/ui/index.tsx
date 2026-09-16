@@ -15,9 +15,9 @@ export function PageHero({
 }) {
   return (
     <section className="page-hero" aria-label="Page introduction">
-      <div className="container">
+      <div className="container" data-parallax data-parallax-speed="5">
         {eyebrow && <span className="mono eyebrow page-hero-eyebrow" data-reveal>{eyebrow}</span>}
-        <h1 className={`${titleTier} page-hero-title`} data-reveal data-reveal-delay="80">{title}</h1>
+        <h1 className={`${titleTier} page-hero-title`} data-split>{title}</h1>
         {children && <div className="page-hero-body" data-reveal data-reveal-delay="160">{children}</div>}
       </div>
     </section>
@@ -45,7 +45,7 @@ export function Section({
         {(eyebrow || title) && (
           <header className="section-head">
             {eyebrow && <span className="mono eyebrow" data-reveal>{eyebrow}</span>}
-            {title && <h2 className="h2 section-title" data-reveal data-reveal-delay="60">{title}</h2>}
+            {title && <h2 className="h2 section-title" data-lines>{title}</h2>}
             {intro && <p className="lead section-intro" data-reveal data-reveal-delay="120">{intro}</p>}
           </header>
         )}

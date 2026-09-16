@@ -8,8 +8,8 @@ export default function Industries() {
   return (
     <>
       <Seo
-        title="Industries We Serve | Real Estate, Retail, Healthcare & More"
-        description="Problem Solving Mind designs technology for real-world industries — real estate, retail & local commerce, healthcare, manufacturing, professional services and education."
+        title="Technology Solutions Across Industries | Problem Solving Mind"
+        description="PSM builds digital products and technology solutions for real-world industries including real estate, retail/local commerce, healthcare, manufacturing and professional services."
         path="/industries"
       />
 

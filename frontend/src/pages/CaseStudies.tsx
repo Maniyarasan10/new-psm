@@ -6,8 +6,8 @@ export default function CaseStudies() {
   return (
     <>
       <Seo
-        title="Case Studies | Real-World Problems Solved by PSM"
-        description="Proudly real Problem Solving Mind case studies covering the problem, approach, solution and outcome of client engagements in software, CRM, ERP and automation."
+        title="Technology Case Studies & Projects | Problem Solving Mind"
+        description="Explore technology projects and case studies from Problem Solving Mind, covering software, AI, automation, business systems and digital products."
         path="/case-studies"
       />
 

@@ -22,8 +22,8 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Contact Problem Solving Mind | Start a Conversation"
-        description="Have a problem worth solving? Contact Problem Solving Mind about digital solutions, product partnerships, product enquiries or careers. Email problemsolvingminds@gmail.com."
+        title="Contact Problem Solving Mind | Digital Solutions & Product Enquiries"
+        description="Contact Problem Solving Mind for digital solutions, software development, AI, automation, product partnerships and technology enquiries."
         path="/contact"
       />
 
@@ -114,6 +114,20 @@ export default function Contact() {
                 <div className="field">
                   <label htmlFor="outcome">Expected outcome</label>
                   <textarea id="outcome" name="outcome" />
+                </div>
+                <div className="form-row">
+                  <div className="field">
+                    <label htmlFor="budget">Budget range (optional)</label>
+                    <input id="budget" name="budget" type="text" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="timeline">Timeline (optional)</label>
+                    <input id="timeline" name="timeline" type="text" />
+                  </div>
+                </div>
+                <div className="field">
+                  <label htmlFor="attachment">Attachment (optional)</label>
+                  <input id="attachment" name="attachment" type="file" />
                 </div>
                 <button className="btn btn-primary" type="submit">
                   Send Enquiry

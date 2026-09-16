@@ -55,8 +55,8 @@ export default function Boowa() {
   return (
     <>
       <Seo
-        title="Boowa | Hyperlocal Food & Everyday-Item Delivery Platform"
-        description="Boowa is a hyperlocal food and everyday-item delivery platform connecting customers with nearby businesses and delivery partners. Faster delivery, closer to you."
+        title="Boowa | Hyperlocal Food & Everyday Item Delivery Platform"
+        description="Boowa is a hyperlocal delivery platform being developed by Problem Solving Mind to connect customers with nearby businesses for food and everyday-item delivery."
         path="/products/boowa"
       />
 

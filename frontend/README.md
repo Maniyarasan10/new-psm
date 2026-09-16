@@ -1,6 +1,6 @@
-# Problem Solving Mind — Interactive 3D Website (frontend)
+# Problem Solving Mind — Website (frontend)
 
-A single-page, Awwwards-grade 3D technology-studio website for **PSM (Problem Solving Mind)**, built with React 19 + Vite + TypeScript + Three.js (R3F). It reuses the PSM "ocean signal lab" brand and real PSM content, and features a scroll-driven 3D transformation: **particles → modular UI → product.**
+A single-page technology-studio website for **PSM (Problem Solving Mind)**, built with React 19 + Vite + TypeScript + GSAP. It reuses the PSM "ocean signal lab" brand and real PSM content.
 
 > Feature spec / build rules: [`3D web design/Skill.md`](./3D%20web%20design/Skill.md)
 > Content source: `../ProblemSolvingMind/README.md` (extracted PSM site) → distilled in `src/lib/content.ts`
@@ -24,7 +24,6 @@ A single-page, Awwwards-grade 3D technology-studio website for **PSM (Problem So
 ## Tech Stack
 
 - **Framework:** React 19 + Vite 8 + TypeScript
-- **3D:** three, @react-three/fiber 9, @react-three/drei 10, @react-three/postprocessing
 - **Motion:** GSAP + ScrollTrigger, Lenis (smooth scroll), framer-motion
 - **State:** zustand
 - **Fonts:** Space Grotesk (display), Inter (body), JetBrains Mono (mono)
@@ -106,15 +105,13 @@ Tracked from [`3D web design/Skill.md`](./3D%20web%20design/Skill.md). `[x]` = d
 | `src/lib/reducedMotion.ts` | `prefers-reduced-motion` hook |
 | `src/store/scrollStore.ts` | zustand store (progress, phase, dpr, isMobile) |
 | `src/components/SmoothScroll.tsx` | Lenis + ScrollTrigger bridge |
-| `src/components/ScrollMapper.tsx` | Scroll progress → 3D scene phase |
-| `src/components/three/Scene3D.tsx` | The 3D particles → UI → product transformation |
+| `src/components/ScrollMapper.tsx` | Scroll progress → scene phase |
 | `src/components/sections/*` | All page sections |
 | `3D web design/Skill.md` | Feature spec + build rules |
 
 ## Known Lint Warnings (non-blocking)
 
 Run `npm run lint` — exits 0 with only rule-engine warnings:
-- `Scene3D.tsx` — React immutability/purity warnings on Three.js objects + `Math.random` in `useMemo` (intentional Three.js patterns).
 - `SmoothScroll.tsx:68` — `only-export-components` (fast-refresh) for the exported `getLenis()` helper.
 - `.opencode/skills/**` — lint from imported third-party skill content (not project code).
 
@@ -127,9 +124,8 @@ frontend/
 ├─ public/
 └─ src/
    ├─ App.tsx  main.tsx  index.css
-   ├─ components/ (Logo, Navigation, ScrollMapper, SmoothScroll, Footer)
-   │   ├─ sections/ (Hero, Introduction, Capabilities, Products, Story, Services, Work, Trust, index)
-   │   └─ three/ (Scene3D)
+   ├─ components/ (Logo, Navigation, SmoothScroll, Footer)
+   │   └─ sections/ (Hero, Introduction, Capabilities, Products, Story, Services, Work, Trust, index)
    ├─ hooks/useSectionReveal.ts
    ├─ lib/ (content, reducedMotion)
    └─ store/scrollStore.ts

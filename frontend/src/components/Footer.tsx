@@ -1,11 +1,15 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { COMPANY, FOOTER_NAV, FOOTER_DISCLAIMER, PRODUCTS } from '../lib/siteContent';
+import { useRollLinks } from '../hooks/useRollLinks';
 import Logo from './Logo';
 
 export default function Footer() {
+  const rootRef = useRef<HTMLElement>(null);
   const year = new Date().getFullYear();
+  useRollLinks(rootRef);
   return (
-    <footer className="footer">
+    <footer className="footer" ref={rootRef}>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
@@ -22,9 +26,10 @@ export default function Footer() {
             <ul>
               {PRODUCTS.map((p) => (
                 <li key={p.id}>
-                  <Link to={p.slug}>{p.name}</Link>
+                  <Link to={p.slug} data-roll-link>{p.name}</Link>
                 </li>
               ))}
+
             </ul>
           </div>
 
@@ -33,7 +38,7 @@ export default function Footer() {
             <ul>
               {FOOTER_NAV.map((n) => (
                 <li key={n.href}>
-                  <Link to={n.href}>{n.label}</Link>
+                  <Link to={n.href} data-roll-link>{n.label}</Link>
                 </li>
               ))}
             </ul>
@@ -42,10 +47,10 @@ export default function Footer() {
           <div className="footer-col">
             <span className="mono footer-label">Connect</span>
             <ul>
-              <li><a href={`mailto:${COMPANY.email}`}>Email Us</a></li>
-              <li><a href={`tel:${COMPANY.phone1}`}>{COMPANY.phone1}</a></li>
-              <li><a href={`tel:${COMPANY.phone2}`}>{COMPANY.phone2}</a></li>
-              <li><a href={COMPANY.url} target="_blank" rel="noopener noreferrer">Website</a></li>
+              <li><a href={`mailto:${COMPANY.email}`} data-roll-link>Email Us</a></li>
+              <li><a href={`tel:${COMPANY.phone1}`} data-roll-link>{COMPANY.phone1}</a></li>
+              <li><a href={`tel:${COMPANY.phone2}`} data-roll-link>{COMPANY.phone2}</a></li>
+              <li><a href={COMPANY.url} target="_blank" rel="noopener noreferrer" data-roll-link>Website</a></li>
             </ul>
           </div>
         </div>
@@ -55,7 +60,7 @@ export default function Footer() {
           <span>© {year} {COMPANY.shortName} · Technology Products & Digital Solutions</span>
           <span>Site by {COMPANY.name}</span>
           <span>
-            <a href={`mailto:${COMPANY.email}`}>Say hello — {COMPANY.email}</a>
+            <a href={`mailto:${COMPANY.email}`} data-roll-link>Say hello — {COMPANY.email}</a>
           </span>
         </div>
       </div>

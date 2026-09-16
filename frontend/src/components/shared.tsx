@@ -6,7 +6,7 @@ export function CompanyCta() {
     <section className="section cta-section">
       <div className="container">
         <span className="mono eyebrow" data-reveal>Let's build together</span>
-        <h2 className="h2 cta-section-title" style={{ marginTop: '1.25rem', maxWidth: '22ch' }} data-reveal data-reveal-delay="60">
+        <h2 className="h2 cta-section-title" style={{ marginTop: '1.25rem', maxWidth: '22ch' }} data-split>
           {COMPANY_CTA.title}
         </h2>
         <p className="lead" style={{ marginTop: '1.25rem', maxWidth: '54ch' }} data-reveal data-reveal-delay="120">

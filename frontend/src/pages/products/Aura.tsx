@@ -6,8 +6,8 @@ export default function Aura() {
   return (
     <>
       <Seo
-        title="Aura | Healthcare Technology & Connected Devices"
-        description="Aura is an emerging healthcare technology and hardware initiative from Problem Solving Mind, exploring how connected devices and software can improve patient care and clinical workflows."
+        title="Aura | Healthcare Technology by Problem Solving Mind"
+        description="Aura is an early-stage healthcare technology and hardware initiative from Problem Solving Mind, built around real clinical and patient-care problems."
         path="/products/aura"
       />
 

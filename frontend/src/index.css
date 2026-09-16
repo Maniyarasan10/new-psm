@@ -1,5 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap');
 
+/* PP Neue Montreal — Dala's only typeface, self-hosted */
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('/fonts/PPNeueMontreal-Light.woff2') format('woff2'),
+    url('/fonts/PPNeueMontreal-Light.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2'),
+    url('/fonts/PPNeueMontreal-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('/fonts/PPNeueMontreal-SemiBold.woff2') format('woff2'),
+    url('/fonts/PPNeueMontreal-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ============================================================
    PSM — Premium Editorial Design System
    Awwwards-grade studio identity: massive editorial type,
@@ -15,37 +41,37 @@
   --canvas-mid: #eef0f6;
   --surface: #ffffff;
   --soft-module: #e9edf7;
-  --dark: #0a0b0f;
+  --dark: var(--color-void);
   --dark-surface: #111218;
 
   /* Text */
-  --ink: #0a0b0f;
+  --ink: var(--color-void);
   --ink-secondary: #3a3f4b;
-  --muted: #6b7387;
+  --muted: var(--color-ash-gray);
   --muted-dark: #4e576c;
-  --muted-dark-dim: #8c93a6;
+  --muted-dark-dim: var(--color-silver-mist);
   --hairline: rgba(10, 11, 15, 0.08);
   --hairline-strong: rgba(10, 11, 15, 0.14);
 
-  /* Primary — deep tech blue */
-  --accent-azure: #2563eb;
-  --accent-azure-2: #1d4ed8;
-  --accent-cyan: #2563eb;
-  --accent-blue: #1d4ed8;
+  /* Primary — electric iris */
+  --accent-azure: var(--color-electric-iris);
+  --accent-azure-2: #5b32e0;
+  --accent-cyan: var(--color-electric-iris);
+  --accent-blue: var(--accent-azure-2);
 
   /* Spectrum accents */
-  --accent-green: #059669;
-  --accent-yellow: #d97706;
-  --accent-violet: #7c3aed;
+  --accent-green: var(--color-deep-verdant);
+  --accent-yellow: var(--color-saffron-spark);
+  --accent-violet: var(--color-electric-iris);
   --accent-coral: #dc2626;
   --accent-pink: #db2777;
 
   /* Text-safe accent variants */
-  --accent-blue-text: #2563eb;
-  --accent-cyan-text: #2563eb;
-  --accent-green-text: #059669;
-  --accent-yellow-text: #b45309;
-  --accent-violet-text: #7c3aed;
+  --accent-blue-text: var(--color-electric-iris);
+  --accent-cyan-text: var(--color-electric-iris);
+  --accent-green-text: var(--color-deep-verdant);
+  --accent-yellow-text: #8a5b00;
+  --accent-violet-text: var(--color-electric-iris);
   --accent-coral-text: #dc2626;
   --accent-pink-text: #db2777;
 
@@ -59,7 +85,7 @@
   /* Radius */
   --radius: 10px;
   --radius-lg: 14px;
-  --radius-xl: 20px;
+  --radius-xl: var(--radius-3xl);
 
   /* Easing */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -68,7 +94,7 @@
 
   /* Typography */
   --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-ppneuemontreal);
   --font-hand: 'Caveat', cursive;
 
   /* Layout */
@@ -77,6 +103,66 @@
   --container-pad: clamp(1.5rem, 5vw, 4rem);
 
   --ease-hero: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   PSM Brand theme tokens — source layer
+   ============================================================ */
+:root {
+  /* Colors */
+  --color-void: #000000;
+  --color-bone-white: #ffffff;
+  --color-ash-gray: #9a9a9a;
+  --color-silver-mist: #bdbdbd;
+  --color-electric-iris: #8052ff;
+  --color-saffron-spark: #ffb829;
+  --color-deep-verdant: #15846e;
+
+  /* Typography */
+  --font-ppneuemontreal: 'PPNeueMontreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-nav-label: 14px;
+  --leading-nav-label: 1.2;
+  --tracking-nav-label: 0.35px;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --text-heading-2xs: 24px;
+  --leading-heading-2xs: 1.25;
+  --tracking-heading-2xs: -0.48px;
+  --text-heading-xs: 27px;
+  --leading-heading-xs: 1;
+  --text-subheading: 36px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 42px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -1.68px;
+  --text-heading: 48px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.68px;
+  --text-heading-lg: 78px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -3.12px;
+  --text-display: 113px;
+  --leading-display: 1.1;
+  --tracking-display: -4.52px;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-36: 36px;
+  --spacing-60: 60px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+
+  /* Border Radius */
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
 }
 
 /* Noise texture overlay — tactile surface */
@@ -260,6 +346,18 @@ h1, h2, h3, h4 {
   white-space: nowrap;
   letter-spacing: -0.01em;
 }
+/* Under JS, GSAP owns transform (magnetic buttons via quickTo); drop it from
+   the CSS transition so it never fights the inline tween values. */
+.js .btn,
+.js .btn-text {
+  transition: box-shadow 0.4s var(--ease-out), background-color 0.4s var(--ease-out),
+    border-color 0.3s, color 0.3s;
+}
+.js .btn-primary,
+.js .btn-ghost,
+.js .nav-cta {
+  will-change: transform;
+}
 
 .btn-primary {
   color: #fff;
@@ -340,7 +438,7 @@ h1, h2, h3, h4 {
   padding: 0.4rem 0;
   transition: color 0.3s var(--ease-out);
 }
-.nav-links a:not(.btn)::after {
+.nav-links a:not(.btn):not(.roll-link)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -350,10 +448,10 @@ h1, h2, h3, h4 {
   background: var(--ink);
   transition: width 0.4s var(--ease-out);
 }
-.nav-links a:not(.btn):hover { color: var(--ink); }
-.nav-links a:not(.btn):hover::after { width: 100%; }
-.nav-links a:not(.btn).nav-link-active { color: var(--ink); }
-.nav-links a:not(.btn).nav-link-active::after { width: 100%; }
+.nav-links a:not(.btn):not(.roll-link):hover { color: var(--ink); }
+.nav-links a:not(.btn):not(.roll-link):hover::after { width: 100%; }
+.nav-links a:not(.btn).nav-link-active:not(.roll-link) { color: var(--ink); }
+.nav-links a:not(.btn).nav-link-active:not(.roll-link)::after { width: 100%; }
 
 .nav-cta {
   padding: 0.6rem 1.4rem;
@@ -403,14 +501,16 @@ h1, h2, h3, h4 {
   padding: calc(var(--nav-h) + 1rem) var(--container-pad) 2rem;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-12px);
-  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), visibility 0.5s;
+  transition: opacity 0.45s var(--ease-out), visibility 0s linear 0.45s;
 }
 .nav-mobile-open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transition: opacity 0.45s var(--ease-out), visibility 0s;
 }
+/* GSAP staggers the links open/close inline when JS is active; the
+   `.nav-mobile-open` class owns overlay visibility (no invisible ghost layer),
+   and is the no-JS / reduced-motion fallback (see media query below). */
 .nav-mobile nav {
   display: flex;
   flex-direction: column;
@@ -427,13 +527,6 @@ h1, h2, h3, h4 {
   line-height: 1.1;
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--hairline);
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), color 0.3s;
-}
-.nav-mobile-open nav a {
-  opacity: 1;
-  transform: translateY(0);
 }
 .nav-mobile nav a:hover { color: var(--accent-cyan-text); }
 .nav-mobile nav a .mono {
@@ -455,6 +548,30 @@ h1, h2, h3, h4 {
   .nav-burger { display: flex; }
 }
 
+/* ---------------------- Scroll progress (GSAP scrub) ---------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 90;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--accent-azure), var(--accent-yellow));
+  pointer-events: none;
+}
+
+/* ---------------------- SplitText headings ---------------------- */
+[data-split] {
+  font-kerning: none;
+  text-rendering: optimizeSpeed;
+}
+.split-word {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
 /* ---------------------- Logo ---------------------- */
 .logo {
   display: inline-flex;
@@ -503,11 +620,50 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   background:
     radial-gradient(60% 50% at 10% 70%, rgba(37, 99, 235, 0.06), transparent 60%),
     radial-gradient(40% 40% at 90% 20%, rgba(124, 58, 237, 0.04), transparent 50%);
+}
+
+/* Interactive particle neurons — decorative WebGL background for the hero.
+   Positioned in the open space to the right of the editorial content, kept
+   subtle and below the text layer. */
+.particle-field {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(56%, 900px);
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.45;
+  -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
+  mask-image: linear-gradient(to left, black 60%, transparent 100%);
+}
+.particle-field-inner {
+  position: absolute;
+  inset: 0;
+}
+.particle-field canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 900px) {
+  .particle-field {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .particle-field { opacity: 0.35; }
 }
 
 .hero-content {
@@ -527,6 +683,11 @@ h1, h2, h3, h4 {
 .hero-sub {
   max-width: 32rem;
   margin-top: 1.75rem;
+}
+.hero-support {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 .hero-cta {
   display: flex;
@@ -569,35 +730,35 @@ h1, h2, h3, h4 {
   .hero-scrollhint { display: none; }
 }
 
-/* ---------------------- Scroll reveal animation ---------------------- */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-}
-[data-reveal].revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* ---------------------- Scroll reveal animation (GSAP-driven) ---------------------- */
+/* Hidden from paint under `.js`; GSAP takes over and animates opacity/transform.
+   Without JS (or with reduced motion) content is naturally visible. */
+.js [data-reveal] { opacity: 0; }
 
 /* ---------------------- Cards — refined, premium ---------------------- */
+
+/* "Two Ways We Create Value" — two transparent cards on the canvas. No box,
+   no glass; the single full-page particle morph is the only 3D object. */
 .engine-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  align-items: stretch;
 }
+
+/* Transparent card — no fill, just editorial type on the canvas. */
 .engine-card {
-  padding: 2rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: var(--shadow-elevated);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   transition: all 0.5s var(--ease-out);
 }
 .engine-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--hairline-strong);
+  box-shadow: none;
+  border-color: transparent;
 }
 .engine-card h3 {
   margin: 1rem 0 0.75rem;
@@ -891,48 +1052,6 @@ h1, h2, h3, h4 {
   font-weight: 500;
 }
 
-/* ---------------------- Story ---------------------- */
-.story-section { position: relative; }
-.story-phases { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
-.story-phase {
-  flex: 1 1 220px;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  background: var(--surface);
-  transition: all 0.4s var(--ease-out);
-  min-height: 140px;
-}
-.story-phase.active {
-  border-color: var(--accent-cyan);
-  box-shadow: var(--shadow-card-hover);
-}
-.story-phase .mono { color: var(--muted); }
-.story-phase.active .mono { color: var(--accent-cyan-text); }
-.active-note { color: var(--ink-secondary); margin-top: 0.75rem; font-size: 0.92rem; }
-.story-progress {
-  margin-top: 2.5rem;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--hairline);
-  overflow: hidden;
-}
-.story-progress-fill {
-  height: 100%;
-  background: var(--accent-azure);
-  transition: width 0.1s linear;
-}
-.story-progress-fill::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: -3px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-cyan);
-}
-
 /* ---------------------- Services / Creed ---------------------- */
 .services-grid {
   display: grid;
@@ -1211,6 +1330,10 @@ h1, h2, h3, h4 {
     radial-gradient(70% 60% at 50% 0%, rgba(37, 99, 235, 0.05), transparent 65%),
     transparent;
 }
+.page-hero .container {
+  position: relative;
+  z-index: 2;
+}
 .page-hero-eyebrow { margin-bottom: 1.5rem; }
 .page-hero-title { max-width: 22ch; }
 .page-hero-body { margin-top: 1.5rem; max-width: 62ch; }
@@ -1387,7 +1510,8 @@ h1, h2, h3, h4 {
   .contact-layout { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .engine-grid, .card-grid, .card-grid.cols-2, .steps-grid { grid-template-columns: 1fr; }
+  .card-grid, .card-grid.cols-2, .steps-grid { grid-template-columns: 1fr; }
+  .engine-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .check-list, .form-row { grid-template-columns: 1fr; }
   .reason-row { grid-template-columns: 3rem 1fr; }
   .reason-desc { grid-column: 1 / -1; }
@@ -1402,6 +1526,266 @@ h1, h2, h3, h4 {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  [data-reveal] { opacity: 1; transform: none; }
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .scroll-progress { display: none; }
+  .nav-mobile-open { opacity: 1; visibility: visible; }
+  .nav-mobile-open nav a { opacity: 1; transform: none; }
   .hero { min-height: 100vh; }
+}
+
+/* ============================================================
+   Studio Foundry playbook — roll-over links (§4.1)
+   ============================================================ */
+.roll-link {
+  position: relative;
+  display: inline-block;
+  line-height: inherit;
+}
+.rl-mask {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.rl-copy {
+  display: inline-block;
+  white-space: nowrap;
+}
+.rl-bottom {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.rl-char {
+  display: inline-block;
+  will-change: transform;
+}
+/* Underline sweep — currentColor adapts to light nav / dark footer */
+.roll-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.15em;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0, 1);
+}
+.roll-link:hover::after,
+.roll-link.nav-link-active::after {
+  transform: scaleX(1);
+}
+
+/* ============================================================
+   Studio Foundry playbook — first-visit preloader (§4.4)
+   ============================================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--canvas);
+  color: var(--ink);
+}
+.preloader-wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  letter-spacing: 0.02em;
+}
+.preloader-swoosh-svg { display: block; }
+.preloader-count {
+  font-family: var(--font-mono, ui-monospace, 'SF Mono', monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader { display: none; }
+}
+
+/* ============================================================
+   Dala-inspired light theme — token override + chrome/hero layer
+   Exact Dala values: purple #8052ff, purple-light #ecd6ff,
+   yellow #ffb829, green #15846e, grey-4 #bdbdbd, pill 1.875rem.
+   Light canvas & ink so the whole site reads bright and premium.
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* Canvas & surfaces */
+  --canvas: #f4f5f8;
+  --canvas-mid: #eef0f6;
+  --surface: #ffffff;
+  --soft-module: #e9edf7;
+  --dark: #0a0b0f;
+  --dark-surface: #111218;
+
+  /* Text */
+  --ink: #0a0b0f;
+  --ink-secondary: #3a3f4b;
+  --muted: #9a9a9a;
+  --muted-dark: #4e576c;
+  --muted-dark-dim: #bdbdbd;
+  --hairline: rgba(10, 11, 15, 0.08);
+  --hairline-strong: rgba(10, 11, 15, 0.14);
+
+  /* Accents → Dala palette */
+  --accent-azure: var(--color-electric-iris); /* #8052ff */
+  --accent-azure-2: #6a3df0;
+  --accent-cyan: var(--color-electric-iris);
+  --accent-blue: #6a3df0;
+  --accent-green: #15846e;
+  --accent-yellow: var(--color-saffron-spark); /* #ffb829 */
+  --accent-violet: var(--color-electric-iris);
+  --accent-coral: #de5b3f;
+  --accent-pink: #bd4bc8;
+
+  /* Text-safe accent variants — dark enough for light backgrounds */
+  --accent-blue-text: var(--color-electric-iris);
+  --accent-cyan-text: var(--color-electric-iris);
+  --accent-green-text: #0e6a59;
+  --accent-yellow-text: #8a5b00;
+  --accent-violet-text: #6a3df0;
+  --accent-coral-text: #c2410c;
+  --accent-pink-text: #8e1f9c;
+
+  /* Shadow (light canvas → airy shadows) */
+  --shadow-warm: rgba(10, 11, 15, 0.08);
+  --shadow-warm-soft: rgba(10, 11, 15, 0.04);
+  --shadow-elevated: 0 1px 2px rgba(10, 11, 15, 0.04), 0 4px 12px rgba(10, 11, 15, 0.06);
+  --shadow-card: 0 1px 3px rgba(10, 11, 15, 0.03), 0 8px 24px rgba(10, 11, 15, 0.06);
+  --shadow-card-hover: 0 2px 8px rgba(10, 11, 15, 0.05), 0 16px 40px rgba(10, 11, 15, 0.1);
+
+  /* Typography — Dala is 100% PP Neue Montreal */
+  --font-display: var(--font-ppneuemontreal);
+}
+
+html {
+  color-scheme: light;
+}
+
+::selection {
+  background: rgba(128, 82, 255, 0.28);
+  color: #0a0b0f;
+}
+
+/* Shell sits above the page background */
+.page-shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------------- Hero — Dala landing treatment ---------------------- */
+.hero {
+  justify-content: flex-start;
+  padding-top: calc(var(--nav-h) + clamp(3rem, 10vh, 7rem));
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+}
+.hero::after {
+  background:
+    radial-gradient(60% 50% at 12% 68%, rgba(128, 82, 255, 0.14), transparent 62%),
+    radial-gradient(44% 40% at 86% 12%, rgba(255, 184, 41, 0.06), transparent 55%);
+}
+.hero-meta .eyebrow {
+  color: var(--accent-azure); /* t-purple small label */
+}
+.hero-title,
+.display {
+  font-weight: 400; /* PP Neue Montreal Book — Dala title */
+  letter-spacing: -0.04em; /* .landing__title */
+  color: var(--ink);
+}
+.hero-sub {
+  color: var(--ink-secondary);
+}
+.hero-support {
+  color: var(--muted);
+}
+
+/* ---------------------- Buttons — Dala pills ---------------------- */
+.btn {
+  border-radius: 1.875rem;
+  padding: 0.95rem 1.5rem;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+.btn-primary {
+  background: var(--accent-azure); /* #8052ff like .btn */
+  color: #fff;
+  box-shadow: none;
+}
+.btn-primary:hover {
+  background: #9370ff;
+  box-shadow: 0 10px 34px rgba(128, 82, 255, 0.35);
+}
+.btn-ghost {
+  color: var(--ink);
+  border: 1px solid rgba(10, 11, 15, 0.28);
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+  background: rgba(10, 11, 15, 0.06);
+}
+
+/* ---------------------- Navigation on light ---------------------- */
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  border-bottom-color: rgba(10, 11, 15, 0.08);
+}
+.nav-links a:not(.btn) {
+  color: var(--muted-dark);
+}
+.nav-burger {
+  border-color: rgba(10, 11, 15, 0.28);
+}
+.nav-mobile {
+  background: var(--canvas);
+}
+
+/* ---------------------- Cards & lists on light ---------------------- */
+.base-card,
+.step-card {
+  background: var(--surface);
+  border-color: var(--hairline);
+  box-shadow: var(--shadow-card);
+}
+.base-card:hover,
+.step-card:hover {
+  background: var(--surface);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--hairline-strong);
+}
+.reason-row:hover {
+  background: rgba(10, 11, 15, 0.03);
+}
+.status-badge {
+  color: var(--accent-yellow-text);
+  border-color: rgba(255, 184, 41, 0.45);
+  background: rgba(255, 184, 41, 0.12);
+}
+.status-badge::before {
+  background: var(--accent-yellow);
+}
+.step-card .step-num,
+.reason-num {
+  color: var(--accent-azure);
+}
+
+/* ---------------------- Page hero (inner pages) ---------------------- */
+.page-hero {
+  background:
+    radial-gradient(70% 60% at 50% 0%, rgba(128, 82, 255, 0.12), transparent 65%),
+    transparent;
+}
+.page-hero-eyebrow {
+  color: var(--accent-azure);
 }

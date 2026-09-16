@@ -7,8 +7,8 @@ export default function About() {
   return (
     <>
       <Seo
-        title="About Problem Solving Mind | Technology Company & Product Studio"
-        description="Problem Solving Mind is a technology company that builds proprietary products and provides digital solutions. Learn about our mission, vision, values and our problem-first approach."
+        title="About Problem Solving Mind | Technology Company in India"
+        description="Learn about Problem Solving Mind, a technology company building proprietary products and digital solutions that solve real-world problems."
         path="/about"
       />
 

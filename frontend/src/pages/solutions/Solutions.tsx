@@ -7,8 +7,8 @@ export default function SolutionsPage() {
   return (
     <>
       <Seo
-        title="Digital Solutions | Software, AI, Automation by Problem Solving Mind"
-        description="Problem Solving Mind helps businesses and organizations turn operational challenges into practical digital systems — software, AI, automation, web & mobile apps, business systems and product engineering."
+        title="Digital Solutions Company | AI, Business Systems & Automation | PSM"
+        description="Problem Solving Mind provides custom digital solutions including AI, business systems (ERP/CRM), automation, web and mobile applications, and product engineering."
         path="/solutions"
       />
 

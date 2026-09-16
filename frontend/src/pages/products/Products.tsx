@@ -7,8 +7,8 @@ export default function ProductsPage() {
   return (
     <>
       <Seo
-        title="Products by Problem Solving Mind | Boowa, EYD, Aura"
-        description="Explore proprietary technology products built by Problem Solving Mind: Boowa (hyperlocal commerce), EYD (real-estate technology) and Aura (healthcare technology)."
+        title="PSM Products | Boowa, EYD & Aura"
+        description="Explore the technology products being built by Problem Solving Mind — Boowa (hyperlocal delivery), EYD (real-estate technology with 3D property experiences) and Aura (healthcare technology)."
         path="/products"
       />
 

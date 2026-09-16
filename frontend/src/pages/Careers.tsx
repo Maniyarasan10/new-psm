@@ -7,8 +7,8 @@ export default function Careers() {
   return (
     <>
       <Seo
-        title="Careers at Problem Solving Mind | Join the PSM Team"
-        description="Problem Solving Mind is looking for problem solvers — software developers, AI/ML engineers, UI/UX designers, product thinkers and more. Build real products and solve real problems."
+        title="Careers at Problem Solving Mind | Join Our Technology Team"
+        description="Join Problem Solving Mind and help build technology products and digital solutions across software, AI, product development and emerging technology."
         path="/careers"
       />
 
@@ -47,7 +47,7 @@ export default function Careers() {
       {/* ── CTA ──────────────────────────────────────────── */}
       <section className="section cta-band">
         <div className="container">
-          <h2 className="h2">No Perfect Fit? Reach Out Anyway.</h2>
+          <h2 className="h2">Don't See a Suitable Role?</h2>
           <p className="lead" style={{ marginTop: '1rem', maxWidth: '52ch' }}>
             {CAREERS.footerCta}
           </p>

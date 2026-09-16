@@ -7,8 +7,8 @@ export default function Partner() {
   return (
     <>
       <Seo
-        title="Partnerships | Build Something Valuable with Problem Solving Mind"
-        description="PSM works with businesses, organizations, technology partners and individuals through product, business, technology and distribution partnerships, pilot programs and strategic collaborations."
+        title="Partner With Problem Solving Mind | Products & Technology Solutions"
+        description="Partner with Problem Solving Mind for product partnerships, technology collaborations, digital solutions and opportunities around Boowa, EYD and Aura."
         path="/partner"
       />
 

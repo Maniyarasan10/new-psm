@@ -24,8 +24,8 @@ export default function EYD() {
   return (
     <>
       <Seo
-        title="EYD — Explore Your Dream | Real-Estate & 3D Property Technology"
-        description="EYD is a real-estate technology platform from Problem Solving Mind bringing property discovery, seller management and immersive 3D property experiences into one place."
+        title="EYD Explore Your Dream | Real Estate Technology & 3D Property Viewing"
+        description="EYD — Explore Your Dream is a real-estate technology platform being developed by PSM for property discovery, seller management, 3D property capture and immersive viewing."
         path="/products/eyd"
       />
 
