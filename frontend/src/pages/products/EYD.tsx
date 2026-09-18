@@ -22,7 +22,7 @@ const CUSTOMER_BENEFITS = [
 
 export default function EYD() {
   return (
-    <>
+    <div className="accent-page" style={{ '--page-accent': 'var(--accent-blue)' } as React.CSSProperties}>
       <Seo
         title="EYD Explore Your Dream | Real Estate Technology & 3D Property Viewing"
         description="EYD — Explore Your Dream is a real-estate technology platform being developed by PSM for property discovery, seller management, 3D property capture and immersive viewing."
@@ -144,6 +144,6 @@ export default function EYD() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

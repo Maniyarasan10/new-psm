@@ -1,7 +1,7 @@
 import { PageHero, Section } from '../components/ui';
 import Seo from '../components/Seo';
 import { CompanyCta, TwoEngines } from '../components/shared';
-import { MISSION, VISION, VALUES } from '../lib/siteContent';
+import { MISSION, VISION, VALUES, METRICS } from '../lib/siteContent';
 
 export default function About() {
   return (
@@ -16,6 +16,25 @@ export default function About() {
         <p>Problem Solving Mind was built around a simple belief: better technology begins with better problem solving.</p>
         <p>Technology is everywhere. But technology alone does not create value. Value comes from understanding a problem deeply enough to build something people can actually use. PSM is a technology company focused on two connected areas: building proprietary products and providing digital solutions to businesses and organizations. We identify problems, understand the people and processes involved, design practical solutions and build technology that can operate in the real world.</p>
       </PageHero>
+
+      {/* ── By the Numbers ───────────────────────────────── */}
+      <Section eyebrow="By the numbers" title="Focused by Design.">
+        <div className="metrics-grid" data-reveal>
+          {METRICS.map((m) => (
+            <div className="metric" key={m.label}>
+              <span
+                className="metric-value"
+                style={{ color: m.color }}
+                data-count-to={String(m.value)}
+                data-count-pad={String(m.pad)}
+              >
+                00
+              </span>
+              <span className="mono metric-label">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
 
       {/* ── Our Mission ──────────────────────────────────── */}
       <Section eyebrow="Our mission" title={MISSION.title}>

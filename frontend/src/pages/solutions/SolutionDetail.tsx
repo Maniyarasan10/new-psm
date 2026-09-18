@@ -112,7 +112,7 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
   const seo = SEO_META[solution.id];
 
   return (
-    <>
+    <div className="accent-page" style={{ '--page-accent': solution.color } as React.CSSProperties}>
       <Seo
         title={seo?.title ?? `${solution.title} | Digital Solutions by Problem Solving Mind`}
         description={seo?.description ?? solution.description}
@@ -155,6 +155,6 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
       </div>
 
       <CompanyCta />
-    </>
+    </div>
   );
 }

@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { PageHero, Section } from '../components/ui';
 import { CompanyCta } from '../components/shared';
-import { INDUSTRIES } from '../lib/siteContent';
+import { INDUSTRIES, PRODUCTS } from '../lib/siteContent';
+
+const productColor = (slug?: string) =>
+  PRODUCTS.find((p) => p.slug === slug)?.color ?? 'var(--accent-azure)';
 
 export default function Industries() {
   return (
@@ -31,8 +34,17 @@ export default function Industries() {
 
       <Section eyebrow="Industries" title="Where We Work.">
         <div className="card-grid cols-2">
-          {INDUSTRIES.map((ind) => (
-            <div key={ind.name} className="base-card">
+          {INDUSTRIES.map((ind, i) => (
+            <div
+              key={ind.name}
+              className="base-card accent-card"
+              data-reveal
+              data-reveal-delay={String(i * 80)}
+              style={{ '--card-accent': ind.color } as React.CSSProperties}
+            >
+              <div className="card-accent-row accent-row--plain">
+                <span className="mono">{ind.tag}</span>
+              </div>
               <h3 className="h3">{ind.name}</h3>
               <p className="body" style={{ marginTop: '0.5rem' }}>{ind.desc}</p>
               {ind.product && ind.productSlug && (
@@ -41,7 +53,19 @@ export default function Industries() {
                   to={ind.productSlug}
                   style={{ marginTop: '1rem' }}
                 >
-                  Product relevance: {ind.product} <span aria-hidden className="arrow">→</span>
+                  <span
+                    aria-hidden
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      background: productColor(ind.productSlug),
+                      display: 'inline-block',
+                      marginRight: '0.5rem',
+                      boxShadow: '0 0 0 4px color-mix(in srgb, var(--muted) 12%, transparent)',
+                    }}
+                  />
+                  {ind.product} — Product Relevance <span aria-hidden className="arrow">→</span>
                 </Link>
               )}
             </div>

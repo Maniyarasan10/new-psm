@@ -38,7 +38,7 @@ export function useRollLinks(root: RefObject<HTMLElement | null>) {
       let bottomEl = el.querySelector<HTMLElement>('.rl-bottom');
       if (!isNative && (!topEl || !bottomEl || !el.classList.contains('roll-initialized'))) {
         const label = el.getAttribute('aria-label') ?? (el.textContent ?? '').trim();
-        if (!label) return;
+if (!label) return;
         el.textContent = '';
         const mask = document.createElement('span');
         mask.className = 'rl-mask';
@@ -58,17 +58,44 @@ export function useRollLinks(root: RefObject<HTMLElement | null>) {
         el.classList.add('roll-initialized');
       }
 
-      const topSplit = SplitText.create(topEl, { type: 'chars', charsClass: 'rl-char' });
-      const bottomSplit = SplitText.create(bottomEl, { type: 'chars', charsClass: 'rl-char' });
-      gsap.set(topSplit.chars, { display: 'inline-block', yPercent: 0 });
-      gsap.set(bottomSplit.chars, { display: 'inline-block', yPercent: 100 });
+      SplitText.create(topEl, { type: 'chars', charsClass: 'rl-char' });
+      SplitText.create(bottomEl, { type: 'chars', charsClass: 'rl-char' });
+      // SplitText leaves whitespace as visible text nodes between the char
+      // spans, so the space in multi-word labels ("Case Studies") stays glued to
+      // the middle of the mask and glitches the roll. Wrap each leftover gap in
+      // its own animated char so it travels with the letters.
+      const collectAnimatedChars = (el: HTMLElement): HTMLElement[] => {
+        const chars: HTMLElement[] = [];
+        el.childNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            chars.push(node as HTMLElement);
+            return;
+          }
+          if (node.nodeType !== Node.TEXT_NODE) return;
+          const txt = node.textContent ?? '';
+          if (txt.length === 0 || /[^\s\u00A0]/.test(txt)) return;
+          const gap = document.createElement('span');
+          gap.className = 'rl-char rl-gap';
+          gap.style.display = 'inline-block';
+          gap.style.whiteSpace = 'pre';
+          gap.setAttribute('aria-hidden', 'true');
+          gap.textContent = '\u00A0';
+          node.replaceWith(gap);
+          chars.push(gap);
+        });
+        return chars;
+      };
+      const topChars = collectAnimatedChars(topEl);
+      const bottomChars = collectAnimatedChars(bottomEl);
+      gsap.set(topChars, { display: 'inline-block', yPercent: 0 });
+      gsap.set(bottomChars, { display: 'inline-block', yPercent: 100 });
 
       const tl = gsap.timeline({ paused: true });
       tl.to(
-        topSplit.chars,
+        topChars,
         { yPercent: -100, duration: 0.4, ease: 'power1.inOut', stagger: 0.02 },
         0,
-      ).to(bottomSplit.chars, { yPercent: 0, duration: 0.4, ease: 'power1.inOut', stagger: 0.02 }, 0);
+      ).to(bottomChars, { yPercent: 0, duration: 0.4, ease: 'power1.inOut', stagger: 0.02 }, 0);
 
       const onEnter = () => tl.play();
       const onLeave = () => tl.reverse();

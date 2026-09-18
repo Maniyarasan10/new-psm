@@ -55,7 +55,7 @@
 
   /* Primary — electric iris */
   --accent-azure: var(--color-electric-iris);
-  --accent-azure-2: #5b32e0;
+  --accent-azure-2: #0b5ed7;
   --accent-cyan: var(--color-electric-iris);
   --accent-blue: var(--accent-azure-2);
 
@@ -65,15 +65,23 @@
   --accent-violet: var(--color-electric-iris);
   --accent-coral: #dc2626;
   --accent-pink: #db2777;
+  --accent-teal: #0f766e;
+  --accent-gold: #ca8a04;
+  --accent-cyan-deep: #0e7490;
+  --accent-orange: #ea580c;
 
   /* Text-safe accent variants */
   --accent-blue-text: var(--color-electric-iris);
   --accent-cyan-text: var(--color-electric-iris);
   --accent-green-text: var(--color-deep-verdant);
-  --accent-yellow-text: #8a5b00;
+  --accent-yellow-text: #9a6700;
   --accent-violet-text: var(--color-electric-iris);
   --accent-coral-text: #dc2626;
   --accent-pink-text: #db2777;
+  --accent-teal-text: #0f766e;
+  --accent-gold-text: #9a6700;
+  --accent-cyan-deep-text: #0e7490;
+  --accent-orange-text: #c2410c;
 
   /* Shadow */
   --shadow-warm: rgba(10, 11, 15, 0.08);
@@ -114,7 +122,7 @@
   --color-bone-white: #ffffff;
   --color-ash-gray: #9a9a9a;
   --color-silver-mist: #bdbdbd;
-  --color-electric-iris: #8052ff;
+  --color-electric-iris: #0d6efd;
   --color-saffron-spark: #ffb829;
   --color-deep-verdant: #15846e;
 
@@ -534,9 +542,15 @@ h1, h2, h3, h4 {
   color: var(--muted);
 }
 .nav-mobile nav .btn {
+  display: flex;
   align-self: flex-start;
+  justify-content: center;
   margin-top: 2rem;
-  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: none;
 }
 .nav-mobile-foot {
   margin-top: 2rem;
@@ -601,7 +615,7 @@ h1, h2, h3, h4 {
   font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-secondary);
   font-weight: 600;
 }
 
@@ -624,46 +638,53 @@ h1, h2, h3, h4 {
   pointer-events: none;
   background:
     radial-gradient(60% 50% at 10% 70%, rgba(37, 99, 235, 0.06), transparent 60%),
-    radial-gradient(40% 40% at 90% 20%, rgba(124, 58, 237, 0.04), transparent 50%);
+    radial-gradient(40% 40% at 90% 20%, rgba(37, 99, 235, 0.04), transparent 50%);
 }
 
-/* Interactive particle neurons — decorative WebGL background for the hero.
-   Positioned in the open space to the right of the editorial content, kept
-   subtle and below the text layer. */
-.particle-field {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(56%, 900px);
-  height: 100%;
-  z-index: 1;
+/* Marquee — seamless GSAP ticker strip under the hero */
+.marquee {
+  position: relative;
+  z-index: 2;
   overflow: hidden;
-  pointer-events: none;
-  opacity: 0.45;
-  -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
-  mask-image: linear-gradient(to left, black 60%, transparent 100%);
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
-.particle-field-inner {
-  position: absolute;
-  inset: 0;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
 }
-.particle-field canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+.marquee-row {
+  display: flex;
+  align-items: center;
 }
-@media (max-width: 900px) {
-  .particle-field {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.3;
-    -webkit-mask-image: none;
-    mask-image: none;
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.marquee-sep {
+  color: var(--color-electric-iris);
+  font-size: 0.6rem;
+}
+
+@media (max-width: 960px) {
+  .marquee-item {
+    gap: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 0.7rem;
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .particle-field { opacity: 0.35; }
 }
 
 .hero-content {
@@ -831,6 +852,127 @@ h1, h2, h3, h4 {
 .link-card:hover .arrow {
   transform: translateX(6px);
   color: var(--ink);
+}
+
+/* Colored accent row (dot + label) inside accent-coded cards */
+.card-accent-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+  color: var(--card-accent, var(--accent-cyan-text));
+  font-weight: 600;
+}
+.card-accent-row::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 14%, transparent);
+  flex: none;
+}
+/* Plain accent row — colored label only, no dot (human-made editorial look) */
+.accent-row--plain::before {
+  display: none;
+}
+/* Accent-coded cards tint their border on hover instead of the neutral grey */
+.base-card.accent-card:hover {
+  border-color: var(--card-accent, var(--hairline-strong));
+}
+/* Numbered accent list labels — "01 · AI & Intelligent Systems" */
+.list-accent-num {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  color: var(--muted);
+}
+.list-accent-num i {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--list-accent, var(--accent-cyan-text));
+}
+
+/* ---------------------- Professional card interactions ----------------------
+   Cursor-tracking spotlight + masked gradient ring. JS (usePageAnimations)
+   writes --mx / --my in %, so the spotlight follows the pointer; hover-only,
+   skipped on coarse pointers, harmless under reduced motion (opacity fade). */
+.base-card,
+.step-card,
+.product-card,
+.intro-card,
+.team-card,
+.capability-card,
+.contact-card {
+  isolation: isolate;
+  position: relative;
+  will-change: transform;
+}
+.base-card::before,
+.step-card::before,
+.product-card::before,
+.intro-card::before,
+.team-card::before,
+.capability-card::before,
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(13, 110, 253, 0.1) 0%,
+    rgba(56, 189, 248, 0.06) 40%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+  pointer-events: none;
+}
+.base-card:hover::before,
+.step-card:hover::before,
+.product-card:hover::before,
+.intro-card:hover::before,
+.team-card:hover::before,
+.capability-card:hover::before,
+.contact-card:hover::before {
+  opacity: 1;
+}
+/* Gradient ring — 1px masked gradient border fading in around the card */
+.base-card::after,
+.step-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 110, 253, 0.75),
+    rgba(56, 189, 248, 0.6),
+    rgba(13, 110, 253, 0.4)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+  pointer-events: none;
+}
+.base-card:hover::after,
+.step-card:hover::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .base-card::before,
+  .step-card::before,
+  .base-card::after,
+  .step-card::after {
+    transition: none;
+  }
 }
 
 /* Status badge */
@@ -1301,7 +1443,15 @@ h1, h2, h3, h4 {
 /* ---------------------- Responsive ---------------------- */
 @media (max-width: 1024px) {
   .capabilities-track { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.5rem;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-col:nth-child(2) { order: 2; }
+  .footer-col:nth-child(3) { order: 1; }
+  .footer-col:last-child { grid-column: 1 / -1; order: 3; }
+  .footer-col:last-child ul { flex-direction: row; flex-wrap: wrap; }
 }
 @media (max-width: 768px) {
   .intro-grid, .metrics-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1313,10 +1463,37 @@ h1, h2, h3, h4 {
   .work-row { grid-template-columns: 3rem 1fr auto; }
   .work-meta { display: none; }
 }
+/* Phone footer — compact instead of one long column stack: the brand row
+   spans full width, the link columns sit in a 2-up grid, and Connect
+   becomes a short horizontal contact strip. Typography + spacing tighten
+   so the whole footer stays roughly viewport-height instead of towering. */
+@media (max-width: 600px) {
+  .footer {
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.25rem;
+  }
+  .footer-tagline { margin-top: 0.75rem; font-size: 0.95rem; }
+  .footer-desc { margin-top: 0.3rem; font-size: 0.8rem; max-width: none; }
+  .footer-cta { margin-top: 0.85rem; padding: 0.75rem 1.2rem; }
+  .footer-label { margin-bottom: 0.55rem; font-size: 0.7rem; }
+  .footer-col ul { gap: 0.4rem; }
+  .footer-col a { font-size: 0.8rem; }
+  .footer-col:last-child ul { gap: 0.35rem 1.1rem; }
+  .footer-disclaimer { margin-top: 1.1rem; font-size: 0.6rem; line-height: 1.5; }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin-top: 1.75rem;
+    padding-block: 1.1rem;
+  }
+}
 @media (max-width: 520px) {
   .intro-grid, .metrics-grid, .team-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 0.6rem; }
 }
 
 /* ============================================================
@@ -1385,7 +1562,7 @@ h1, h2, h3, h4 {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-azure);
+  background: var(--page-accent, var(--accent-azure));
 }
 
 /* FAQ */
@@ -1516,6 +1693,10 @@ h1, h2, h3, h4 {
   .reason-row { grid-template-columns: 3rem 1fr; }
   .reason-desc { grid-column: 1 / -1; }
   .value-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  /* Tighter section rhythm on mobile — the 7vh padding scaled too large on
+     small screens and left oversized whitespace between sections. */
+  .section { padding-block: 2.5rem; }
+  .section-head { margin-bottom: 2rem; }
 }
 
 /* ---------------------- Reduced motion ---------------------- */
@@ -1611,7 +1792,7 @@ h1, h2, h3, h4 {
 
 /* ============================================================
    Dala-inspired light theme — token override + chrome/hero layer
-   Exact Dala values: purple #8052ff, purple-light #ecd6ff,
+   Exact Dala values: blue #0d6efd, blue-light #cfe2ff,
    yellow #ffb829, green #15846e, grey-4 #bdbdbd, pill 1.875rem.
    Light canvas & ink so the whole site reads bright and premium.
    ============================================================ */
@@ -1636,24 +1817,32 @@ h1, h2, h3, h4 {
   --hairline-strong: rgba(10, 11, 15, 0.14);
 
   /* Accents → Dala palette */
-  --accent-azure: var(--color-electric-iris); /* #8052ff */
-  --accent-azure-2: #6a3df0;
+  --accent-azure: var(--color-electric-iris); /* #0d6efd */
+  --accent-azure-2: #0b5ed7;
   --accent-cyan: var(--color-electric-iris);
-  --accent-blue: #6a3df0;
+  --accent-blue: #0b5ed7;
   --accent-green: #15846e;
   --accent-yellow: var(--color-saffron-spark); /* #ffb829 */
-  --accent-violet: var(--color-electric-iris);
+  --accent-violet: var(--color-electric-iris); /* brand blue */
   --accent-coral: #de5b3f;
   --accent-pink: #bd4bc8;
+  --accent-teal: #0f766e;
+  --accent-gold: #ca8a04;
+  --accent-cyan-deep: #0e7490;
+  --accent-orange: #ea580c;
 
   /* Text-safe accent variants — dark enough for light backgrounds */
   --accent-blue-text: var(--color-electric-iris);
   --accent-cyan-text: var(--color-electric-iris);
   --accent-green-text: #0e6a59;
-  --accent-yellow-text: #8a5b00;
-  --accent-violet-text: #6a3df0;
+  --accent-yellow-text: #9a6700;
+  --accent-violet-text: var(--color-electric-iris);
   --accent-coral-text: #c2410c;
   --accent-pink-text: #8e1f9c;
+  --accent-teal-text: #0f766e;
+  --accent-gold-text: #9a6700;
+  --accent-cyan-deep-text: #0e7490;
+  --accent-orange-text: #c2410c;
 
   /* Shadow (light canvas → airy shadows) */
   --shadow-warm: rgba(10, 11, 15, 0.08);
@@ -1671,7 +1860,7 @@ html {
 }
 
 ::selection {
-  background: rgba(128, 82, 255, 0.28);
+  background: rgba(13, 110, 253, 0.28);
   color: #0a0b0f;
 }
 
@@ -1689,7 +1878,7 @@ html {
 }
 .hero::after {
   background:
-    radial-gradient(60% 50% at 12% 68%, rgba(128, 82, 255, 0.14), transparent 62%),
+    radial-gradient(60% 50% at 12% 68%, rgba(13, 110, 253, 0.14), transparent 62%),
     radial-gradient(44% 40% at 86% 12%, rgba(255, 184, 41, 0.06), transparent 55%);
 }
 .hero-meta .eyebrow {
@@ -1716,13 +1905,13 @@ html {
   font-size: 0.95rem;
 }
 .btn-primary {
-  background: var(--accent-azure); /* #8052ff like .btn */
+  background: var(--accent-azure); /* #0d6efd like .btn */
   color: #fff;
   box-shadow: none;
 }
 .btn-primary:hover {
-  background: #9370ff;
-  box-shadow: 0 10px 34px rgba(128, 82, 255, 0.35);
+  background: #0b5ed7;
+  box-shadow: 0 10px 34px rgba(13, 110, 253, 0.35);
 }
 .btn-ghost {
   color: var(--ink);
@@ -1768,24 +1957,216 @@ html {
   background: rgba(10, 11, 15, 0.03);
 }
 .status-badge {
-  color: var(--accent-yellow-text);
-  border-color: rgba(255, 184, 41, 0.45);
-  background: rgba(255, 184, 41, 0.12);
+  color: var(--accent-blue-text);
+  border-color: rgba(13, 110, 253, 0.35);
+  background: rgba(13, 110, 253, 0.08);
 }
 .status-badge::before {
-  background: var(--accent-yellow);
+  background: var(--accent-azure);
 }
 .step-card .step-num,
 .reason-num {
-  color: var(--accent-azure);
+  color: var(--page-accent, var(--accent-azure));
+}
+
+/* Accent-coded pages (product / solution detail) — one var drives the hero
+   eyebrow, status badge and check-list dots so each page carries its product
+   or solution color without touching the shared pieces per-page. */
+.accent-page {
+  --page-accent: var(--accent-azure);
+}
+.accent-page .page-hero-eyebrow {
+  color: var(--page-accent);
+}
+.accent-page .status-badge {
+  color: var(--page-accent);
+  border-color: color-mix(in srgb, var(--page-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--page-accent) 8%, transparent);
+}
+.accent-page .status-badge::before {
+  background: var(--page-accent);
 }
 
 /* ---------------------- Page hero (inner pages) ---------------------- */
 .page-hero {
   background:
-    radial-gradient(70% 60% at 50% 0%, rgba(128, 82, 255, 0.12), transparent 65%),
+    radial-gradient(70% 60% at 50% 0%, rgba(13, 110, 253, 0.12), transparent 65%),
     transparent;
 }
 .page-hero-eyebrow {
+  color: var(--page-accent, var(--accent-azure));
+}
+
+/* ============================================================
+   Premium hover system — cursor-tracking gloss, glow ring,
+   gradient underlines. Cursor position (--mx/--my) is written
+   frame-smooth by usePageAnimations' spotlight binders, which
+   also track buttons. All decorative motion honours the global
+   reduced-motion rule (transition/animation durations ≈ 0).
+   ============================================================ */
+
+/* Animated rotating glow ring. Browsers without @property fall
+   back to a static conic ring — same look, no motion. */
+@property --ring-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ring-spin {
+  to { --ring-angle: 360deg; }
+}
+
+/* ── Buttons: cursor-tracking glass gloss ──────────────────────
+   A radial sheen follows the pointer (--mx/--my from JS) and
+   fades in on hover. Sits at z-index 0 so .home-dala's sweep
+   (::after, z-index 1) keeps winning on the homepage. */
+.btn-primary::after,
+.btn-ghost::after,
+.nav-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    clamp(60px, 45%, 140px) circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+  pointer-events: none;
+}
+.btn-primary:hover::after,
+.btn-ghost:hover::after,
+.nav-cta:hover::after {
+  opacity: 1;
+}
+
+/* ── Cards: animated glow ring on every card style ──────────────
+   Extends the existing base/step gradient ring to all card
+   variants and spins it with a conic gradient on hover. */
+.base-card::after,
+.step-card::after,
+.product-card::after,
+.intro-card::after,
+.team-card::after,
+.capability-card::after,
+.contact-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--ring-angle, 0deg),
+    rgba(13, 110, 253, 0.8) 0%,
+    rgba(56, 189, 248, 0.45) 22%,
+    rgba(13, 110, 253, 0.28) 50%,
+    rgba(56, 189, 248, 0.45) 78%,
+    rgba(13, 110, 253, 0.8) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+  pointer-events: none;
+}
+.base-card:hover::after,
+.step-card:hover::after,
+.product-card:hover::after,
+.intro-card:hover::after,
+.team-card:hover::after,
+.capability-card:hover::after,
+.contact-card:hover::after {
+  opacity: 1;
+  animation: ring-spin 5s linear infinite;
+}
+
+/* ── Cards: ambient accent glow shadow on hover ──────────────── */
+.base-card:hover,
+.step-card:hover,
+.product-card:hover,
+.intro-card:hover,
+.team-card:hover,
+.capability-card:hover,
+.contact-card:hover {
+  box-shadow:
+    var(--shadow-card-hover),
+    0 0 0 1px rgba(13, 110, 253, 0.1),
+    0 18px 52px rgba(13, 110, 253, 0.12);
+}
+
+/* ── Nav links: gradient underline with glow ─────────────────── */
+.nav-links a:not(.btn):not(.roll-link)::after {
+  background: linear-gradient(
+    90deg,
+    var(--accent-azure),
+    var(--accent-cyan),
+    transparent
+  );
+  height: 2px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.45);
+}
+.nav-links a:not(.btn):not(.roll-link):hover {
   color: var(--accent-azure);
+}
+
+/* ── Roll links: gradient underline glow (nav + footer) ─────── */
+.roll-link::after {
+  background: linear-gradient(
+    90deg,
+    var(--accent-azure),
+    var(--accent-green)
+  );
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+}
+
+/* ── Footer links: glowing underline sweep ───────────────────── */
+.footer-col a:not(.btn),
+.footer-bottom a:not(.btn) {
+  position: relative;
+}
+.footer-col a:not(.btn)::after,
+.footer-bottom a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-azure),
+    var(--accent-green)
+  );
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.footer-col a:not(.btn):hover::after,
+.footer-bottom a:not(.btn):hover::after {
+  transform: scaleX(1);
+}
+.footer-col a:not(.btn):hover,
+.footer-bottom a:not(.btn):hover {
+  color: #fff;
+}
+
+/* ── Text links: accent + arrow nudge ────────────────────────── */
+.btn-text:hover {
+  color: var(--accent-azure);
+}
+.btn-text:hover .arrow {
+  color: var(--accent-azure);
+  transform: translateX(6px);
+}
+.link-card:hover .arrow {
+  color: var(--accent-green-text);
 }

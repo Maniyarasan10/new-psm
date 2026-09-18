@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import Seo from '../../components/Seo';
 import { Section } from '../../components/ui';
 import { CompanyCta, TwoEngines } from '../../components/shared';
+import Marquee from '../../components/Marquee';
+
 import {
   COMPANY,
   PSM_IDEA,
@@ -24,8 +26,6 @@ export default function Home() {
         path="/"
       />
 
-      {/* ── Hero: Dala-style landing — amber label, massive responsive title,
-            brain constellation as the right-half centerpiece ── */}
       <section className="hero landing" aria-label="PSM — Because problem solving is everything">
         <div className="container hero-content">
           <div className="landing__title-wrapper">
@@ -78,6 +78,8 @@ export default function Home() {
         </div>
       </section>
 
+      <Marquee />
+
       {/* ── The PSM Idea ──────────────────────────────────── */}
       <Section
           eyebrow={PSM_IDEA.eyebrow}
@@ -112,8 +114,18 @@ export default function Home() {
       >
         <div className="card-grid">
           {PRODUCTS.map((p, i) => (
-            <Link key={p.id} className="base-card link-card" to={p.slug} data-reveal data-reveal-delay={String(i * 100)}>
+            <Link
+              key={p.id}
+              className="base-card link-card accent-card"
+              to={p.slug}
+              data-reveal
+              data-reveal-delay={String(i * 100)}
+              style={{ '--card-accent': p.color } as React.CSSProperties}
+            >
               <div>
+                <div className="card-accent-row accent-row--plain">
+                  <span className="mono">{p.segment}</span>
+                </div>
                 <h3 className="h3">{p.name}</h3>
                 <p className="body" style={{ marginTop: '0.5rem' }}>{p.strapline}</p>
                 <p className="body" style={{ marginTop: '0.75rem', fontSize: '0.92rem' }}>{p.summary}</p>
@@ -135,9 +147,18 @@ export default function Home() {
       >
         <div className="card-grid">
           {SOLUTIONS.map((s, i) => (
-            <Link key={s.id} className="base-card link-card" to={s.slug} data-reveal data-reveal-delay={String(i * 80)}>
+            <Link
+              key={s.id}
+              className="base-card link-card accent-card"
+              to={s.slug}
+              data-reveal
+              data-reveal-delay={String(i * 80)}
+              style={{ '--card-accent': s.color } as React.CSSProperties}
+            >
               <div>
-                <span className="mono" style={{ marginBottom: '0.75rem', display: 'block' }}>{s.short}</span>
+                <div className="card-accent-row accent-row--plain">
+                  <span className="mono">{s.short}</span>
+                </div>
                 <h3 className="h3">{s.title}</h3>
                 <p className="body" style={{ marginTop: '0.5rem', fontSize: '0.92rem' }}>{s.description}</p>
               </div>
@@ -152,7 +173,7 @@ export default function Home() {
         <div className="steps-grid">
           {APPROACH.steps.map((s, i) => (
             <div key={s.step} className="step-card" data-reveal data-reveal-delay={String(i * 80)}>
-              <span className="step-num">{s.step}</span>
+              <span className="step-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
               <h3 className="h3">{s.title}</h3>
               <p>{s.desc}</p>
             </div>
@@ -180,7 +201,7 @@ export default function Home() {
         <div className="reason-list">
           {WHY_PSM.reasons.map((r, i) => (
             <div key={r.num} className="reason-row" data-reveal data-reveal-delay={String(i * 60)}>
-              <span className="reason-num">{r.num}</span>
+              <span className="reason-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
               <h3 className="reason-name">{r.name}</h3>
               <p className="reason-desc">{r.desc}</p>
             </div>

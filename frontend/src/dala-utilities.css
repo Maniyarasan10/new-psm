@@ -5,7 +5,7 @@
      @xs   360px   @sm   768px   @md   1024px   @lg   1366px   @xlg   1921px
 
    Typeface: PP Neue Montreal (self-hosted in index.css), weights 200/400/600.
-   Palette:  void #000 · purple #8052ff · purple-light #ecd6ff
+   Palette:  void #000 · blue #0d6efd · blue-light #cfe2ff
              yellow #ffb829 · green #15846e · grey-4 #bdbdbd
 
    Everything is additive: rules only win for class names the PSM system
@@ -16,7 +16,7 @@
 
 :root {
   --vh: 1vh; /* JS sets the correct value on resize (see main.tsx) */
-  --color-purple-light: #ecd6ff;
+  --color-purple-light: #cfe2ff;
 }
 
 /* =====================================================================
@@ -77,8 +77,8 @@
 .t-white { color: #fff !important; }
 .t-black { color: #000 !important; }
 .t-black-light { color: #070707 !important; }
-.t-purple { color: #8052ff !important; }
-.t-purple-light { color: #ecd6ff !important; }
+.t-purple { color: #0d6efd !important; }
+.t-purple-light { color: #cfe2ff !important; }
 .t-yellow { color: #ffb829 !important; }
 .t-grey-4 { color: #bdbdbd !important; }
 .t-twitter { color: #1da1f2 !important; }
@@ -583,9 +583,9 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  padding: 2.5rem 2.5rem;
+  padding: 2rem 2rem;
 }
-@media (min-width: 360px)  { .home-dala .section { padding: 2.5rem 3rem; } }
+@media (min-width: 360px)  { .home-dala .section { padding: 2rem 3rem; } }
 @media (min-width: 768px)  { .home-dala .section { padding: 3rem 4rem; } }
 @media (min-width: 1024px) { .home-dala .section { padding: 3.5rem 10rem; } }
 @media (min-width: 1366px) {
@@ -650,7 +650,7 @@
 @media (min-width: 1921px) { .home-dala .btn:not(.btn-text) { padding: 1.03rem 1.25rem; } }
 .home-dala .btn-primary > * { position: relative; z-index: 2; }
 .home-dala .btn-primary {
-  background: #8052ff;
+  background: #0d6efd;
   color: #fff;
 }
 .home-dala .btn-primary::after {
@@ -688,9 +688,14 @@
     justify-content: flex-start;
   }
 }
+/* Phones: trim the hero's bottom padding so the first section starts sooner
+   (the 8vh clamp left a near-blank viewport strip before the PSM Idea). */
+@media (max-width: 768px) {
+  .home-dala .hero.landing { padding-bottom: 2.5rem; }
+}
 .home-dala .hero.landing::after {
   background:
-    radial-gradient(60% 50% at 14% 74%, rgba(128, 82, 255, 0.16), transparent 62%),
+    radial-gradient(60% 50% at 14% 74%, rgba(13, 110, 253, 0.16), transparent 62%),
     radial-gradient(44% 40% at 84% 10%, rgba(255, 184, 41, 0.07), transparent 55%);
 }
 

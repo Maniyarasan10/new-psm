@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import Preloader from './Preloader';
-import ParticleMorph from './ParticleMorph/ParticleMorph';
 import { getLenis } from './SmoothScroll';
 import { usePageAnimations } from '../hooks/usePageAnimations';
 import { useReducedMotion } from '../lib/reducedMotion';
@@ -44,7 +43,6 @@ export default function Layout() {
   return (
     <>
       <Preloader />
-      <ParticleMorph fullPage />
       <Navigation />
       <div ref={shellRef} className="page-shell">
         <main ref={mainRef} id="top">

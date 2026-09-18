@@ -40,10 +40,19 @@ export default function SolutionsPage() {
       {/* ── Services ──────────────────────────────────── */}
       <Section eyebrow="Services" title="What We Build.">
         <div className="card-grid">
-          {SOLUTIONS.map((s) => (
-            <Link key={s.id} className="base-card link-card" to={s.slug}>
+          {SOLUTIONS.map((s, i) => (
+            <Link
+              key={s.id}
+              className="base-card link-card accent-card"
+              to={s.slug}
+              data-reveal
+              data-reveal-delay={String(i * 80)}
+              style={{ '--card-accent': s.color } as React.CSSProperties}
+            >
               <div>
-                <span className="mono">{s.short}</span>
+                <div className="card-accent-row accent-row--plain">
+                  <span className="mono">{s.short}</span>
+                </div>
                 <h3 className="h3" style={{ marginTop: '0.5rem' }}>{s.title}</h3>
                 <p className="body" style={{ marginTop: '0.5rem' }}>{s.description}</p>
               </div>

@@ -29,7 +29,14 @@ export default function CaseStudies() {
           published here as outcomes are confirmed with clients. No invented metrics,
           client names or testimonials are published.
         </p>
-        <div className="base-card" style={{ marginTop: '2.5rem' }}>
+        <div
+          className="base-card accent-card"
+          data-reveal
+          style={{ marginTop: '2.5rem', '--card-accent': 'var(--accent-blue)' } as React.CSSProperties}
+        >
+          <div className="card-accent-row accent-row--plain">
+            <span className="mono">Verified engagements</span>
+          </div>
           <h3 className="h3">Case studies coming soon</h3>
           <p className="body" style={{ marginTop: '0.5rem' }}>
             Detailed case studies following the PSM template — problem, challenge,

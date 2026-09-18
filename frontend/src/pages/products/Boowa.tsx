@@ -53,7 +53,7 @@ function StepList({ items }: { items: { label: string; desc: string }[] }) {
 
 export default function Boowa() {
   return (
-    <>
+    <div className="accent-page" style={{ '--page-accent': 'var(--accent-green)' } as React.CSSProperties}>
       <Seo
         title="Boowa | Hyperlocal Food & Everyday Item Delivery Platform"
         description="Boowa is a hyperlocal delivery platform being developed by Problem Solving Mind to connect customers with nearby businesses for food and everyday-item delivery."
@@ -164,6 +164,6 @@ export default function Boowa() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

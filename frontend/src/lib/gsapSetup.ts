@@ -54,6 +54,15 @@ gsap.defaults({ ease: 'power3.out', duration: 0.8, overwrite: 'auto' });
 gsap.ticker.lagSmoothing(0);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
+// Guard against a known GSAP crash: "Cannot read properties of undefined
+// (reading 'end')" fired from ScrollTrigger.refresh during a ScrollTrigger.batch
+// creation. It triggers only when the very FIRST ScrollTrigger in the app has
+// `once: true` (which happens on a reload with the page already scrolled, e.g.
+// after the natural reload scroll restore). Creating a harmless, non-once
+// trigger at module scope guarantees the first trigger is benign, before any
+// component effect can register a once:true trigger. (GSAP forum topic 40242)
+ScrollTrigger.create({ start: 0, end: 1 });
+
 export {
   gsap,
   ScrollTrigger,

@@ -1,0 +1,860 @@
+- generic [ref=f5e3]:
+  - generic [ref=f5e4]: "100"
+  - banner [ref=f5e8]:
+    - generic [ref=f5e9]:
+      - link "Problem Solving Mind — home" [ref=f5e10] [cursor=pointer]:
+        - /url: /
+        - img "PSM Logo" [ref=f5e11]
+        - generic [ref=f5e12]:
+          - generic [ref=f5e13]: PSM
+          - generic [ref=f5e14]: Problem Solving Mind
+      - navigation "Primary" [ref=f5e15]:
+        - link "Home" [ref=f5e16] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f5e17]:
+            - generic [ref=f5e18]:
+              - generic [ref=f5e19]: H
+              - generic [ref=f5e20]: o
+              - generic [ref=f5e21]: m
+              - generic [ref=f5e22]: e
+            - generic [ref=f5e23]:
+              - generic [ref=f5e24]: H
+              - generic [ref=f5e25]: o
+              - generic [ref=f5e26]: m
+              - generic [ref=f5e27]: e
+        - link "Products" [ref=f5e28] [cursor=pointer]:
+          - /url: /products
+          - generic [ref=f5e29]:
+            - generic [ref=f5e30]:
+              - generic [ref=f5e31]: P
+              - generic [ref=f5e32]: r
+              - generic [ref=f5e33]: o
+              - generic [ref=f5e34]: d
+              - generic [ref=f5e35]: u
+              - generic [ref=f5e36]: c
+              - generic [ref=f5e37]: t
+              - generic [ref=f5e38]: s
+            - generic [ref=f5e39]:
+              - generic [ref=f5e40]: P
+              - generic [ref=f5e41]: r
+              - generic [ref=f5e42]: o
+              - generic [ref=f5e43]: d
+              - generic [ref=f5e44]: u
+              - generic [ref=f5e45]: c
+              - generic [ref=f5e46]: t
+              - generic [ref=f5e47]: s
+        - link "Digital Solutions" [ref=f5e48] [cursor=pointer]:
+          - /url: /solutions
+          - generic [ref=f5e49]:
+            - generic [ref=f5e50]:
+              - generic [ref=f5e51]: D
+              - generic [ref=f5e52]: i
+              - generic [ref=f5e53]: g
+              - generic [ref=f5e54]: i
+              - generic [ref=f5e55]: t
+              - generic [ref=f5e56]: a
+              - generic [ref=f5e57]: l
+              - generic [ref=f5e58]: S
+              - generic [ref=f5e59]: o
+              - generic [ref=f5e60]: l
+              - generic [ref=f5e61]: u
+              - generic [ref=f5e62]: t
+              - generic [ref=f5e63]: i
+              - generic [ref=f5e64]: o
+              - generic [ref=f5e65]: "n"
+              - generic [ref=f5e66]: s
+            - generic [ref=f5e67]:
+              - generic [ref=f5e68]: D
+              - generic [ref=f5e69]: i
+              - generic [ref=f5e70]: g
+              - generic [ref=f5e71]: i
+              - generic [ref=f5e72]: t
+              - generic [ref=f5e73]: a
+              - generic [ref=f5e74]: l
+              - generic [ref=f5e75]: S
+              - generic [ref=f5e76]: o
+              - generic [ref=f5e77]: l
+              - generic [ref=f5e78]: u
+              - generic [ref=f5e79]: t
+              - generic [ref=f5e80]: i
+              - generic [ref=f5e81]: o
+              - generic [ref=f5e82]: "n"
+              - generic [ref=f5e83]: s
+        - link "Industries" [ref=f5e84] [cursor=pointer]:
+          - /url: /industries
+          - generic [ref=f5e85]:
+            - generic [ref=f5e86]:
+              - generic [ref=f5e87]: I
+              - generic [ref=f5e88]: "n"
+              - generic [ref=f5e89]: d
+              - generic [ref=f5e90]: u
+              - generic [ref=f5e91]: s
+              - generic [ref=f5e92]: t
+              - generic [ref=f5e93]: r
+              - generic [ref=f5e94]: i
+              - generic [ref=f5e95]: e
+              - generic [ref=f5e96]: s
+            - generic [ref=f5e97]:
+              - generic [ref=f5e98]: I
+              - generic [ref=f5e99]: "n"
+              - generic [ref=f5e100]: d
+              - generic [ref=f5e101]: u
+              - generic [ref=f5e102]: s
+              - generic [ref=f5e103]: t
+              - generic [ref=f5e104]: r
+              - generic [ref=f5e105]: i
+              - generic [ref=f5e106]: e
+              - generic [ref=f5e107]: s
+        - link "Case Studies" [ref=f5e108] [cursor=pointer]:
+          - /url: /case-studies
+          - generic [ref=f5e109]:
+            - generic [ref=f5e110]:
+              - generic [ref=f5e111]: C
+              - generic [ref=f5e112]: a
+              - generic [ref=f5e113]: s
+              - generic [ref=f5e114]: e
+              - generic [ref=f5e115]: S
+              - generic [ref=f5e116]: t
+              - generic [ref=f5e117]: u
+              - generic [ref=f5e118]: d
+              - generic [ref=f5e119]: i
+              - generic [ref=f5e120]: e
+              - generic [ref=f5e121]: s
+            - generic [ref=f5e122]:
+              - generic [ref=f5e123]: C
+              - generic [ref=f5e124]: a
+              - generic [ref=f5e125]: s
+              - generic [ref=f5e126]: e
+              - generic [ref=f5e127]: S
+              - generic [ref=f5e128]: t
+              - generic [ref=f5e129]: u
+              - generic [ref=f5e130]: d
+              - generic [ref=f5e131]: i
+              - generic [ref=f5e132]: e
+              - generic [ref=f5e133]: s
+        - link "About" [ref=f5e134] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=f5e135]:
+            - generic [ref=f5e136]:
+              - generic [ref=f5e137]: A
+              - generic [ref=f5e138]: b
+              - generic [ref=f5e139]: o
+              - generic [ref=f5e140]: u
+              - generic [ref=f5e141]: t
+            - generic [ref=f5e142]:
+              - generic [ref=f5e143]: A
+              - generic [ref=f5e144]: b
+              - generic [ref=f5e145]: o
+              - generic [ref=f5e146]: u
+              - generic [ref=f5e147]: t
+        - link "Careers" [ref=f5e148] [cursor=pointer]:
+          - /url: /careers
+          - generic [ref=f5e149]:
+            - generic [ref=f5e150]:
+              - generic [ref=f5e151]: C
+              - generic [ref=f5e152]: a
+              - generic [ref=f5e153]: r
+              - generic [ref=f5e154]: e
+              - generic [ref=f5e155]: e
+              - generic [ref=f5e156]: r
+              - generic [ref=f5e157]: s
+            - generic [ref=f5e158]:
+              - generic [ref=f5e159]: C
+              - generic [ref=f5e160]: a
+              - generic [ref=f5e161]: r
+              - generic [ref=f5e162]: e
+              - generic [ref=f5e163]: e
+              - generic [ref=f5e164]: r
+              - generic [ref=f5e165]: s
+        - link "Contact" [ref=f5e166] [cursor=pointer]:
+          - /url: /contact
+  - generic [ref=f5e167]:
+    - main [ref=f5e168]:
+      - generic [ref=f5e169]:
+        - region "PSM — Because problem solving is everything" [ref=f5e170]:
+          - generic [ref=f5e171]:
+            - generic [ref=f5e172]:
+              - generic [ref=f5e173]: Problem Solving Mind — Technology Company
+              - heading "Because Problem Solving is everything." [level=1] [ref=f5e174]:
+                - generic [ref=f5e175]: Because
+                - generic [ref=f5e176]: Problem Solving
+                - generic [ref=f5e177]: is everything.
+            - generic [ref=f5e179]:
+              - paragraph [ref=f5e180]: A technology company that builds proprietary products and delivers digital solutions — starting from the problem, not the tech stack.
+              - generic [ref=f5e182]:
+                - link "Explore Products" [ref=f5e183] [cursor=pointer]:
+                  - /url: /products
+                  - text: Explore Products
+                  - generic [ref=f5e184]: →
+                - link "Build With PSM" [ref=f5e185] [cursor=pointer]:
+                  - /url: /contact
+              - paragraph [ref=f5e186]: From identifying the problem to designing, building, deploying and improving the solution — we think beyond technology.
+          - generic [ref=f5e187]: Scroll
+        - generic [ref=f5e190]:
+          - generic [ref=f5e191]:
+            - generic [ref=f5e192]: The Problem-Solving Mindset
+            - heading "Technology should solve a problem, not create another one." [level=2] [ref=f5e193]:
+              - generic [ref=f5e194]: Technology should solve
+              - generic [ref=f5e196]: a problem, not create
+              - generic [ref=f5e198]: another one.
+          - generic [ref=f5e200]:
+            - paragraph [ref=f5e201]: Every meaningful product begins with a problem worth solving.
+            - paragraph [ref=f5e202]: At Problem Solving Mind, we start by understanding the problem, the people affected by it and the environment in which it exists. We then use technology, engineering and product thinking to build solutions that are practical, scalable and built for real-world use.
+            - paragraph [ref=f5e203]: The best technology is technology that makes a meaningful difference.
+          - link "Discover How We Think" [ref=f5e204] [cursor=pointer]:
+            - /url: /about
+            - text: Discover How We Think
+            - generic [ref=f5e205]: →
+        - generic [ref=f5e207]:
+          - generic [ref=f5e208]:
+            - generic [ref=f5e209]: What We Do
+            - heading "Two Ways We Create Value." [level=2] [ref=f5e210]:
+              - generic [ref=f5e211]: Two Ways We Create
+              - generic [ref=f5e213]: Value.
+            - paragraph [ref=f5e215]: "PSM operates through two connected engines: proprietary products and digital solutions."
+          - generic [ref=f5e217]:
+            - generic [ref=f5e218]:
+              - text: Engine 01
+              - heading "Build Products" [level=3] [ref=f5e219]
+              - paragraph [ref=f5e220]: Technology products designed to solve specific, scalable problems.
+              - paragraph [ref=f5e221]: We research problems, design experiences, engineer technology and develop products that can serve real users and grow into sustainable businesses.
+              - link "Explore Products" [ref=f5e222] [cursor=pointer]:
+                - /url: /products
+                - text: Explore Products
+                - generic [ref=f5e223]: →
+            - generic [ref=f5e224]:
+              - text: Engine 02
+              - heading "Build Digital Solutions" [level=3] [ref=f5e225]
+              - paragraph [ref=f5e226]: Technology built around the needs of businesses and organizations.
+              - paragraph [ref=f5e227]: We help organizations turn operational challenges, ideas and business requirements into software, AI systems, automation, business platforms and digital experiences.
+              - link "Explore Digital Solutions" [ref=f5e228] [cursor=pointer]:
+                - /url: /solutions
+                - text: Explore Digital Solutions
+                - generic [ref=f5e229]: →
+        - generic [ref=f5e231]:
+          - generic [ref=f5e232]:
+            - generic [ref=f5e233]: Built by PSM
+            - heading "Products Built Around Real Problems." [level=2] [ref=f5e234]:
+              - generic [ref=f5e235]: Products Built Around
+              - generic [ref=f5e237]: Real Problems.
+            - paragraph [ref=f5e239]: Three proprietary products, each addressing a different real-world problem — in commerce, real estate and healthcare.
+          - generic [ref=f5e240]:
+            - link "Boowa Hyperlocal Commerce. Faster Delivery. Closer to You. A hyperlocal food and everyday-item delivery platform connecting customers with nearby businesses and delivery partners. In Development →" [ref=f5e241] [cursor=pointer]:
+              - /url: /products/boowa
+              - generic [ref=f5e242]:
+                - heading "Boowa" [level=3] [ref=f5e243]
+                - paragraph [ref=f5e244]: Hyperlocal Commerce. Faster Delivery. Closer to You.
+                - paragraph [ref=f5e245]: A hyperlocal food and everyday-item delivery platform connecting customers with nearby businesses and delivery partners.
+              - generic [ref=f5e246]:
+                - generic [ref=f5e247]: In Development
+                - generic [ref=f5e248]: →
+            - link "EYD — Explore Your Dream Experience Property Before You Visit. A real-estate technology platform bringing property discovery, seller management and immersive 3D property experiences into one place. In Development →" [ref=f5e249] [cursor=pointer]:
+              - /url: /products/eyd
+              - generic [ref=f5e250]:
+                - heading "EYD — Explore Your Dream" [level=3] [ref=f5e251]
+                - paragraph [ref=f5e252]: Experience Property Before You Visit.
+                - paragraph [ref=f5e253]: A real-estate technology platform bringing property discovery, seller management and immersive 3D property experiences into one place.
+              - generic [ref=f5e254]:
+                - generic [ref=f5e255]: In Development
+                - generic [ref=f5e256]: →
+            - link "Aura Healthcare Technology, Engineered Around the Patient. An emerging healthcare technology and hardware initiative, exploring how connected devices and software can improve patient care and clinical workflows. Early-Stage Development →" [ref=f5e257] [cursor=pointer]:
+              - /url: /products/aura
+              - generic [ref=f5e258]:
+                - heading "Aura" [level=3] [ref=f5e259]
+                - paragraph [ref=f5e260]: Healthcare Technology, Engineered Around the Patient.
+                - paragraph [ref=f5e261]: An emerging healthcare technology and hardware initiative, exploring how connected devices and software can improve patient care and clinical workflows.
+              - generic [ref=f5e262]:
+                - generic [ref=f5e263]: Early-Stage Development
+                - generic [ref=f5e264]: →
+        - generic [ref=f5e266]:
+          - generic [ref=f5e267]:
+            - generic [ref=f5e268]: PSM Digital Solutions
+            - heading "Have a Problem? Let's Build the Solution." [level=2] [ref=f5e269]:
+              - generic [ref=f5e270]: Have a Problem? Let's
+              - generic [ref=f5e272]: Build the Solution.
+            - paragraph [ref=f5e274]: Your business doesn't need technology simply because technology exists. It needs the right technology for the problem. PSM helps businesses and organizations design, build and improve digital systems around their actual requirements.
+          - generic [ref=f5e275]:
+            - link "AI & Intelligent Systems AI & Intelligent Systems Use artificial intelligence to automate work, improve access to information and create smarter digital experiences. →" [ref=f5e276] [cursor=pointer]:
+              - /url: /solutions/ai
+              - generic [ref=f5e277]:
+                - generic [ref=f5e278]: AI & Intelligent Systems
+                - heading "AI & Intelligent Systems" [level=3] [ref=f5e279]
+                - paragraph [ref=f5e280]: Use artificial intelligence to automate work, improve access to information and create smarter digital experiences.
+              - generic [ref=f5e281]: →
+            - link "Business Systems Business Systems (ERP · CRM · Platforms) Purpose-built systems designed around the way your organization actually operates — including ERP and ERP-like systems, CRM and internal platforms. →" [ref=f5e282] [cursor=pointer]:
+              - /url: /solutions/business-systems
+              - generic [ref=f5e283]:
+                - generic [ref=f5e284]: Business Systems
+                - heading "Business Systems (ERP · CRM · Platforms)" [level=3] [ref=f5e285]
+                - paragraph [ref=f5e286]: Purpose-built systems designed around the way your organization actually operates — including ERP and ERP-like systems, CRM and internal platforms.
+              - generic [ref=f5e287]: →
+            - link "Business Automation Business Automation Reduce repetitive work, connect systems and create more efficient digital workflows. →" [ref=f5e288] [cursor=pointer]:
+              - /url: /solutions/automation
+              - generic [ref=f5e289]:
+                - generic [ref=f5e290]: Business Automation
+                - heading "Business Automation" [level=3] [ref=f5e291]
+                - paragraph [ref=f5e292]: Reduce repetitive work, connect systems and create more efficient digital workflows.
+              - generic [ref=f5e293]: →
+            - link "Web & Mobile Web & Mobile Applications Build modern digital experiences that are reliable, scalable and designed for real users. →" [ref=f5e294] [cursor=pointer]:
+              - /url: /solutions/web-mobile
+              - generic [ref=f5e295]:
+                - generic [ref=f5e296]: Web & Mobile
+                - heading "Web & Mobile Applications" [level=3] [ref=f5e297]
+                - paragraph [ref=f5e298]: Build modern digital experiences that are reliable, scalable and designed for real users.
+              - generic [ref=f5e299]: →
+            - link "Product Engineering Product Engineering Turn a validated idea into a working product through structured product design and engineering. →" [ref=f5e300] [cursor=pointer]:
+              - /url: /solutions/product-engineering
+              - generic [ref=f5e301]:
+                - generic [ref=f5e302]: Product Engineering
+                - heading "Product Engineering" [level=3] [ref=f5e303]
+                - paragraph [ref=f5e304]: Turn a validated idea into a working product through structured product design and engineering.
+              - generic [ref=f5e305]: →
+            - link "Hardware & IoT Hardware & IoT Engaged when a real-world problem can't be solved by software alone — sensors, edge devices and hardware-integrated systems for industrial and healthcare environments. →" [ref=f5e306] [cursor=pointer]:
+              - /url: /solutions/hardware-iot
+              - generic [ref=f5e307]:
+                - generic [ref=f5e308]: Hardware & IoT
+                - heading "Hardware & IoT" [level=3] [ref=f5e309]
+                - paragraph [ref=f5e310]: Engaged when a real-world problem can't be solved by software alone — sensors, edge devices and hardware-integrated systems for industrial and healthcare environments.
+              - generic [ref=f5e311]: →
+        - generic [ref=f5e313]:
+          - heading "We Start With the Problem." [level=2] [ref=f5e315]:
+            - generic [ref=f5e316]: We Start With the
+            - generic [ref=f5e318]: Problem.
+          - generic [ref=f5e320]:
+            - generic [ref=f5e321]:
+              - text: "01"
+              - heading "Understand" [level=3] [ref=f5e322]
+              - paragraph [ref=f5e323]: We identify the real problem, the users, the current workflow and the desired outcome.
+            - generic [ref=f5e324]:
+              - text: "02"
+              - heading "Define" [level=3] [ref=f5e325]
+              - paragraph [ref=f5e326]: We convert observations and requirements into a clear product or solution strategy.
+            - generic [ref=f5e327]:
+              - text: "03"
+              - heading "Design" [level=3] [ref=f5e328]
+              - paragraph [ref=f5e329]: We design the user experience, system architecture and solution structure before unnecessary complexity enters the build.
+            - generic [ref=f5e330]:
+              - text: "04"
+              - heading "Build" [level=3] [ref=f5e331]
+              - paragraph [ref=f5e332]: We engineer the software, AI systems, integrations and digital experiences required to make the solution real.
+            - generic [ref=f5e333]:
+              - text: "05"
+              - heading "Deploy" [level=3] [ref=f5e334]
+              - paragraph [ref=f5e335]: We move the solution from development into practical use with appropriate testing, deployment and monitoring.
+            - generic [ref=f5e336]:
+              - text: "06"
+              - heading "Improve" [level=3] [ref=f5e337]
+              - paragraph [ref=f5e338]: Real-world use creates better information. We use feedback, performance and changing requirements to continuously improve.
+          - link "Talk to a Problem Solver" [ref=f5e339] [cursor=pointer]:
+            - /url: /contact
+            - text: Talk to a Problem Solver
+            - generic [ref=f5e340]: →
+        - generic [ref=f5e342]:
+          - heading "Built for Organizations With Problems Worth Solving." [level=2] [ref=f5e344]:
+            - generic [ref=f5e345]: Built for Organizations
+            - generic [ref=f5e347]: With Problems Worth
+            - generic [ref=f5e349]: Solving.
+          - generic [ref=f5e351]:
+            - generic [ref=f5e352]:
+              - heading "Startups" [level=3] [ref=f5e353]
+              - paragraph [ref=f5e354]: From idea validation to MVP and product engineering.
+            - generic [ref=f5e355]:
+              - heading "Small & Medium Businesses" [level=3] [ref=f5e356]
+              - paragraph [ref=f5e357]: Digital systems that reduce manual work and improve operations.
+            - generic [ref=f5e358]:
+              - heading "Growing Companies" [level=3] [ref=f5e359]
+              - paragraph [ref=f5e360]: Scalable software, automation and digital infrastructure.
+            - generic [ref=f5e361]:
+              - heading "Enterprise & Organizations" [level=3] [ref=f5e362]
+              - paragraph [ref=f5e363]: Purpose-built digital solutions for complex workflows and business needs.
+            - generic [ref=f5e364]:
+              - heading "Industry-Specific Businesses" [level=3] [ref=f5e365]
+              - paragraph [ref=f5e366]: Technology designed around real operational environments rather than generic software assumptions.
+        - generic [ref=f5e368]:
+          - heading "Why Build With Problem Solving Mind?" [level=2] [ref=f5e370]:
+            - generic [ref=f5e371]: Why Build With Problem
+            - generic [ref=f5e373]: Solving Mind?
+          - generic [ref=f5e375]:
+            - generic [ref=f5e376]:
+              - generic [ref=f5e377]: "01"
+              - heading "Problem-First Thinking" [level=3] [ref=f5e378]
+              - paragraph [ref=f5e379]: We begin with the problem and desired outcome, not with a predetermined technology stack.
+            - generic [ref=f5e380]:
+              - generic [ref=f5e381]: "02"
+              - heading "Product Mindset" [level=3] [ref=f5e382]
+              - paragraph [ref=f5e383]: We think beyond delivery. We consider usability, adoption, scalability and long-term value.
+            - generic [ref=f5e384]:
+              - generic [ref=f5e385]: "03"
+              - heading "Engineering + Business" [level=3] [ref=f5e386]
+              - paragraph [ref=f5e387]: A good technical solution must also make sense for the organization using it.
+            - generic [ref=f5e388]:
+              - generic [ref=f5e389]: "04"
+              - heading "Practical Execution" [level=3] [ref=f5e390]
+              - paragraph [ref=f5e391]: We focus on building usable systems rather than producing presentations that never become products.
+            - generic [ref=f5e392]:
+              - generic [ref=f5e393]: "05"
+              - heading "Continuous Improvement" [level=3] [ref=f5e394]
+              - paragraph [ref=f5e395]: Technology and requirements change. Our solutions are designed to evolve.
+        - generic [ref=f5e397]:
+          - heading [level=2] [ref=f5e399]
+          - paragraph [ref=f5e402]: Our product and digital-solution work strengthen each other. Business problems reveal opportunities. Technology creates solutions. Real users create feedback. Feedback creates better products. Better products create larger impact. This is a continuous cycle of learning, building and improving.
+        - generic [ref=f5e404]:
+          - heading [level=2] [ref=f5e406]
+          - paragraph [ref=f5e408]: Verified engagements including an integrated website, CRM and mobile application delivered as one connected system, plus an ERP onboarding engagement in progress.
+          - link "View Case Studies" [ref=f5e409] [cursor=pointer]:
+            - /url: /case-studies
+            - text: View Case Studies
+            - generic [ref=f5e410]: →
+        - generic [ref=f5e412]:
+          - generic [ref=f5e413]: Let's build together
+          - heading "Have a Problem Worth Solving?" [level=2] [ref=f5e414]
+          - paragraph [ref=f5e415]: Tell us what is slowing your business down, what you are trying to build, or where technology could create a better outcome. You don't need the technical answer. That's what we're here to solve.
+          - generic [ref=f5e416]:
+            - link "Start a Conversation" [ref=f5e417] [cursor=pointer]:
+              - /url: /contact
+              - text: Start a Conversation
+              - generic [ref=f5e418]: →
+            - link "Explore Our Products" [ref=f5e419] [cursor=pointer]:
+              - /url: /products
+    - contentinfo [ref=f5e420]:
+      - generic [ref=f5e421]:
+        - generic [ref=f5e422]:
+          - generic [ref=f5e423]:
+            - paragraph [ref=f5e425]: Technology Products & Digital Solutions.
+            - paragraph [ref=f5e426]: Build Products. Solve Problems. Create Impact.
+            - link "Talk to PSM" [ref=f5e427] [cursor=pointer]:
+              - /url: /contact
+              - text: Talk to PSM
+              - generic [ref=f5e428]: →
+          - generic [ref=f5e429]:
+            - generic [ref=f5e430]: Products
+            - list [ref=f5e431]:
+              - listitem [ref=f5e432]:
+                - link [ref=f5e433] [cursor=pointer]:
+                  - /url: /products/boowa
+                  - generic [ref=f5e434]:
+                    - generic [ref=f5e435]:
+                      - generic [ref=f5e436]: B
+                      - generic [ref=f5e437]: o
+                      - generic [ref=f5e438]: o
+                      - generic [ref=f5e439]: w
+                      - generic [ref=f5e440]: a
+                    - generic [ref=f5e441]:
+                      - generic [ref=f5e442]: B
+                      - generic [ref=f5e443]: o
+                      - generic [ref=f5e444]: o
+                      - generic [ref=f5e445]: w
+                      - generic [ref=f5e446]: a
+              - listitem [ref=f5e447]:
+                - link [ref=f5e448] [cursor=pointer]:
+                  - /url: /products/eyd
+                  - generic [ref=f5e449]:
+                    - generic [ref=f5e450]:
+                      - generic [ref=f5e451]: E
+                      - generic [ref=f5e452]: "Y"
+                      - generic [ref=f5e453]: D
+                      - generic [ref=f5e454]: —
+                      - generic [ref=f5e455]: E
+                      - generic [ref=f5e456]: x
+                      - generic [ref=f5e457]: p
+                      - generic [ref=f5e458]: l
+                      - generic [ref=f5e459]: o
+                      - generic [ref=f5e460]: r
+                      - generic [ref=f5e461]: e
+                      - generic [ref=f5e462]: "Y"
+                      - generic [ref=f5e463]: o
+                      - generic [ref=f5e464]: u
+                      - generic [ref=f5e465]: r
+                      - generic [ref=f5e466]: D
+                      - generic [ref=f5e467]: r
+                      - generic [ref=f5e468]: e
+                      - generic [ref=f5e469]: a
+                      - generic [ref=f5e470]: m
+                    - generic [ref=f5e471]:
+                      - generic [ref=f5e472]: E
+                      - generic [ref=f5e473]: "Y"
+                      - generic [ref=f5e474]: D
+                      - generic [ref=f5e475]: —
+                      - generic [ref=f5e476]: E
+                      - generic [ref=f5e477]: x
+                      - generic [ref=f5e478]: p
+                      - generic [ref=f5e479]: l
+                      - generic [ref=f5e480]: o
+                      - generic [ref=f5e481]: r
+                      - generic [ref=f5e482]: e
+                      - generic [ref=f5e483]: "Y"
+                      - generic [ref=f5e484]: o
+                      - generic [ref=f5e485]: u
+                      - generic [ref=f5e486]: r
+                      - generic [ref=f5e487]: D
+                      - generic [ref=f5e488]: r
+                      - generic [ref=f5e489]: e
+                      - generic [ref=f5e490]: a
+                      - generic [ref=f5e491]: m
+              - listitem [ref=f5e492]:
+                - link [ref=f5e493] [cursor=pointer]:
+                  - /url: /products/aura
+                  - generic [ref=f5e494]:
+                    - generic [ref=f5e495]:
+                      - generic [ref=f5e496]: A
+                      - generic [ref=f5e497]: u
+                      - generic [ref=f5e498]: r
+                      - generic [ref=f5e499]: a
+                    - generic [ref=f5e500]:
+                      - generic [ref=f5e501]: A
+                      - generic [ref=f5e502]: u
+                      - generic [ref=f5e503]: r
+                      - generic [ref=f5e504]: a
+          - generic [ref=f5e505]:
+            - generic [ref=f5e506]: Company
+            - list [ref=f5e507]:
+              - listitem [ref=f5e508]:
+                - link [ref=f5e509] [cursor=pointer]:
+                  - /url: /products
+                  - generic [ref=f5e510]:
+                    - generic [ref=f5e511]:
+                      - generic [ref=f5e512]: P
+                      - generic [ref=f5e513]: r
+                      - generic [ref=f5e514]: o
+                      - generic [ref=f5e515]: d
+                      - generic [ref=f5e516]: u
+                      - generic [ref=f5e517]: c
+                      - generic [ref=f5e518]: t
+                      - generic [ref=f5e519]: s
+                    - generic [ref=f5e520]:
+                      - generic [ref=f5e521]: P
+                      - generic [ref=f5e522]: r
+                      - generic [ref=f5e523]: o
+                      - generic [ref=f5e524]: d
+                      - generic [ref=f5e525]: u
+                      - generic [ref=f5e526]: c
+                      - generic [ref=f5e527]: t
+                      - generic [ref=f5e528]: s
+              - listitem [ref=f5e529]:
+                - link [ref=f5e530] [cursor=pointer]:
+                  - /url: /solutions
+                  - generic [ref=f5e531]:
+                    - generic [ref=f5e532]:
+                      - generic [ref=f5e533]: D
+                      - generic [ref=f5e534]: i
+                      - generic [ref=f5e535]: g
+                      - generic [ref=f5e536]: i
+                      - generic [ref=f5e537]: t
+                      - generic [ref=f5e538]: a
+                      - generic [ref=f5e539]: l
+                      - generic [ref=f5e540]: S
+                      - generic [ref=f5e541]: o
+                      - generic [ref=f5e542]: l
+                      - generic [ref=f5e543]: u
+                      - generic [ref=f5e544]: t
+                      - generic [ref=f5e545]: i
+                      - generic [ref=f5e546]: o
+                      - generic [ref=f5e547]: "n"
+                      - generic [ref=f5e548]: s
+                    - generic [ref=f5e549]:
+                      - generic [ref=f5e550]: D
+                      - generic [ref=f5e551]: i
+                      - generic [ref=f5e552]: g
+                      - generic [ref=f5e553]: i
+                      - generic [ref=f5e554]: t
+                      - generic [ref=f5e555]: a
+                      - generic [ref=f5e556]: l
+                      - generic [ref=f5e557]: S
+                      - generic [ref=f5e558]: o
+                      - generic [ref=f5e559]: l
+                      - generic [ref=f5e560]: u
+                      - generic [ref=f5e561]: t
+                      - generic [ref=f5e562]: i
+                      - generic [ref=f5e563]: o
+                      - generic [ref=f5e564]: "n"
+                      - generic [ref=f5e565]: s
+              - listitem [ref=f5e566]:
+                - link [ref=f5e567] [cursor=pointer]:
+                  - /url: /industries
+                  - generic [ref=f5e568]:
+                    - generic [ref=f5e569]:
+                      - generic [ref=f5e570]: I
+                      - generic [ref=f5e571]: "n"
+                      - generic [ref=f5e572]: d
+                      - generic [ref=f5e573]: u
+                      - generic [ref=f5e574]: s
+                      - generic [ref=f5e575]: t
+                      - generic [ref=f5e576]: r
+                      - generic [ref=f5e577]: i
+                      - generic [ref=f5e578]: e
+                      - generic [ref=f5e579]: s
+                    - generic [ref=f5e580]:
+                      - generic [ref=f5e581]: I
+                      - generic [ref=f5e582]: "n"
+                      - generic [ref=f5e583]: d
+                      - generic [ref=f5e584]: u
+                      - generic [ref=f5e585]: s
+                      - generic [ref=f5e586]: t
+                      - generic [ref=f5e587]: r
+                      - generic [ref=f5e588]: i
+                      - generic [ref=f5e589]: e
+                      - generic [ref=f5e590]: s
+              - listitem [ref=f5e591]:
+                - link [ref=f5e592] [cursor=pointer]:
+                  - /url: /case-studies
+                  - generic [ref=f5e593]:
+                    - generic [ref=f5e594]:
+                      - generic [ref=f5e595]: C
+                      - generic [ref=f5e596]: a
+                      - generic [ref=f5e597]: s
+                      - generic [ref=f5e598]: e
+                      - generic [ref=f5e599]: S
+                      - generic [ref=f5e600]: t
+                      - generic [ref=f5e601]: u
+                      - generic [ref=f5e602]: d
+                      - generic [ref=f5e603]: i
+                      - generic [ref=f5e604]: e
+                      - generic [ref=f5e605]: s
+                    - generic [ref=f5e606]:
+                      - generic [ref=f5e607]: C
+                      - generic [ref=f5e608]: a
+                      - generic [ref=f5e609]: s
+                      - generic [ref=f5e610]: e
+                      - generic [ref=f5e611]: S
+                      - generic [ref=f5e612]: t
+                      - generic [ref=f5e613]: u
+                      - generic [ref=f5e614]: d
+                      - generic [ref=f5e615]: i
+                      - generic [ref=f5e616]: e
+                      - generic [ref=f5e617]: s
+              - listitem [ref=f5e618]:
+                - link [ref=f5e619] [cursor=pointer]:
+                  - /url: /about
+                  - generic [ref=f5e620]:
+                    - generic [ref=f5e621]:
+                      - generic [ref=f5e622]: A
+                      - generic [ref=f5e623]: b
+                      - generic [ref=f5e624]: o
+                      - generic [ref=f5e625]: u
+                      - generic [ref=f5e626]: t
+                    - generic [ref=f5e627]:
+                      - generic [ref=f5e628]: A
+                      - generic [ref=f5e629]: b
+                      - generic [ref=f5e630]: o
+                      - generic [ref=f5e631]: u
+                      - generic [ref=f5e632]: t
+              - listitem [ref=f5e633]:
+                - link [ref=f5e634] [cursor=pointer]:
+                  - /url: /careers
+                  - generic [ref=f5e635]:
+                    - generic [ref=f5e636]:
+                      - generic [ref=f5e637]: C
+                      - generic [ref=f5e638]: a
+                      - generic [ref=f5e639]: r
+                      - generic [ref=f5e640]: e
+                      - generic [ref=f5e641]: e
+                      - generic [ref=f5e642]: r
+                      - generic [ref=f5e643]: s
+                    - generic [ref=f5e644]:
+                      - generic [ref=f5e645]: C
+                      - generic [ref=f5e646]: a
+                      - generic [ref=f5e647]: r
+                      - generic [ref=f5e648]: e
+                      - generic [ref=f5e649]: e
+                      - generic [ref=f5e650]: r
+                      - generic [ref=f5e651]: s
+              - listitem [ref=f5e652]:
+                - link [ref=f5e653] [cursor=pointer]:
+                  - /url: /contact
+                  - generic [ref=f5e654]:
+                    - generic [ref=f5e655]:
+                      - generic [ref=f5e656]: C
+                      - generic [ref=f5e657]: o
+                      - generic [ref=f5e658]: "n"
+                      - generic [ref=f5e659]: t
+                      - generic [ref=f5e660]: a
+                      - generic [ref=f5e661]: c
+                      - generic [ref=f5e662]: t
+                    - generic [ref=f5e663]:
+                      - generic [ref=f5e664]: C
+                      - generic [ref=f5e665]: o
+                      - generic [ref=f5e666]: "n"
+                      - generic [ref=f5e667]: t
+                      - generic [ref=f5e668]: a
+                      - generic [ref=f5e669]: c
+                      - generic [ref=f5e670]: t
+          - generic [ref=f5e671]:
+            - generic [ref=f5e672]: Connect
+            - list [ref=f5e673]:
+              - listitem [ref=f5e674]:
+                - link [ref=f5e675] [cursor=pointer]:
+                  - /url: mailto:problemsolvingminds@gmail.com
+                  - generic [ref=f5e676]:
+                    - generic [ref=f5e677]:
+                      - generic [ref=f5e678]: E
+                      - generic [ref=f5e679]: m
+                      - generic [ref=f5e680]: a
+                      - generic [ref=f5e681]: i
+                      - generic [ref=f5e682]: l
+                      - generic [ref=f5e683]: U
+                      - generic [ref=f5e684]: s
+                    - generic [ref=f5e685]:
+                      - generic [ref=f5e686]: E
+                      - generic [ref=f5e687]: m
+                      - generic [ref=f5e688]: a
+                      - generic [ref=f5e689]: i
+                      - generic [ref=f5e690]: l
+                      - generic [ref=f5e691]: U
+                      - generic [ref=f5e692]: s
+              - listitem [ref=f5e693]:
+                - link [ref=f5e694] [cursor=pointer]:
+                  - /url: tel:93602 07861
+                  - generic [ref=f5e695]:
+                    - generic [ref=f5e696]:
+                      - generic [ref=f5e697]: "9"
+                      - generic [ref=f5e698]: "3"
+                      - generic [ref=f5e699]: "6"
+                      - generic [ref=f5e700]: "0"
+                      - generic [ref=f5e701]: "2"
+                      - generic [ref=f5e702]: "0"
+                      - generic [ref=f5e703]: "7"
+                      - generic [ref=f5e704]: "8"
+                      - generic [ref=f5e705]: "6"
+                      - generic [ref=f5e706]: "1"
+                    - generic [ref=f5e707]:
+                      - generic [ref=f5e708]: "9"
+                      - generic [ref=f5e709]: "3"
+                      - generic [ref=f5e710]: "6"
+                      - generic [ref=f5e711]: "0"
+                      - generic [ref=f5e712]: "2"
+                      - generic [ref=f5e713]: "0"
+                      - generic [ref=f5e714]: "7"
+                      - generic [ref=f5e715]: "8"
+                      - generic [ref=f5e716]: "6"
+                      - generic [ref=f5e717]: "1"
+              - listitem [ref=f5e718]:
+                - link [ref=f5e719] [cursor=pointer]:
+                  - /url: tel:73393 86911
+                  - generic [ref=f5e720]:
+                    - generic [ref=f5e721]:
+                      - generic [ref=f5e722]: "7"
+                      - generic [ref=f5e723]: "3"
+                      - generic [ref=f5e724]: "3"
+                      - generic [ref=f5e725]: "9"
+                      - generic [ref=f5e726]: "3"
+                      - generic [ref=f5e727]: "8"
+                      - generic [ref=f5e728]: "6"
+                      - generic [ref=f5e729]: "9"
+                      - generic [ref=f5e730]: "1"
+                      - generic [ref=f5e731]: "1"
+                    - generic [ref=f5e732]:
+                      - generic [ref=f5e733]: "7"
+                      - generic [ref=f5e734]: "3"
+                      - generic [ref=f5e735]: "3"
+                      - generic [ref=f5e736]: "9"
+                      - generic [ref=f5e737]: "3"
+                      - generic [ref=f5e738]: "8"
+                      - generic [ref=f5e739]: "6"
+                      - generic [ref=f5e740]: "9"
+                      - generic [ref=f5e741]: "1"
+                      - generic [ref=f5e742]: "1"
+              - listitem [ref=f5e743]:
+                - link [ref=f5e744] [cursor=pointer]:
+                  - /url: https://problemsolvingmind.com
+                  - generic [ref=f5e745]:
+                    - generic [ref=f5e746]:
+                      - generic [ref=f5e747]: W
+                      - generic [ref=f5e748]: e
+                      - generic [ref=f5e749]: b
+                      - generic [ref=f5e750]: s
+                      - generic [ref=f5e751]: i
+                      - generic [ref=f5e752]: t
+                      - generic [ref=f5e753]: e
+                    - generic [ref=f5e754]:
+                      - generic [ref=f5e755]: W
+                      - generic [ref=f5e756]: e
+                      - generic [ref=f5e757]: b
+                      - generic [ref=f5e758]: s
+                      - generic [ref=f5e759]: i
+                      - generic [ref=f5e760]: t
+                      - generic [ref=f5e761]: e
+        - paragraph [ref=f5e762]: Product availability, features and launch timelines may change during development. Refer to individual product pages for current status.
+        - generic [ref=f5e763]:
+          - generic [ref=f5e764]: © 2026 PSM · Technology Products & Digital Solutions
+          - generic [ref=f5e765]: Site by Problem Solving Mind
+          - link [ref=f5e767] [cursor=pointer]:
+            - /url: mailto:problemsolvingminds@gmail.com
+            - generic [ref=f5e768]:
+              - generic [ref=f5e769]:
+                - generic [ref=f5e770]: S
+                - generic [ref=f5e771]: a
+                - generic [ref=f5e772]: "y"
+                - generic [ref=f5e773]: h
+                - generic [ref=f5e774]: e
+                - generic [ref=f5e775]: l
+                - generic [ref=f5e776]: l
+                - generic [ref=f5e777]: o
+                - generic [ref=f5e778]: —
+                - generic [ref=f5e779]: p
+                - generic [ref=f5e780]: r
+                - generic [ref=f5e781]: o
+                - generic [ref=f5e782]: b
+                - generic [ref=f5e783]: l
+                - generic [ref=f5e784]: e
+                - generic [ref=f5e785]: m
+                - generic [ref=f5e786]: s
+                - generic [ref=f5e787]: o
+                - generic [ref=f5e788]: l
+                - generic [ref=f5e789]: v
+                - generic [ref=f5e790]: i
+                - generic [ref=f5e791]: "n"
+                - generic [ref=f5e792]: g
+                - generic [ref=f5e793]: m
+                - generic [ref=f5e794]: i
+                - generic [ref=f5e795]: "n"
+                - generic [ref=f5e796]: d
+                - generic [ref=f5e797]: s
+                - generic [ref=f5e798]: "@"
+                - generic [ref=f5e799]: g
+                - generic [ref=f5e800]: m
+                - generic [ref=f5e801]: a
+                - generic [ref=f5e802]: i
+                - generic [ref=f5e803]: l
+                - generic [ref=f5e804]: .
+                - generic [ref=f5e805]: c
+                - generic [ref=f5e806]: o
+                - generic [ref=f5e807]: m
+              - generic [ref=f5e808]:
+                - generic [ref=f5e809]: S
+                - generic [ref=f5e810]: a
+                - generic [ref=f5e811]: "y"
+                - generic [ref=f5e812]: h
+                - generic [ref=f5e813]: e
+                - generic [ref=f5e814]: l
+                - generic [ref=f5e815]: l
+                - generic [ref=f5e816]: o
+                - generic [ref=f5e817]: —
+                - generic [ref=f5e818]: p
+                - generic [ref=f5e819]: r
+                - generic [ref=f5e820]: o
+                - generic [ref=f5e821]: b
+                - generic [ref=f5e822]: l
+                - generic [ref=f5e823]: e
+                - generic [ref=f5e824]: m
+                - generic [ref=f5e825]: s
+                - generic [ref=f5e826]: o
+                - generic [ref=f5e827]: l
+                - generic [ref=f5e828]: v
+                - generic [ref=f5e829]: i
+                - generic [ref=f5e830]: "n"
+                - generic [ref=f5e831]: g
+                - generic [ref=f5e832]: m
+                - generic [ref=f5e833]: i
+                - generic [ref=f5e834]: "n"
+                - generic [ref=f5e835]: d
+                - generic [ref=f5e836]: s
+                - generic [ref=f5e837]: "@"
+                - generic [ref=f5e838]: g
+                - generic [ref=f5e839]: m
+                - generic [ref=f5e840]: a
+                - generic [ref=f5e841]: i
+                - generic [ref=f5e842]: l
+                - generic [ref=f5e843]: .
+                - generic [ref=f5e844]: c
+                - generic [ref=f5e845]: o
+                - generic [ref=f5e846]: m

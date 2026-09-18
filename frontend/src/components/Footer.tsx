@@ -50,7 +50,6 @@ export default function Footer() {
               <li><a href={`mailto:${COMPANY.email}`} data-roll-link>Email Us</a></li>
               <li><a href={`tel:${COMPANY.phone1}`} data-roll-link>{COMPANY.phone1}</a></li>
               <li><a href={`tel:${COMPANY.phone2}`} data-roll-link>{COMPANY.phone2}</a></li>
-              <li><a href={COMPANY.url} target="_blank" rel="noopener noreferrer" data-roll-link>Website</a></li>
             </ul>
           </div>
         </div>

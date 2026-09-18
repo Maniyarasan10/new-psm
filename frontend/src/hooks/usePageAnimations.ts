@@ -1,17 +1,28 @@
 import type { RefObject } from 'react';
 import { useReducedMotion } from '../lib/reducedMotion';
-import { gsap, ScrollTrigger, SplitText, useGSAP } from '../lib/gsapSetup';
+import { gsap, SplitText, useGSAP } from '../lib/gsapSetup';
 
 /**
  * Global, route-aware GSAP engine run once per page inside <Layout>.
  *
+ * Reveals are triggered with IntersectionObserver instead of
+ * ScrollTrigger.batch. GSAP still owns every animation, but the *trigger* is
+ * native: on touch devices a fast fling can carry the page past a
+ * ScrollTrigger start/end range within a single tick, so a batched reveal was
+ * skipped and the element stayed at `autoAlpha: 0` — and because CSS hides
+ * `.js [data-reveal]`, the card was permanently invisible. IntersectionObserver
+ * fires for every element that enters the viewport on every device and scroll
+ * mode (Lenis or native), and anything already in view on mount is revealed
+ * immediately, so content can never remain hidden.
+ *
  * What it wires up (all scoped to `scope`, auto-reverted on route change):
  *  1. Editorial heading reveals with SplitText (chars/words rise + tilt in)
- *  2. Batched [data-reveal] reveals — one ScrollTrigger.batch instead of 60
- *     individual triggers (dramatically fewer triggers, single stagger pass)
- *  3. Subtle scroll parallax on [data-parallax]
+ *  2. Grouped [data-reveal] reveals (one IntersectionObserver per group)
+ *  2a. Card / step / reason reveal animations
+ *  3. Subtle scroll parallax on [data-parallax] (ScrollTrigger scrub)
  *  4. Magnetic buttons via gsap.quickTo (one persistent tween, no GC churn)
  *  4b. Cards rotate with the pointer (subtle 3D tilt on hover)
+ *  4c. Stat counters & numbered badges count up on reveal
  *  5. Top scroll-progress bar (scrub-driven, transform-only)
  *
  * Everything honours prefers-reduced-motion and only animates transform /
@@ -22,28 +33,69 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
 
   useGSAP(
     () => {
-      if (reduced) return;
       if (!scope.current) return;
       const q = gsap.utils.selector(scope.current);
 
-      /* 0 ── Harmless first ScrollTrigger ──────────────────────────
-         Known GSAP issue: if the very first ScrollTrigger created by the
-         app has `once: true` (the SplitText heading below is the first one),
-         a later ScrollTrigger.batch refresh can crash with
-         "Cannot read properties of undefined (reading 'end')".
-         Creating a benign, non-once trigger first avoids hitting that path.
-         (see https://gsap.com/community/forums/topic/40242) */
-      ScrollTrigger.create({ start: 0, end: 1 });
+      /* Reduced motion: pin counters to their final value, no tween ─── */
+      if (reduced) {
+        q('[data-count-to]').forEach((el) => {
+          const node = el as HTMLElement;
+          const to = Number(node.dataset.countTo) || 0;
+          const pad = Number(node.dataset.countPad || 0);
+          const suffix = node.dataset.countSuffix || '';
+          node.textContent = (pad > 0 ? String(to).padStart(pad, '0') : String(to)) + suffix;
+        });
+        return;
+      }
+
+      const observers: IntersectionObserver[] = [];
+      const ioSupported = typeof IntersectionObserver !== 'undefined';
+      const viewportH = () => window.innerHeight || document.documentElement.clientHeight;
+
+      /* ── Reveal runner ─────────────────────────────────────────────
+         Splits a group into "already at/above the fold" (animate now) and
+         "below the fold" (animate on first intersection). One observer per
+         group so a grid's cards arrive together as a single staggered batch.
+         If IntersectionObserver is unavailable the group reveals immediately. */
+      const revealGroup = (els: Array<Element>, animate: (batch: HTMLElement[]) => void) => {
+        if (!els.length) return;
+        const now: HTMLElement[] = [];
+        const observe: HTMLElement[] = [];
+        const vh = viewportH();
+        els.forEach((el) => {
+          const node = el as HTMLElement;
+          if (node.getBoundingClientRect().top < vh * 0.92) now.push(node);
+          else observe.push(node);
+        });
+        if (now.length) animate(now);
+        if (!observe.length) return;
+        if (!ioSupported) {
+          animate(observe);
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            const batch = entries
+              .filter((e) => e.isIntersecting)
+              .map((e) => e.target as HTMLElement);
+            if (!batch.length) return;
+            batch.forEach((el) => io.unobserve(el));
+            animate(batch);
+          },
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+        observe.forEach((el) => io.observe(el));
+        observers.push(io);
+      };
 
       /* 1 ── SplitText heading reveals ────────────────────────────── */
-      const headings = q('[data-split]');
-      headings.forEach((heading) => {
+      q('[data-split]').forEach((heading) => {
         const split = SplitText.create(heading as HTMLElement, {
           type: 'words, chars',
           wordsClass: 'split-word',
           charsClass: 'split-char',
         });
-        gsap.from(split.words, {
+        const tween = gsap.from(split.words, {
           yPercent: 120,
           autoAlpha: 0,
           rotationX: -70,
@@ -51,35 +103,34 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
           duration: 1.1,
           ease: 'power4.out',
           stagger: 0.05,
-          scrollTrigger: { trigger: heading as HTMLElement, start: 'top 88%', once: true },
+          paused: true,
         });
+        revealGroup([heading], () => tween.play());
       });
 
       /* 1b ── Masked line reveals (Studio Foundry §4.2) ──────────── */
-      const lineHeadings = q('[data-lines]');
-      lineHeadings.forEach((heading) => {
+      q('[data-lines]').forEach((heading) => {
         const split = SplitText.create(heading as HTMLElement, {
           type: 'lines',
           mask: 'lines',
           linesClass: 'split-line',
           aria: 'none',
         });
-        gsap.from(split.lines, {
+        const tween = gsap.from(split.lines, {
           yPercent: 120,
           autoAlpha: 0,
           duration: 1,
           ease: 'power3.out',
           stagger: 0.08,
-          scrollTrigger: { trigger: heading as HTMLElement, start: 'top 85%', once: true },
+          paused: true,
         });
+        revealGroup([heading], () => tween.play());
       });
 
       /* 1c ── Above-the-fold reveals: time-based, run on mount ─────
          Elements marked [data-reveal-load] live inside the hero and are
-         already on screen at scrollY=0. Gate them on a mount delay instead
-         of a scroll trigger: a scroll-gated trigger with start after the
-         fold doesn't fire until the layout settles / first scroll frames,
-         leaving hero CTAs invisible while the visitor starts scrolling. */
+         already on screen at scrollY=0, so they play on a mount delay rather
+         than waiting for a trigger. */
       q('[data-reveal-load]').forEach((el) => {
         const node = el as HTMLElement;
         gsap.fromTo(
@@ -95,45 +146,42 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
         );
       });
 
-      /* 2b ── Section transitions (declared before the batch so the eyebrow /
-         intro can be excluded from it) ──────────────────────────
-         Each section is choreographed as one unit: the eyebrow rises, then
-         the intro follows. The split-line title already plays via its own
-         ScrollTrigger, and the content/cards come in through the reveals
-         below — so the section enters as a coordinated sequence. */
-      const sectionHeads = q('.section-head');
+      /* 2b ── Section transitions ───────────────────────────────────
+         Each section head is choreographed as one unit: the eyebrow rises,
+         then the intro follows. Content/cards come in through the reveals
+         below, so the section enters as a coordinated sequence. */
       const sectionOwned = new Set<Element>();
-      sectionHeads.forEach((head) => {
+      q('.section-head').forEach((head) => {
         const eyebrow = head.querySelector('.eyebrow');
         const intro = head.querySelector('.section-intro');
         if (!eyebrow && !intro) return;
         if (eyebrow) sectionOwned.add(eyebrow);
         if (intro) sectionOwned.add(intro);
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: head, start: 'top 88%', once: true },
+        revealGroup([head], () => {
+          const tl = gsap.timeline();
+          if (eyebrow) {
+            tl.fromTo(
+              eyebrow,
+              { autoAlpha: 0, y: 26 },
+              { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out' },
+              0,
+            );
+          }
+          if (intro) {
+            tl.fromTo(
+              intro,
+              { autoAlpha: 0, y: 26 },
+              { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out' },
+              0.15,
+            );
+          }
         });
-        if (eyebrow) {
-          tl.fromTo(
-            eyebrow,
-            { autoAlpha: 0, y: 26 },
-            { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out' },
-            0,
-          );
-        }
-        if (intro) {
-          tl.fromTo(
-            intro,
-            { autoAlpha: 0, y: 26 },
-            { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out' },
-            0.15,
-          );
-        }
       });
 
-      /* 2 ── Batched scroll reveals ─────────────────────────────────
-         Cards, step-cards and reason rows get their own stagger below, and
-         section-head eyebrows/intros are owned by the timeline above — keep
-         all of those out of the generic batch to avoid double-animating. */
+      /* 2 ── Generic reveals ────────────────────────────────────────
+         Cards, step-cards and reason rows get their own animation below, and
+         section-head eyebrows/intros are owned by the sequence above — keep
+         all of those out of the generic group. */
       const isCard = (el: Element) =>
         el.classList.contains('base-card') ||
         el.classList.contains('step-card') ||
@@ -141,77 +189,81 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
       const revealTargets = q('[data-reveal]:not([data-reveal-load])').filter(
         (el) => !isCard(el) && !sectionOwned.has(el),
       );
-      if (revealTargets.length) {
-        ScrollTrigger.batch(revealTargets as HTMLElement[], {
-          start: 'top 90%',
-          once: true,
-          onEnter: (batch) => {
-            gsap.fromTo(
-              batch,
-              { autoAlpha: 0, y: 32 },
-              {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.9,
-                ease: 'power3.out',
-                stagger: (_i, el) => {
-                  const delayAttr = (el as HTMLElement).dataset.revealDelay;
-                  return delayAttr ? Number(delayAttr) / 1000 : 0;
-                },
-              },
-            );
+      revealGroup(revealTargets, (batch) =>
+        gsap.fromTo(
+          batch,
+          { autoAlpha: 0, y: 32 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            stagger: (_i, el) => {
+              const delayAttr = (el as HTMLElement).dataset.revealDelay;
+              return delayAttr ? Number(delayAttr) / 1000 : 0;
+            },
           },
-        });
-      }
+        ),
+      );
 
-      /* 2a ── Scroll-driven card animation ──────────────────────────
+      /* 2a ── Card animation ────────────────────────────────────────
          Cards flip up, unfade and spring into place row-by-row as they
-         enter the viewport — ScrollTrigger.batch groups them per containing
-         grid, so each grid becomes its own staggered rotating sequence. */
+         enter the viewport. */
       const cards = q('.base-card[data-reveal], .step-card[data-reveal]');
-      if (cards.length) {
-        ScrollTrigger.batch(cards as HTMLElement[], {
-          start: 'top 92%',
-          once: true,
-          onEnter: (batch) => {
-            gsap.fromTo(
-              batch,
-              {
-                autoAlpha: 0,
-                y: 54,
-                scale: 0.95,
-                rotationX: -45,
-                transformOrigin: '50% 100%',
-                transformPerspective: 900,
-              },
-              {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                rotationX: 0,
-                duration: 1,
-                ease: 'expo.out',
-                stagger: 0.1,
-              },
-            );
+      revealGroup(cards, (batch) =>
+        gsap.fromTo(
+          batch,
+          {
+            autoAlpha: 0,
+            y: 54,
+            scale: 0.95,
+            rotationX: -45,
+            transformOrigin: '50% 100%',
+            transformPerspective: 900,
           },
-        });
-      }
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            rotationX: 0,
+            duration: 1,
+            ease: 'expo.out',
+            stagger: 0.1,
+          },
+        ),
+      );
 
       const reasonRows = q('.reason-row[data-reveal]');
-      if (reasonRows.length) {
-        ScrollTrigger.batch(reasonRows as HTMLElement[], {
-          start: 'top 92%',
-          once: true,
-          onEnter: (batch) => {
-            gsap.fromTo(
-              batch,
-              { autoAlpha: 0, y: 40 },
-              { autoAlpha: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.09 },
-            );
+      revealGroup(reasonRows, (batch) =>
+        gsap.fromTo(
+          batch,
+          { autoAlpha: 0, y: 40 },
+          { autoAlpha: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.09 },
+        ),
+      );
+
+      /* 4c ── Stat counters & numbered badges — count up on reveal ──
+         Elements carry [data-count-to] with optional data-count-pad
+         (leading zeros, e.g. step numbers "01"–"06") and
+         data-count-suffix. Numbers roll 00 → target with a power2 ease. */
+      q('[data-count-to]').forEach((el) => {
+        const node = el as HTMLElement;
+        const to = Number(node.dataset.countTo) || 0;
+        const pad = Number(node.dataset.countPad || 0);
+        const suffix = node.dataset.countSuffix || '';
+        const snapshot = { v: 0 };
+        const tween = gsap.to(snapshot, {
+          v: to,
+          duration: 1.6,
+          ease: 'power2.out',
+          paused: true,
+          onUpdate() {
+            const val = Math.round(snapshot.v);
+            node.textContent = (pad > 0 ? String(val).padStart(pad, '0') : String(val)) + suffix;
           },
         });
-      }
+        revealGroup([node], () => tween.play());
+      });
 
       /* 3 ── Subtle parallax ──────────────────────────────────────── */
       const parallaxEls = q('[data-parallax]');
@@ -261,11 +313,18 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
         listeners.push({ node, move, leave });
       });
 
-      /* 4b ── Card 3D tilt — the card rotates with the pointer ───
-         Cards twist around X/Y (a light, tasteful tilt, not a flip) for as
-         long as the cursor is over them. Skipped on coarse pointers where
-         there is no hover. */
+      /* 4b ── Card 3D tilt + pointer spotlight — the card rotates with the
+         pointer and a subtle radial glow trails it (CSS reads --mx / --my).
+         Tilt is for the grid cards; the other card styles just get the
+         spotlight since they have their own hover treatment. Skipped on
+         coarse pointers where there is no hover. */
       if (!window.matchMedia('(pointer: coarse)').matches) {
+        const spotlight = (node: HTMLElement, e: PointerEvent) => {
+          const r = node.getBoundingClientRect();
+          node.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+          node.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+        };
+
         q('.base-card, .step-card').forEach((card) => {
           const node = card as HTMLElement;
           const rxTo = gsap.quickTo(node, 'rotationX', { duration: 0.45, ease: 'power3' });
@@ -274,6 +333,7 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
             gsap.set(node, { transformPerspective: 900, transformOrigin: '50% 50%' });
           };
           const move = (e: PointerEvent) => {
+            spotlight(node, e);
             const r = node.getBoundingClientRect();
             const px = (e.clientX - r.left) / r.width - 0.5;
             const py = (e.clientY - r.top) / r.height - 0.5;
@@ -289,6 +349,20 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
           node.addEventListener('pointerleave', leave);
           listeners.push({ node, enter, move, leave });
         });
+
+        q('.product-card, .intro-card, .team-card, .capability-card, .contact-card, .btn-primary, .btn-ghost, .nav-cta').forEach(
+          (card) => {
+            const node = card as HTMLElement;
+            const move = (e: PointerEvent) => spotlight(node, e);
+            const leave = () => {
+              node.style.setProperty('--mx', '50%');
+              node.style.setProperty('--my', '50%');
+            };
+            node.addEventListener('pointermove', move);
+            node.addEventListener('pointerleave', leave);
+            listeners.push({ node, move, leave });
+          },
+        );
       }
 
       /* 5 ── Scroll progress bar ─────────────────────────────────── */
@@ -302,6 +376,7 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
       }
 
       return () => {
+        observers.forEach((io) => io.disconnect());
         listeners.forEach(({ node, enter, move, leave }) => {
           if (enter) node.removeEventListener('pointerenter', enter);
           node.removeEventListener('pointermove', move);

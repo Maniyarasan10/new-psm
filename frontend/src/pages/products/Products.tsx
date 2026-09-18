@@ -23,12 +23,22 @@ export default function ProductsPage() {
       {/* ── Current Products ──────────────────────────────── */}
       <Section eyebrow="Current Products" title="Our Product Portfolio.">
         <div className="card-grid">
-          {PRODUCTS.map((p) => (
-            <Link key={p.id} className="base-card link-card" to={p.slug}>
+          {PRODUCTS.map((p, i) => (
+            <Link
+              key={p.id}
+              className="base-card link-card accent-card"
+              to={p.slug}
+              data-reveal
+              data-reveal-delay={String(i * 100)}
+              style={{ '--card-accent': p.color } as React.CSSProperties}
+            >
               <div>
+                <div className="card-accent-row accent-row--plain">
+                  <span className="mono">{p.segment}</span>
+                </div>
                 <h3 className="h3">{p.name}</h3>
                 <p className="body" style={{ marginTop: '0.5rem' }}>{p.strapline}</p>
-                <p className="body" style={{ marginTop: '0.75rem' }}>{p.summary}</p>
+                <p className="body" style={{ marginTop: '0.75rem', fontSize: '0.92rem' }}>{p.summary}</p>
               </div>
               <div className="link-card-foot">
                 <span className="status-badge">{p.status}</span>
@@ -43,8 +53,8 @@ export default function ProductsPage() {
       <Section eyebrow="How we build" title="Product Principles.">
         <div className="steps-grid">
           {PRODUCT_PRINCIPLES.map((principle, i) => (
-            <div key={i} className="step-card">
-              <span className="step-num">{String(i + 1).padStart(2, '0')}</span>
+            <div key={i} className="step-card" data-reveal data-reveal-delay={String(i * 80)}>
+              <span className="step-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
               <h3 className="h3">{principle}</h3>
             </div>
           ))}

@@ -86,7 +86,7 @@ export const PRODUCTS = [
       'An emerging healthcare technology and hardware initiative, exploring how connected devices and software can improve patient care and clinical workflows.',
     status: 'Early-Stage Development',
     segment: 'Healthcare Technology',
-    color: 'var(--accent-violet)',
+    color: 'var(--accent-orange)',
   },
 ];
 
@@ -112,7 +112,7 @@ export const SOLUTIONS = [
       'AI-powered applications', 'AI assistants and agents', 'intelligent document workflows',
       'knowledge systems', 'AI integrations', 'data-driven workflows', 'AI-enabled customer experiences',
     ],
-    color: 'var(--accent-violet)',
+    color: 'var(--accent-coral)',
   },
   {
     id: 'business-systems',
@@ -137,11 +137,11 @@ export const SOLUTIONS = [
     homepageTitle: 'Replace Repetitive Work With Better Systems.',
     pageTitle: 'Turn Repetitive Work Into Automated Workflows.',
     description: 'Reduce repetitive work, connect systems and create more efficient digital workflows.',
-    capabilities: [
+capabilities: [
       'workflow automation', 'approvals and notifications', 'data synchronization',
       'reporting workflows', 'CRM automation', 'operational dashboards',
     ],
-    color: 'var(--accent-coral)',
+    color: 'var(--accent-teal)',
   },
   {
     id: 'web-mobile',
@@ -169,7 +169,7 @@ export const SOLUTIONS = [
       'product discovery', 'MVP development', 'UI/UX', 'prototyping', 'architecture',
       'development', 'testing', 'deployment', 'product improvement',
     ],
-    color: 'var(--accent-yellow)',
+    color: 'var(--accent-gold)',
   },
   {
     id: 'hardware-iot',
@@ -183,7 +183,7 @@ export const SOLUTIONS = [
     capabilities: [
       'IoT sensors and edge devices', 'hardware + software integration', 'industrial monitoring', 'connected device systems',
     ],
-    color: 'var(--accent-pink)',
+    color: 'var(--accent-cyan-deep)',
   },
 ];
 
@@ -299,36 +299,57 @@ export const VALUES = [
   { name: 'Move With Responsibility', desc: 'Build thoughtfully, communicate clearly and take responsibility for the impact of technology.' },
 ];
 
+// About — by the numbers. Values are derived from verified site data
+// (product/engine/solution/industry counts defined above), not invented claims.
+export const METRICS = [
+  { value: 3, pad: 2, label: 'Proprietary Products in Development', color: 'var(--accent-orange)' },
+  { value: 2, pad: 2, label: 'Connected Business Engines', color: 'var(--accent-blue)' },
+  { value: 6, pad: 2, label: 'Digital Solution Practice Areas', color: 'var(--accent-teal)' },
+  { value: 6, pad: 2, label: 'Industries We Work Across', color: 'var(--accent-gold)' },
+];
+
 export const INDUSTRIES = [
   {
     name: 'Real Estate',
+    tag: 'Real Estate Technology',
+    color: 'var(--accent-blue)',
     desc: 'Property discovery, digital property experiences, seller tools and real-estate technology.',
     product: 'EYD',
     productSlug: '/products/eyd',
   },
   {
     name: 'Retail & Local Commerce',
+    tag: 'Local Commerce',
+    color: 'var(--accent-green)',
     desc: 'Digital commerce, customer ordering, business tools and local delivery experiences.',
     product: 'Boowa',
     productSlug: '/products/boowa',
   },
   {
     name: 'Healthcare & Life Sciences',
+    tag: 'Healthcare Technology',
+    color: 'var(--accent-orange)',
     desc: 'Digital workflows, connected devices, software systems and technology products where appropriate.',
     product: 'Aura',
     productSlug: '/products/aura',
   },
   {
     name: 'Manufacturing',
+    tag: 'Manufacturing',
+    color: 'var(--accent-teal)',
     desc: 'Digital workflows, automation, monitoring, internal applications and technology systems that bring operational data out of the factory floor and into decisions.',
   },
   {
     name: 'Professional Services',
+    tag: 'Professional Services',
+    color: 'var(--accent-gold)',
     desc: 'Client portals, workflow systems, automation and business software.',
   },
   {
     name: 'Education',
-    desc: 'Digital learning and operational technology when relevant to the project — not a standing business line.',
+    tag: 'Education',
+    color: 'var(--accent-cyan-deep)',
+    desc: 'Digital learning and operational technology when relevant to the project - not a standing business line.',
   },
 ];
 
@@ -342,10 +363,10 @@ export const CAREERS = {
     'DevOps/cloud engineers', 'business development', 'operations', 'product management',
   ],
   expectations: [
-    { name: 'Build Real Products', desc: 'Work on technology that moves beyond tutorials and prototypes.' },
-    { name: 'Solve Real Problems', desc: 'Understand users and business requirements.' },
-    { name: 'Learn Through Execution', desc: 'Develop skills through actual product and solution work.' },
-    { name: 'Take Ownership', desc: 'Contribute ideas and take responsibility for outcomes.' },
+    { name: 'Build Real Products', tag: 'Build', color: 'var(--accent-blue)', desc: 'Work on technology that moves beyond tutorials and prototypes.' },
+    { name: 'Solve Real Problems', tag: 'Solve', color: 'var(--accent-green)', desc: 'Understand users and business requirements.' },
+    { name: 'Learn Through Execution', tag: 'Learn', color: 'var(--accent-orange)', desc: 'Develop skills through actual product and solution work.' },
+    { name: 'Take Ownership', tag: 'Own', color: 'var(--accent-teal)', desc: 'Contribute ideas and take responsibility for outcomes.' },
   ],
   footerCta: 'Don\'t see a suitable role? Send your profile and a short explanation of what you can build or solve.',
   cta: 'Contact PSM',

@@ -35,8 +35,17 @@ export default function Careers() {
       {/* ── What You Can Expect ──────────────────────────── */}
       <Section eyebrow="What to expect" title="What You Can Expect.">
         <div className="card-grid cols-2">
-          {CAREERS.expectations.map((e) => (
-            <div key={e.name} className="base-card">
+          {CAREERS.expectations.map((e, i) => (
+            <div
+              key={e.name}
+              className="base-card accent-card"
+              data-reveal
+              data-reveal-delay={String(i * 80)}
+              style={{ '--card-accent': e.color } as React.CSSProperties}
+            >
+              <div className="card-accent-row accent-row--plain">
+                <span className="mono">{e.tag}</span>
+              </div>
               <h3 className="h3">{e.name}</h3>
               <p>{e.desc}</p>
             </div>

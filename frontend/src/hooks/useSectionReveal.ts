@@ -43,7 +43,8 @@ export function useSectionReveal(selector = '[data-reveal]', opts: RevealOptions
             scrollTrigger: {
               trigger: el,
               start: opts.start ?? 'top 85%',
-              once: opts.once ?? true,
+              once: opts.once ?? false,
+              toggleActions: 'play none none none',
             },
           }
         );

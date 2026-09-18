@@ -4,7 +4,7 @@ import { PageHero } from '../../components/ui';
 
 export default function Aura() {
   return (
-    <>
+    <div className="accent-page" style={{ '--page-accent': 'var(--accent-orange)' } as React.CSSProperties}>
       <Seo
         title="Aura | Healthcare Technology by Problem Solving Mind"
         description="Aura is an early-stage healthcare technology and hardware initiative from Problem Solving Mind, built around real clinical and patient-care problems."
@@ -92,6 +92,6 @@ export default function Aura() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
