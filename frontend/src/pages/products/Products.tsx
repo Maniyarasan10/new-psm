@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Seo from '../../components/Seo';
 import { PageHero, Section } from '../../components/ui';
+import SceneFrame from '../../components/3d/SceneFrame';
 import { PRODUCTS, PRODUCT_PRINCIPLES } from '../../lib/siteContent';
 
 export default function ProductsPage() {
@@ -15,68 +16,80 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Our Products"
         title="Products Built by Problem Solving Mind."
+        backdrop={<SceneFrame variant="products-hub" />}
       >
-        <p>We don't build products because a market exists. We build when a problem is worth solving.</p>
-        <p>PSM develops proprietary technology products designed around real-world problems. Our product journey combines problem discovery, product design, engineering, testing and continuous improvement.</p>
+        <p data-reveal data-reveal-load data-reveal-delay="100">We don't build products because a market exists. We build when a problem is worth solving.</p>
+        <p data-reveal data-reveal-load data-reveal-delay="200">PSM develops proprietary technology products designed around real-world problems. Our product journey combines problem discovery, product design, engineering, testing and continuous improvement.</p>
       </PageHero>
 
       {/* ── Current Products ──────────────────────────────── */}
-      <Section eyebrow="Current Products" title="Our Product Portfolio.">
-        <div className="card-grid">
-          {PRODUCTS.map((p, i) => (
-            <Link
-              key={p.id}
-              className="base-card link-card accent-card"
-              to={p.slug}
-              data-reveal
-              data-reveal-delay={String(i * 100)}
-              style={{ '--card-accent': p.color } as React.CSSProperties}
-            >
-              <div>
-                <div className="card-accent-row accent-row--plain">
-                  <span className="mono">{p.segment}</span>
-                </div>
-                <h3 className="h3">{p.name}</h3>
-                <p className="body" style={{ marginTop: '0.5rem' }}>{p.strapline}</p>
-                <p className="body" style={{ marginTop: '0.75rem', fontSize: '0.92rem' }}>{p.summary}</p>
-              </div>
-              <div className="link-card-foot">
-                <span className="status-badge">{p.status}</span>
-                <span className="arrow">→</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+      <Section className="section-head">
+        <span className="eyebrow">Current Products</span>
+        <h2 className="section-title" data-split>Our Product Portfolio.</h2>
       </Section>
+      <div className="card-grid" data-grid-reveal>
+        {PRODUCTS.map((p, i) => (
+          <Link
+            key={p.id}
+            className="base-card link-card accent-card"
+            to={p.slug}
+            data-reveal
+            data-reveal-delay={String(i * 100)}
+            style={{ '--card-accent': p.color } as React.CSSProperties}
+          >
+            <div>
+              <div className="card-accent-row accent-row--plain">
+                <span className="mono">{p.segment}</span>
+              </div>
+              <h3 className="h3">{p.name}</h3>
+              <p className="body" style={{ marginTop: '0.5rem' }}>{p.strapline}</p>
+              <p className="body" style={{ marginTop: '0.75rem', fontSize: '0.92rem' }}>{p.summary}</p>
+            </div>
+            <div className="link-card-foot">
+              <span className="status-badge">{p.status}</span>
+              <span className="arrow">→</span>
+            </div>
+          </Link>
+        ))}
+      </div>
 
       {/* ── Product Principles ────────────────────────────── */}
-      <Section eyebrow="How we build" title="Product Principles.">
-        <div className="steps-grid">
-          {PRODUCT_PRINCIPLES.map((principle, i) => (
-            <div key={i} className="step-card" data-reveal data-reveal-delay={String(i * 80)}>
-              <span className="step-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
-              <h3 className="h3">{principle}</h3>
-            </div>
-          ))}
-        </div>
+      <Section className="section-head">
+        <span className="eyebrow">How we build</span>
+        <h2 className="section-title" data-split>Product Principles.</h2>
       </Section>
+      <div className="steps-grid" data-grid-reveal>
+        {PRODUCT_PRINCIPLES.map((principle, i) => (
+          <div key={i} className="step-card" data-reveal data-reveal-delay={String(i * 80)}>
+            <span className="step-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
+            <h3 className="h3">{principle}</h3>
+          </div>
+        ))}
+      </div>
 
       {/* ── Product Status ────────────────────────────────── */}
-      <Section eyebrow="Product Status" title="Where Each Product Stands.">
-        <div className="value-list">
-          {PRODUCTS.map((p) => (
-            <div key={p.id} className="value-row">
-              <h3 className="h3">{p.name}</h3>
-              <span className="status-badge">{p.status}</span>
-            </div>
-          ))}
-        </div>
+      <Section className="section-head">
+        <span className="eyebrow">Product Status</span>
+        <h2 className="section-title" data-split>Where Each Product Stands.</h2>
       </Section>
+      <div className="value-list" data-grid-reveal>
+        {PRODUCTS.map((p, i) => (
+          <div key={p.id} className="value-row" data-reveal data-reveal-delay={String(i * 80)}>
+            <h3 className="h3">{p.name}</h3>
+            <span className="status-badge">{p.status}</span>
+          </div>
+        ))}
+      </div>
+      <div className="container" data-reveal style={{ marginTop: '2rem' }}>
+        <p className="body">
+          <a href="/products" data-roll-link>View all products in detail</a>
+        </p>
+      </div>
 
       {/* ── CTA Band ──────────────────────────────────────── */}
       <section className="section cta-band">
-        <div className="container">
-          <h2 className="h2">Follow Our Product Journey</h2>
+        <div className="container" data-reveal>
+          <h2 className="h2" data-split>Follow Our Product Journey</h2>
           <p className="lead" style={{ marginTop: '1rem', maxWidth: '48ch' }}>
             Stay connected as we develop, test and launch each product. Reach out to learn more or explore partnership opportunities.
           </p>

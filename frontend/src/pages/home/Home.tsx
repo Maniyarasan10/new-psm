@@ -3,7 +3,6 @@ import Seo from '../../components/Seo';
 import { Section } from '../../components/ui';
 import { CompanyCta, TwoEngines } from '../../components/shared';
 import Marquee from '../../components/Marquee';
-
 import {
   COMPANY,
   PSM_IDEA,
@@ -15,8 +14,17 @@ import {
   WHY_PSM,
   COMPOUND,
 } from '../../lib/siteContent';
+import { useHeroScramble, useLineReveal, useHeroPin, useStaggeredGridReveal, useWordRotate3D } from '../../hooks/usePremiumAnimations';
+import SceneFrame from '../../components/3d/SceneFrame';
 
 export default function Home() {
+  // Premium hero animations - faster transitions
+  useHeroScramble('[data-scramble]', { delay: 0.1, duration: 0.8, scrambleDuration: 0.4 });
+  useLineReveal('[data-line-reveal]', { delay: 0.1, duration: 0.6, stagger: 0.04 });
+  useHeroPin('.hero.landing', { pin: true, scrub: 0.5 });
+  useStaggeredGridReveal('[data-grid-reveal]', { stagger: 0.04, duration: 0.7, perspective: 1000 });
+  useWordRotate3D('[data-word-rotate3d]', { delay: 0.05, duration: 0.7, stagger: 0.03, axis: 'x' });
+  useLineReveal('[data-psm-idea-reveal]', { delay: 0.2, duration: 0.8, stagger: 0.06, start: 'top 90%' });
 
   return (
     <div className="home-dala">
@@ -26,20 +34,22 @@ export default function Home() {
         path="/"
       />
 
-      <section className="hero landing" aria-label="PSM — Because problem solving is everything">
+      <section className="hero landing" id="home-hero" aria-label="PSM — Because problem solving is everything">
+        <SceneFrame variant="home-hero" scrollTarget="#home-hero" />
         <div className="container hero-content">
           <div className="landing__title-wrapper">
             <div
               className="d-flex t-16 t-lh-1.2 t-ls-0.05 t-600 t-uppercase mb-1 t-purple"
+              data-word-rotate3d
               data-reveal
               data-reveal-load
             >
               {COMPANY.name} — Technology Company
             </div>
-            <h1 className="landing__title t-56 t-80@xs t-104@sm t-150@md t-lh-0.9 -t-ls-0.04 t-400">
-              <span className="d-block" data-reveal data-reveal-load>Because</span>
-              <span className="d-block" data-reveal data-reveal-load data-reveal-delay="120">Problem Solving</span>
-              <span className="d-block" data-reveal data-reveal-load data-reveal-delay="200">is everything.</span>
+            <h1 className="landing__title t-56 t-80@xs t-104@sm t-150@md t-lh-0.9 -t-ls-0.04 t-400" data-line-reveal>
+              <span className="d-block">Because</span>
+              <span className="d-block">Problem Solving</span>
+              <span className="d-block">is everything.</span>
             </h1>
           </div>
 
@@ -87,7 +97,7 @@ export default function Home() {
         >
           <div style={{ maxWidth: '62ch' }} data-reveal>
             {PSM_IDEA.body.map((p, i) => (
-              <p key={i} className="body" style={{ marginBottom: '1rem' }}>{p}</p>
+              <p key={i} className="body" style={{ marginBottom: '1rem' }} data-psm-idea-reveal>{p}</p>
             ))}
           </div>
           <Link className="btn btn-text" to={PSM_IDEA.href} style={{ marginTop: '1.5rem' }} data-reveal>
@@ -101,8 +111,11 @@ export default function Home() {
         title={WHAT_WE_DO.title}
         intro={WHAT_WE_DO.intro}
       >
-        <div data-reveal>
+        <div data-reveal data-grid-reveal>
           <TwoEngines />
+        </div>
+        <div className="mt-4" data-word-rotate3d>
+          <p className="body" style={{ maxWidth: '62ch' }}>{WHAT_WE_DO.intro}</p>
         </div>
       </Section>
 
@@ -110,9 +123,9 @@ export default function Home() {
       <Section
         eyebrow="Built by PSM"
         title="Products Built Around Real Problems."
-        intro="Three proprietary products, each addressing a different real-world problem — in commerce, real estate and healthcare."
       >
-        <div className="card-grid">
+        <p className="intro-body" data-reveal>Three proprietary products, each addressing a different real-world problem — in commerce, real estate and healthcare.</p>
+        <div className="card-grid" data-grid-reveal>
           {PRODUCTS.map((p, i) => (
             <Link
               key={p.id}
@@ -143,9 +156,9 @@ export default function Home() {
       <Section
         eyebrow="PSM Digital Solutions"
         title="Have a Problem? Let's Build the Solution."
-        intro="Your business doesn't need technology simply because technology exists. It needs the right technology for the problem. PSM helps businesses and organizations design, build and improve digital systems around their actual requirements."
       >
-        <div className="card-grid">
+        <p className="intro-body" data-reveal>Your business doesn't need technology simply because technology exists. It needs the right technology for the problem. PSM helps businesses and organizations design, build and improve digital systems around their actual requirements.</p>
+        <div className="card-grid" data-grid-reveal>
           {SOLUTIONS.map((s, i) => (
             <Link
               key={s.id}
@@ -170,12 +183,12 @@ export default function Home() {
 
       {/* ── Our Approach ──────────────────────────────────── */}
       <Section title={APPROACH.title}>
-        <div className="steps-grid">
+        <div className="steps-grid" data-grid-reveal>
           {APPROACH.steps.map((s, i) => (
             <div key={s.step} className="step-card" data-reveal data-reveal-delay={String(i * 80)}>
               <span className="step-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
-              <h3 className="h3">{s.title}</h3>
-              <p>{s.desc}</p>
+              <h3 className="h3" data-clip-reveal>{s.title}</h3>
+              <p data-letter-elastic>{s.desc}</p>
             </div>
           ))}
         </div>
@@ -186,11 +199,11 @@ export default function Home() {
 
       {/* ── Who We Work With ──────────────────────────────── */}
       <Section title={AUDIENCES.title}>
-        <div className="card-grid cols-2">
+        <div className="card-grid cols-2" data-grid-reveal>
           {AUDIENCES.items.map((a, i) => (
             <div key={a.name} className="base-card" data-reveal data-reveal-delay={String(i * 80)}>
-              <h3 className="h3">{a.name}</h3>
-              <p className="body" style={{ marginTop: '0.5rem' }}>{a.desc}</p>
+              <h3 className="h3" data-wave-text>{a.name}</h3>
+              <p className="body" style={{ marginTop: '0.5rem' }} data-letter-elastic>{a.desc}</p>
             </div>
           ))}
         </div>
@@ -198,12 +211,12 @@ export default function Home() {
 
       {/* ── Why PSM ───────────────────────────────────────── */}
       <Section title={WHY_PSM.title}>
-        <div className="reason-list">
+        <div className="reason-list" data-grid-reveal>
           {WHY_PSM.reasons.map((r, i) => (
             <div key={r.num} className="reason-row" data-reveal data-reveal-delay={String(i * 60)}>
               <span className="reason-num" data-count-to={String(i + 1)} data-count-pad="2">00</span>
-              <h3 className="reason-name">{r.name}</h3>
-              <p className="reason-desc">{r.desc}</p>
+              <h3 className="reason-name" data-cascade-text>{r.name}</h3>
+              <p className="reason-desc" data-letter-elastic>{r.desc}</p>
             </div>
           ))}
         </div>
@@ -211,7 +224,7 @@ export default function Home() {
 
       {/* ── How Work Compounds ────────────────────────────── */}
       <Section title={COMPOUND.title}>
-        <p className="body" style={{ maxWidth: '62ch' }} data-reveal>{COMPOUND.body}</p>
+        <p className="body" style={{ maxWidth: '62ch' }} data-cascade-text>{COMPOUND.body}</p>
       </Section>
 
       {/* ── Case Studies ──────────────────────────────────── */}

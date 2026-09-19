@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Seo from '../../components/Seo';
 import { PageHero } from '../../components/ui';
+import SceneFrame from '../../components/3d/SceneFrame';
 
 const CUSTOMERS = [
   { label: 'Discover', desc: 'Find nearby products and businesses.' },
@@ -41,7 +42,7 @@ const FEATURES = [
 
 function StepList({ items }: { items: { label: string; desc: string }[] }) {
   return (
-    <ul className="check-list">
+    <ul className="check-list" data-reveal>
       {items.map((item) => (
         <li key={item.label}>
           <strong>{item.label}</strong> — {item.desc}
@@ -63,15 +64,16 @@ export default function Boowa() {
       <PageHero
         eyebrow="Product · Local Commerce"
         title="Boowa — Hyperlocal Commerce, Closer to You."
+        backdrop={<SceneFrame variant="boowa" />}
       >
-        <p>
+        <p data-reveal data-reveal-load data-reveal-delay="100">
           Discover nearby food and everyday items, order digitally and get them
           delivered through a connected local commerce platform.
         </p>
         <span className="status-badge" style={{ marginTop: '1rem', display: 'inline-flex' }}>
           In Development
         </span>
-        <div className="page-hero-cta">
+        <div className="page-hero-cta" data-reveal data-reveal-load data-reveal-delay="200">
           <Link className="btn btn-primary" to="/contact">
             Join the Boowa Journey <span aria-hidden className="arrow">→</span>
           </Link>
@@ -85,8 +87,8 @@ export default function Boowa() {
         <div className="container">
           <div className="content-stack">
             {/* The Problem */}
-            <div className="content-block">
-              <h2 className="h2">Local Businesses Are Closer Than You Think.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Local Businesses Are Closer Than You Think.</h2>
               <p>
                 People often live and work surrounded by local restaurants, shops and
                 service providers, yet discovering, ordering from and receiving products
@@ -98,8 +100,8 @@ export default function Boowa() {
             </div>
 
             {/* The Vision */}
-            <div className="content-block">
-              <h2 className="h2">Make Local Commerce Effortless.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Make Local Commerce Effortless.</h2>
               <p>
                 Boowa aims to make it easier for customers to discover what is available
                 nearby, and for local businesses to reach customers through a digital
@@ -108,8 +110,8 @@ export default function Boowa() {
             </div>
 
             {/* How It Works */}
-            <div className="content-block">
-              <h2 className="h2">How Boowa Works.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>How Boowa Works.</h2>
 
               <h3 className="h3" style={{ marginTop: '2rem', marginBottom: '0.5rem' }}>For Customers</h3>
               <StepList items={CUSTOMERS} />
@@ -122,9 +124,9 @@ export default function Boowa() {
             </div>
 
             {/* Features */}
-            <div className="content-block">
-              <h2 className="h2">Boowa Feature Areas</h2>
-              <ul className="check-list">
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Boowa Feature Areas</h2>
+              <ul className="check-list" data-reveal>
                 {FEATURES.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
@@ -135,8 +137,8 @@ export default function Boowa() {
             </div>
 
             {/* Why Boowa */}
-            <div className="content-block">
-              <h2 className="h2">Built Around the Local Economy.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Built Around the Local Economy.</h2>
               <p>
                 Boowa is designed with three participants in mind: customers need
                 convenience, businesses need digital reach, and delivery partners need
@@ -146,8 +148,8 @@ export default function Boowa() {
             </div>
 
             {/* Status */}
-            <div className="content-block">
-              <h2 className="h2">Product Status</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Product Status</h2>
               <p>
                 Boowa is currently in development. Features, service areas, launch plans
                 and availability will be announced as the product progresses.
@@ -160,6 +162,9 @@ export default function Boowa() {
                   Stay Updated
                 </Link>
               </div>
+              <p className="body" style={{ marginTop: '1.5rem' }}>
+                <a href="/products/boowa" data-roll-link>Back to all products</a>
+              </p>
             </div>
           </div>
         </div>

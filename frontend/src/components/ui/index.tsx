@@ -7,17 +7,20 @@ export function PageHero({
   title,
   children,
   titleTier = 'h1',
+  backdrop,
 }: {
   eyebrow?: string;
   title: ReactNode;
   children?: ReactNode;
   titleTier?: Tier;
+  backdrop?: ReactNode;
 }) {
   return (
     <section className="page-hero" aria-label="Page introduction">
+      {backdrop}
       <div className="container" data-parallax data-parallax-speed="5">
         {eyebrow && <span className="mono eyebrow page-hero-eyebrow" data-reveal>{eyebrow}</span>}
-        <h1 className={`${titleTier} page-hero-title`} data-split>{title}</h1>
+        <h1 className={`${titleTier} page-hero-title`} data-line-reveal>{title}</h1>
         {children && <div className="page-hero-body" data-reveal data-reveal-delay="160">{children}</div>}
       </div>
     </section>

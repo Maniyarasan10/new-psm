@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import Seo from '../../components/Seo';
 import { PageHero, Section } from '../../components/ui';
 import { CompanyCta } from '../../components/shared';
+import SceneFrame from '../../components/3d/SceneFrame';
+import type { SceneVariant } from '../../components/3d/sceneRegistry';
 import type { SOLUTIONS } from '../../lib/siteContent';
 
 type Solution = (typeof SOLUTIONS)[number];
@@ -107,9 +109,20 @@ const PAGE_CONTENT: Record<string, DetailBlock[]> = {
   ],
 };
 
+const SOLUTION_SCENE: Record<string, SceneVariant> = {
+  ai: 'ai',
+  'business-systems': 'business-systems',
+  automation: 'automation',
+  'web-mobile': 'web-mobile',
+  'product-engineering': 'product-engineering',
+  'hardware-iot': 'hardware-iot',
+};
+
 export function SolutionDetail({ solution }: { solution: Solution }) {
   const blocks = PAGE_CONTENT[solution.id] ?? [];
   const seo = SEO_META[solution.id];
+  const scene = SOLUTION_SCENE[solution.id] as SceneVariant | undefined;
+  const scrollTarget = scene === 'product-engineering' ? '#product-engineering-anchor' : undefined;
 
   return (
     <div className="accent-page" style={{ '--page-accent': solution.color } as React.CSSProperties}>
@@ -122,9 +135,10 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
       <PageHero
         eyebrow="Digital Solution · PSM"
         title={solution.pageTitle}
+        backdrop={scene ? <SceneFrame variant={scene} scrollTarget={scrollTarget} /> : undefined}
       >
-        <p>{solution.description}</p>
-        <div className="page-hero-cta">
+        <p data-reveal data-reveal-load data-reveal-delay="100">{solution.description}</p>
+        <div className="page-hero-cta" data-reveal data-reveal-load data-reveal-delay="200">
           <Link className="btn btn-primary" to="/contact">
             Discuss Your Project <span aria-hidden className="arrow">→</span>
           </Link>
@@ -132,21 +146,26 @@ export function SolutionDetail({ solution }: { solution: Solution }) {
       </PageHero>
 
       {/* ── Capabilities ──────────────────────────────── */}
-      <Section eyebrow="Capabilities" title="What We Focus On.">
-        <ul className="check-list">
-          {solution.capabilities.map((cap) => (
-            <li key={cap}>{cap}</li>
-          ))}
-        </ul>
+      <Section className="section-head">
+        <span className="eyebrow">Capabilities</span>
+        <h2 className="section-title" data-split>What We Focus On.</h2>
       </Section>
+      <ul className="check-list" data-reveal>
+        {solution.capabilities.map((cap) => (
+          <li key={cap}>{cap}</li>
+        ))}
+      </ul>
+      <p className="body" style={{ marginTop: '1.5rem' }}>
+        <a href={solution.slug} data-roll-link>Learn more about {solution.title}</a>
+      </p>
 
       {/* ── Approach Content ───────────────────────────── */}
       <div className="section">
         <div className="container">
-          <div className="content-stack">
-            {blocks.map((block) => (
-              <div key={block.h2} className="content-block">
-                <h2 className="h2">{block.h2}</h2>
+          <div className="content-stack" id="product-engineering-anchor">
+            {blocks.map((block, i) => (
+              <div key={block.h2} className="content-block" data-reveal data-reveal-delay={String(i * 100)}>
+                <h2 className="h2" data-split>{block.h2}</h2>
                 <p>{block.body}</p>
               </div>
             ))}

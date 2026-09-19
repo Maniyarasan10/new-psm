@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { PageHero } from '../components/ui';
 import Seo from '../components/Seo';
+import SceneFrame from '../components/3d/SceneFrame';
 import { COMPANY, CONTACT } from '../lib/siteContent';
 
 const ENQUIRY_OPTIONS = [
@@ -30,32 +31,33 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact"
         title="Have a Problem Worth Solving?"
+        backdrop={<SceneFrame variant="contact" />}
       >
-        <p>Tell us what you're trying to solve. We'll help you explore what technology can do.</p>
-        <p>You don't need to arrive with a complete technical specification. Start with the problem. Tell us: What are you trying to achieve? What is currently difficult? Who uses the process or product? What would a successful outcome look like? Is there an existing system we need to work with?</p>
+        <p data-reveal data-reveal-load data-reveal-delay="100">Tell us what you're trying to solve. We'll help you explore what technology can do.</p>
+        <p data-reveal data-reveal-load data-reveal-delay="200">You don't need to arrive with a complete technical specification. Start with the problem. Tell us: What are you trying to achieve? What is currently difficult? Who uses the process or product? What would a successful outcome look like? Is there an existing system we need to work with?</p>
       </PageHero>
 
       <section className="section">
         <div className="container">
-          <div className="contact-layout">
+          <div className="contact-layout" data-reveal>
             {/* ── Left ──────────────────────────────────────── */}
             <aside className="contact-aside">
-              <div className="contact-card">
+              <div className="contact-card" data-reveal>
                 <h3 className="h3">Contact Details</h3>
                 <p>
-                  <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+                  <a href={`mailto:${COMPANY.email}`} data-roll-link>{COMPANY.email}</a>
                 </p>
                 <p>
-                  <a href="tel:+919360207861">{COMPANY.phone1}</a>
+                  <a href="tel:+919360207861" data-roll-link>{COMPANY.phone1}</a>
                   {COMPANY.phone2 && <span> · </span>}
-                  {COMPANY.phone2 && <a href="tel:+917339386911">{COMPANY.phone2}</a>}
+                  {COMPANY.phone2 && <a href="tel:+917339386911" data-roll-link>{COMPANY.phone2}</a>}
                 </p>
                 <p>{COMPANY.name}</p>
               </div>
 
-              <div className="contact-card">
+              <div className="contact-card" data-reveal>
                 <h3 className="h3">Enquiry Types</h3>
-                <ul className="check-list">
+                <ul className="check-list" data-reveal>
                   {CONTACT.enquiryTypes.map((type) => (
                     <li key={type}>{type}</li>
                   ))}
@@ -65,11 +67,11 @@ export default function Contact() {
 
             {/* ── Right ─────────────────────────────────────── */}
             {submitted ? (
-              <div className="contact-form">
+              <div className="contact-form" data-reveal>
                 <p className="lead">{CONTACT.success}</p>
               </div>
             ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
+              <form className="contact-form" onSubmit={handleSubmit} data-reveal>
                 <div className="form-row">
                   <div className="field">
                     <label htmlFor="name">Name</label>

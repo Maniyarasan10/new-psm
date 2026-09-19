@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Seo from '../../components/Seo';
 import { PageHero } from '../../components/ui';
+import SceneFrame from '../../components/3d/SceneFrame';
 
 const SELLER_BENEFITS = [
   'Digital property profiles',
@@ -32,8 +33,9 @@ export default function EYD() {
       <PageHero
         eyebrow="Product · Real Estate Technology"
         title="EYD — Explore Your Dream."
+        backdrop={<SceneFrame variant="eyd" />}
       >
-        <p>
+        <p data-reveal data-reveal-load data-reveal-delay="100">
           EYD is a real-estate technology platform designed to connect property
           customers and sellers through smarter discovery, digital property
           management and immersive 3D viewing experiences.
@@ -41,7 +43,7 @@ export default function EYD() {
         <span className="status-badge" style={{ marginTop: '1rem', display: 'inline-flex' }}>
           In Development
         </span>
-        <div className="page-hero-cta">
+        <div className="page-hero-cta" data-reveal data-reveal-load data-reveal-delay="200">
           <Link className="btn btn-primary" to="/contact">
             Explore EYD <span aria-hidden className="arrow">→</span>
           </Link>
@@ -55,8 +57,8 @@ export default function EYD() {
         <div className="container">
           <div className="content-stack">
             {/* The Problem */}
-            <div className="content-block">
-              <h2 className="h2">Real Estate Should Be Easier to Understand Before You Visit.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Real Estate Should Be Easier to Understand Before You Visit.</h2>
               <p>
                 Property decisions involve time, money and emotion. Yet much of the
                 traditional discovery experience still depends on photographs,
@@ -69,8 +71,8 @@ export default function EYD() {
             </div>
 
             {/* The Vision */}
-            <div className="content-block">
-              <h2 className="h2">Turn a Property Into a Digital Experience.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Turn a Property Into a Digital Experience.</h2>
               <p>
                 EYD aims to bring property discovery, digital property information,
                 seller workflows and immersive 3D experiences into one connected
@@ -79,8 +81,8 @@ export default function EYD() {
             </div>
 
             {/* 3D Capture */}
-            <div className="content-block">
-              <h2 className="h2">Capture the Space. Bring It Online.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Capture the Space. Bring It Online.</h2>
               <p>
                 The 3D capture capability is designed to transform physical property
                 spaces into interactive digital experiences that customers can explore
@@ -94,9 +96,9 @@ export default function EYD() {
             </div>
 
             {/* For Property Sellers */}
-            <div className="content-block">
-              <h2 className="h2">Present Properties With More Than a Photo Gallery.</h2>
-              <ul className="check-list">
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Present Properties With More Than a Photo Gallery.</h2>
+              <ul className="check-list" data-reveal>
                 {SELLER_BENEFITS.map((b) => (
                   <li key={b}>{b}</li>
                 ))}
@@ -104,9 +106,9 @@ export default function EYD() {
             </div>
 
             {/* For Customers */}
-            <div className="content-block">
-              <h2 className="h2">Explore Before You Visit.</h2>
-              <ul className="check-list">
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Explore Before You Visit.</h2>
+              <ul className="check-list" data-reveal>
                 {CUSTOMER_BENEFITS.map((b) => (
                   <li key={b}>{b}</li>
                 ))}
@@ -114,8 +116,8 @@ export default function EYD() {
             </div>
 
             {/* One-Stop Vision */}
-            <div className="content-block">
-              <h2 className="h2">One Platform. A More Connected Property Journey.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>One Platform. A More Connected Property Journey.</h2>
               <p>
                 EYD is being designed to connect key parts of the property discovery
                 journey: Property → Digital Profile → 3D Experience → Discovery →
@@ -125,8 +127,8 @@ export default function EYD() {
             </div>
 
             {/* Status */}
-            <div className="content-block">
-              <h2 className="h2">Product Status</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Product Status</h2>
               <p>
                 EYD is under active product development. Product capabilities,
                 integrations, coverage and launch plans will be announced as the
@@ -140,6 +142,9 @@ export default function EYD() {
                   Partner With EYD
                 </Link>
               </div>
+              <p className="body" style={{ marginTop: '1.5rem' }}>
+                <a href="/products/eyd" data-roll-link>Back to all products</a>
+              </p>
             </div>
           </div>
         </div>

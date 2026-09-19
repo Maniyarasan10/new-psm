@@ -690,6 +690,11 @@ h1, h2, h3, h4 {
 .hero-content {
   position: relative;
   z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
 }
 .hero-meta {
   display: flex;
@@ -796,6 +801,16 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
+}
+.page-shell > main > .card-grid,
+.page-shell > main > .steps-grid,
+.page-shell > main > .metrics-grid,
+.page-shell > main > .value-list,
+.page-shell > main > .check-list {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
 }
 .card-grid.cols-2 {
   grid-template-columns: repeat(2, 1fr);
@@ -1521,6 +1536,14 @@ h1, h2, h3, h4 {
   max-width: 56ch;
   margin-bottom: clamp(2.5rem, 5vh, 4rem);
 }
+.section.section-head {
+  max-width: none;
+  margin-bottom: 0;
+}
+.section-head--center {
+  text-align: center;
+  margin-inline: auto;
+}
 .section-title { margin-top: 1rem; }
 .section-intro { margin-top: 1.25rem; }
 
@@ -1875,6 +1898,8 @@ html {
   justify-content: flex-start;
   padding-top: calc(var(--nav-h) + clamp(3rem, 10vh, 7rem));
   padding-bottom: clamp(4rem, 8vh, 6rem);
+  min-height: 100svh;
+  min-height: 100vh; /* fallback for browsers without svh support */
 }
 .hero::after {
   background:
@@ -2169,4 +2194,30 @@ html {
 }
 .link-card:hover .arrow {
   color: var(--accent-green-text);
+}
+
+/* ============================================================
+   3D scene frames — decorative R3F backdrops behind hero content
+   ============================================================ */
+.psm-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.psm-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.psm-scene-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      58% 55% at 60% 42%,
+      color-mix(in srgb, var(--scene-accent, var(--accent-azure)) 9%, transparent),
+      transparent 70%
+    );
 }

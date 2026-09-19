@@ -14,15 +14,15 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Logo />
-            <p className="footer-tagline">{COMPANY.footerLine}</p>
-            <p className="footer-desc">{COMPANY.tagline}</p>
+            <p className="footer-tagline" data-lines>{COMPANY.footerLine}</p>
+            <p className="footer-desc" data-lines>{COMPANY.tagline}</p>
             <Link className="btn btn-primary footer-cta" to="/contact" style={{ background: '#fff', color: 'var(--dark)' }}>
               Talk to PSM <span aria-hidden className="arrow">→</span>
             </Link>
           </div>
 
           <div className="footer-col">
-            <span className="mono footer-label">Products</span>
+            <span className="mono footer-label" data-lines>Products</span>
             <ul>
               {PRODUCTS.map((p) => (
                 <li key={p.id}>
@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
-            <span className="mono footer-label">Company</span>
+            <span className="mono footer-label" data-lines>Company</span>
             <ul>
               {FOOTER_NAV.map((n) => (
                 <li key={n.href}>
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
-            <span className="mono footer-label">Connect</span>
+            <span className="mono footer-label" data-lines>Connect</span>
             <ul>
               <li><a href={`mailto:${COMPANY.email}`} data-roll-link>Email Us</a></li>
               <li><a href={`tel:${COMPANY.phone1}`} data-roll-link>{COMPANY.phone1}</a></li>

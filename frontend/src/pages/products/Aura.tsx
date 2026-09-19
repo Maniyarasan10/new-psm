@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Seo from '../../components/Seo';
 import { PageHero } from '../../components/ui';
+import SceneFrame from '../../components/3d/SceneFrame';
 
 export default function Aura() {
   return (
@@ -14,8 +15,9 @@ export default function Aura() {
       <PageHero
         eyebrow="Product · Healthcare Technology"
         title="Aura — Healthcare Technology, Built Around the Patient."
+        backdrop={<SceneFrame variant="aura" />}
       >
-        <p>
+        <p data-reveal data-reveal-load data-reveal-delay="100">
           Aura is an emerging healthcare technology initiative exploring how
           connected devices and software can support better patient care and
           clinical workflows.
@@ -23,7 +25,7 @@ export default function Aura() {
         <span className="status-badge" style={{ marginTop: '1rem', display: 'inline-flex' }}>
           Early-Stage Development
         </span>
-        <div className="page-hero-cta">
+        <div className="page-hero-cta" data-reveal data-reveal-load data-reveal-delay="200">
           <Link className="btn btn-primary" to="/contact">
             Learn About Aura <span aria-hidden className="arrow">→</span>
           </Link>
@@ -37,8 +39,8 @@ export default function Aura() {
         <div className="container">
           <div className="content-stack">
             {/* The Problem */}
-            <div className="content-block">
-              <h2 className="h2">Healthcare Environments Generate More Than They Can Use.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Healthcare Environments Generate More Than They Can Use.</h2>
               <p>
                 Clinical and patient-care settings generate constant information —
                 from vitals to workflows to equipment — but much of it stays
@@ -49,8 +51,8 @@ export default function Aura() {
             </div>
 
             {/* The Vision */}
-            <div className="content-block">
-              <h2 className="h2">Technology That Understands the Environment It's Built For.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Technology That Understands the Environment It's Built For.</h2>
               <p>
                 Aura combines PSM's software and hardware capability to explore
                 healthcare-specific problems — where a real-world constraint, not a
@@ -59,8 +61,8 @@ export default function Aura() {
             </div>
 
             {/* Why Different */}
-            <div className="content-block">
-              <h2 className="h2">Why Aura Is Different for PSM.</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Why Aura Is Different for PSM.</h2>
               <p>
                 Aura reflects PSM's willingness to engage with hardware when it is the
                 right solution to a real problem — not a software-only workaround and
@@ -74,8 +76,8 @@ export default function Aura() {
             </div>
 
             {/* Status */}
-            <div className="content-block">
-              <h2 className="h2">Product Status</h2>
+            <div className="content-block" data-reveal>
+              <h2 className="h2" data-split>Product Status</h2>
               <p>
                 Aura is in early-stage development. Capabilities, focus areas and
                 timelines will be shared as the initiative progresses.
@@ -88,6 +90,9 @@ export default function Aura() {
                   Stay Updated
                 </Link>
               </div>
+              <p className="body" style={{ marginTop: '1.5rem' }}>
+                <a href="/products/aura" data-roll-link>Back to all products</a>
+              </p>
             </div>
           </div>
         </div>

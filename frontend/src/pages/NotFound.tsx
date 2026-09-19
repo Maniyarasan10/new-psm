@@ -10,15 +10,15 @@ export default function NotFound() {
         path="/404"
       />
       <div className="container">
-        <div className="display">404</div>
-        <div className="line" />
-        <h1 className="h2" style={{ marginTop: '1.5rem' }}>
+        <div className="display" data-split>404</div>
+        <div className="line" data-reveal />
+        <h1 className="h2" style={{ marginTop: '1.5rem' }} data-split>
           Looks Like This Problem Doesn't Have a Page Yet.
         </h1>
-        <p className="body">
+        <p className="body" data-reveal>
           The page you're looking for may have moved, changed or never existed. But that's okay. We're problem solvers.
         </p>
-        <div className="not-found-cta">
+        <div className="not-found-cta" data-reveal>
           <Link className="btn btn-primary" to="/">
             Go Home
           </Link>

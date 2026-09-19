@@ -48,16 +48,34 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
         return;
       }
 
-      const observers: IntersectionObserver[] = [];
+      /* Single shared IntersectionObserver for all reveals ─────────── */
       const ioSupported = typeof IntersectionObserver !== 'undefined';
       const viewportH = () => window.innerHeight || document.documentElement.clientHeight;
+      const observerMap = new Map<IntersectionObserver, Array<{ el: HTMLElement; animate: (el: HTMLElement) => void }>>();
 
-      /* ── Reveal runner ─────────────────────────────────────────────
-         Splits a group into "already at/above the fold" (animate now) and
-         "below the fold" (animate on first intersection). One observer per
-         group so a grid's cards arrive together as a single staggered batch.
-         If IntersectionObserver is unavailable the group reveals immediately. */
-      const revealGroup = (els: Array<Element>, animate: (batch: HTMLElement[]) => void) => {
+      const sharedObserver = ioSupported
+        ? new IntersectionObserver(
+            (entries: IntersectionObserverEntry[]) => {
+              entries.forEach((entry: IntersectionObserverEntry) => {
+                if (entry.isIntersecting) {
+                  const observers = observerMap.get(sharedObserver!);
+                  if (observers) {
+                    const item = observers.find((o) => o.el === entry.target);
+                    if (item) {
+                      item.animate(entry.target as HTMLElement);
+                      sharedObserver!.unobserve(entry.target);
+                      const idx = observers.indexOf(item);
+                      if (idx > -1) observers.splice(idx, 1);
+                    }
+                  }
+                }
+              });
+            },
+            { rootMargin: '0px 0px -8% 0px' }
+          )
+        : null;
+
+      const revealGroup = (els: Array<Element>, animate: (el: HTMLElement) => void) => {
         if (!els.length) return;
         const now: HTMLElement[] = [];
         const observe: HTMLElement[] = [];
@@ -67,25 +85,18 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
           if (node.getBoundingClientRect().top < vh * 0.92) now.push(node);
           else observe.push(node);
         });
-        if (now.length) animate(now);
+        if (now.length) now.forEach(animate);
         if (!observe.length) return;
-        if (!ioSupported) {
-          animate(observe);
+        if (!ioSupported || !sharedObserver) {
+          observe.forEach(animate);
           return;
         }
-        const io = new IntersectionObserver(
-          (entries) => {
-            const batch = entries
-              .filter((e) => e.isIntersecting)
-              .map((e) => e.target as HTMLElement);
-            if (!batch.length) return;
-            batch.forEach((el) => io.unobserve(el));
-            animate(batch);
-          },
-          { rootMargin: '0px 0px -8% 0px' },
-        );
-        observe.forEach((el) => io.observe(el));
-        observers.push(io);
+        observe.forEach((el) => {
+          const list = observerMap.get(sharedObserver) || [];
+          list.push({ el, animate });
+          observerMap.set(sharedObserver, list);
+          sharedObserver!.observe(el);
+        });
       };
 
       /* 1 ── SplitText heading reveals ────────────────────────────── */
@@ -215,19 +226,13 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
           batch,
           {
             autoAlpha: 0,
-            y: 54,
-            scale: 0.95,
-            rotationX: -45,
-            transformOrigin: '50% 100%',
-            transformPerspective: 900,
+            y: 32,
           },
           {
             autoAlpha: 1,
             y: 0,
-            scale: 1,
-            rotationX: 0,
-            duration: 1,
-            ease: 'expo.out',
+            duration: 0.85,
+            ease: 'power3.out',
             stagger: 0.1,
           },
         ),
@@ -327,27 +332,16 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
 
         q('.base-card, .step-card').forEach((card) => {
           const node = card as HTMLElement;
-          const rxTo = gsap.quickTo(node, 'rotationX', { duration: 0.45, ease: 'power3' });
-          const ryTo = gsap.quickTo(node, 'rotationY', { duration: 0.45, ease: 'power3' });
-          const enter = () => {
-            gsap.set(node, { transformPerspective: 900, transformOrigin: '50% 50%' });
-          };
           const move = (e: PointerEvent) => {
             spotlight(node, e);
-            const r = node.getBoundingClientRect();
-            const px = (e.clientX - r.left) / r.width - 0.5;
-            const py = (e.clientY - r.top) / r.height - 0.5;
-            ryTo(px * 14);
-            rxTo(py * -10);
           };
           const leave = () => {
-            rxTo(0);
-            ryTo(0);
+            node.style.setProperty('--mx', '50%');
+            node.style.setProperty('--my', '50%');
           };
-          node.addEventListener('pointerenter', enter);
           node.addEventListener('pointermove', move);
           node.addEventListener('pointerleave', leave);
-          listeners.push({ node, enter, move, leave });
+          listeners.push({ node, move, leave });
         });
 
         q('.product-card, .intro-card, .team-card, .capability-card, .contact-card, .btn-primary, .btn-ghost, .nav-cta').forEach(
@@ -376,7 +370,8 @@ export function usePageAnimations(scope: RefObject<HTMLElement | null>, deps: un
       }
 
       return () => {
-        observers.forEach((io) => io.disconnect());
+        sharedObserver?.disconnect();
+        observerMap.clear();
         listeners.forEach(({ node, enter, move, leave }) => {
           if (enter) node.removeEventListener('pointerenter', enter);
           node.removeEventListener('pointermove', move);

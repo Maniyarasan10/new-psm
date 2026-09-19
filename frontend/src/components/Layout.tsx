@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Preloader from './Preloader';
 import { getLenis } from './SmoothScroll';
 import { usePageAnimations } from '../hooks/usePageAnimations';
+import { usePageTransition } from '../hooks/usePremiumAnimations';
 import { useReducedMotion } from '../lib/reducedMotion';
 import { gsap, useGSAP } from '../lib/gsapSetup';
 
@@ -17,6 +18,9 @@ export default function Layout() {
   // Premium GSAP engine: split-text headings, batched reveals, parallax,
   // magnetic buttons, scroll progress. Re-runs (and reverts) per route change.
   usePageAnimations(shellRef, [pathname]);
+
+  // Page transitions with Flip
+  usePageTransition();
 
   // Jump to top on route change (instant with Lenis so reveals start clean)
   useEffect(() => {
